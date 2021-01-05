@@ -1,7 +1,5 @@
-import 'bootstrap';
-// eslint-disable-next-line no-unused-vars
-import $ from 'jquery';
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./components/App.js";
 
-function init() {}
-
-export default init;
+ReactDOM.render(<App />, document.getElementById("root"));
