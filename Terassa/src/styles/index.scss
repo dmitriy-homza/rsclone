@@ -43,12 +43,152 @@ main {
         background-position: 0px;
         padding: 130px;
         background-size: contain;
+        background-repeat: no-repeat;
+        @media (max-width: 1290px) {
+          bottom: -153px;
+          font-size: 15px;
+        }
       }
       p:first-child {
         padding-right: 50px;
       }
       p {
         margin-bottom: 0px;
+      }
+    }
+  }
+  .content-block {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    h2 {
+      font-size: 55px;
+    }
+    p {
+      max-width: 400px;
+      font-weight: 300;
+    }
+  }
+  .delicious-food {
+    position: relative;
+    top: -70px;
+    max-width: 1100px;
+    margin: 0px auto;
+  }
+  .pleasant-env {
+    max-width: 1100px;
+    margin: 0px auto;
+    padding-bottom: 5rem;
+  }
+}
+
+@media (max-width: 1090px) {
+  body {
+    main {
+      .delicious-food {
+        .content-block {
+          img {
+            width: 300px;
+          }
+        }
+      }
+      .pleasant-env {
+        .content-block {
+          img {
+            width: 300px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  body {
+    main {
+      .hello {
+        .hello-text {
+          .time {
+            padding: 65px;
+            bottom: -94px;
+          }
+        }
+      }
+
+      .delicious-food {
+        top: -50px;
+        .content-block {
+          padding: 30px 0px;
+          img {
+            position: absolute;
+            top: -136px;
+            left: -122px;
+          }
+        }
+      }
+      .pleasant-env {
+        .content-block {
+          img {
+            display: none;
+            width: 250px;
+            position: absolute;
+            right: -54px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 440px) {
+  body {
+    main {
+      .hello {
+        .hello-text {
+          h1 {
+            font-size: 100px;
+            left: -50px;
+          }
+          h3 {
+            top: 106px;
+            position: absolute;
+            left: 58px;
+            font-weight: 300;
+            font-size: 1.4rem;
+            width: max-content;
+          }
+          .time {
+            padding: 65px;
+            bottom: -94px;
+          }
+        }
+      }
+      .delicious-food {
+        top: -50px;
+        .content-block {
+          padding: 30px 0px;
+          h2 {
+            font-size: 30px;
+          }
+          img {
+            position: absolute;
+            top: -160px;
+            left: -160px;
+          }
+        }
+      }
+      .pleasant-env {
+        .content-block {
+          & > div {
+            padding-left: 1rem !important;
+          }
+          img {
+            display: none;
+            width: 250px;
+            position: absolute;
+            right: -54px;
+          }
+        }
       }
     }
   }
