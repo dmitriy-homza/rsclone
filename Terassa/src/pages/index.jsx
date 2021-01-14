@@ -1,5 +1,4 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
 import { Button } from 'reactstrap';
 import Layout from '../components/layout';
 import '../styles/index.scss';
@@ -8,7 +7,6 @@ import imgEnvironment from '../images/environment.png';
 
 export default () => (
   <>
-    <Helmet title="Terassa - Main Page" />
     <Layout>
       <main>
         <section className="hello col-12">

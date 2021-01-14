@@ -5,7 +5,6 @@ module.exports = {
   plugins: [
     { resolve: 'gatsby-plugin-eslint' },
     { resolve: 'gatsby-plugin-sass' },
-    { resolve: 'react-helmet' },
     {
       resolve: 'gatsby-plugin-prettier-eslint',
       options: {
