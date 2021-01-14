@@ -1,7 +1,8 @@
+/* eslint-disable implicit-arrow-linebreak */
 import React, { useState } from 'react';
 import { Link } from 'gatsby';
 import {
-  Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink,
+  Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavLink, NavItem,
 } from 'reactstrap';
 
 const Header = () => {
@@ -11,8 +12,8 @@ const Header = () => {
     <header className="col-12">
       <div className="wrapper">
         <Navbar className="d-flex w-100 justify-content-between" color="light" light expand="md">
-          <NavbarBrand className="garamond">
-            <Link to="/">Terassa</Link>
+          <NavbarBrand tag={Link} to="/" className="garamond">
+            Terassa
           </NavbarBrand>
           <NavbarToggler onClick={toggle} />
           <Collapse isOpen={isOpen} navbar>

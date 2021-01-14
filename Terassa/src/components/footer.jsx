@@ -7,8 +7,8 @@ export default function Footer() {
     <footer>
       <div className="wrapper">
         <Navbar className="w-100 justify-content-between" light expand="md">
-          <NavbarBrand className="garamond">
-            <Link to="/">Terassa</Link>
+          <NavbarBrand tag={Link} to="/" className="garamond">
+            Terassa
           </NavbarBrand>
         </Navbar>
       </div>

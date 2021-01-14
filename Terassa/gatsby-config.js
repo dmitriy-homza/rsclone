@@ -1,13 +1,11 @@
-/**
- * Configure your Gatsby site with this file.
- *
- * See: https://www.gatsbyjs.com/docs/gatsby-config/
- */
-
 module.exports = {
+  siteMetadata: {
+    title: 'Terassa',
+  },
   plugins: [
-    'gatsby-plugin-sass',
-    'gatsby-plugin-eslint',
+    { resolve: 'gatsby-plugin-eslint' },
+    { resolve: 'gatsby-plugin-sass' },
+    { resolve: 'react-helmet' },
     {
       resolve: 'gatsby-plugin-prettier-eslint',
       options: {
