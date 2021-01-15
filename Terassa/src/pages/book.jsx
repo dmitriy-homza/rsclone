@@ -1,13 +1,20 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
 import Layout from '../components/layout';
-import '../styles/index.scss';
+import Options from '../components/additional/options';
+import '../styles/book.scss';
 
 export default () => (
   <>
-    <Helmet title="Terassa - Book" />
     <Layout>
-      <h1>Book</h1>
+      <main>
+        <section>
+          <Options />
+        </section>
+      </main>
+      <aside>
+        <div><h2>aside!</h2></div>
+      </aside>
+
     </Layout>
   </>
 );

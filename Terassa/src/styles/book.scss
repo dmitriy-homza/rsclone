@@ -1,0 +1,11 @@
+body {
+  main {
+    .dishes-wrapper {
+      display: flex;
+      .card {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
+}
