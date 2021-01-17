@@ -7,7 +7,6 @@ export default () => (
   <>
     <Layout>
       <Order />
-      <h1>Order</h1>
     </Layout>
   </>
 );
