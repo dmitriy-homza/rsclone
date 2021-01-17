@@ -6,15 +6,14 @@ import '../styles/book.scss';
 export default () => (
   <>
     <Layout>
-      <main>
-        <section>
+      <main className="d-flex">
+        <section className="col-12 col-sm-9">
           <Options />
         </section>
+        <aside className="col-12 col-sm-3">
+          <div><h2>aside!</h2></div>
+        </aside>
       </main>
-      <aside>
-        <div><h2>aside!</h2></div>
-      </aside>
-
     </Layout>
   </>
 );
