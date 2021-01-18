@@ -8,8 +8,8 @@ import {
 const card = ({
   name, weight, img, description, cost,
 }) => (
-  <>
-    <Card>
+  <div>
+    <Card id={name}>
       <CardImg top width="100%" src={img} alt="Card image cap" />
       <CardBody>
         <CardTitle tag="h5">{name}</CardTitle>
@@ -29,7 +29,7 @@ const card = ({
         <Button>-</Button>
       </CardBody>
     </Card>
-  </>
+  </div>
 );
 
 card.propTypes = {
