@@ -19,7 +19,7 @@ const options = () => {
     <>
       <div className="dishes">
         <h2>Dishes</h2>
-        <div className="dishes-wrapper">
+        <div className="dishes-wrapper d-flex flex-wrap">
           {answer ? Object.keys(answer).map((key) => (Array.from(answer[key])
             .map((item) => (
               <Card
