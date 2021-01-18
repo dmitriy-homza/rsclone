@@ -17,22 +17,19 @@ const options = () => {
   }, []);
   return (
     <>
-      <div className="dishes">
-        <h2>Dishes</h2>
-        <div className="dishes-wrapper d-flex flex-wrap">
-          {answer ? Object.keys(answer).map((key) => (Array.from(answer[key])
-            .map((item) => (
-              <Card
-                key={`key${item.weight}`}
-                name={item.name}
-                weight={item.weight}
-                img={item.img}
-                description={item.description}
-                cost={item.cost}
-              />
-            ))
-          )) : 'false'}
-        </div>
+      <div className="additional-wrapper d-flex flex-wrap">
+        {answer ? Object.keys(answer).map((key) => (Array.from(answer[key])
+          .map((item) => (
+            <Card
+              key={`key${item.weight}`}
+              name={item.name}
+              weight={item.weight}
+              img={item.img}
+              description={item.description}
+              cost={item.cost}
+            />
+          ))
+        )) : 'false'}
       </div>
     </>
   );

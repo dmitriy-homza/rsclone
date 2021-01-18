@@ -30,7 +30,7 @@ const card = ({
     backgroundImage: `url('${answer}')`,
   };
   return (
-    <div className="col-md-4 col-sm-6 col-12">
+    <div className="pt-3 col-md-4 col-sm-6 col-12">
       <Card id={name}>
         <div className="card-image" style={divStyle} />
         <CardBody className="d-flex flex-column">
