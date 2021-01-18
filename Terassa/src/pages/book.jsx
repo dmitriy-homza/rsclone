@@ -4,6 +4,8 @@ import '../styles/book.scss';
 
 export default () => (
   <>
-    <Layout />
+    <Layout>
+      <main className="d-flex" />
+    </Layout>
   </>
 );
