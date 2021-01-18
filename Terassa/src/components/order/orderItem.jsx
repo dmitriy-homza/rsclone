@@ -2,12 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function OrderItem({ order }) {
-  // const { order } = this.props;
+  const {
+    nomber, // table, option,
+  } = order;
   return (
-    <li>{order.name}</li>
+    <li>
+      <div>
+
+        <div>{nomber}</div>
+      </div>
+
+    </li>
   );
 }
 OrderItem.propTypes = {
-  order: PropTypes.object.isRequired,
+  order: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
 };
 export default OrderItem;

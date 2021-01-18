@@ -2,10 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import OrderItem from './orderItem';
 
-function OrderList(props) {
+const styles = {
+  ul: {
+    listStyle: 'none',
+    margin: 0,
+    padding: 0,
+  },
+};
+
+function OrderList({ vse }) {
+  const [...orders] = vse;
   return (
-    <ul>
-      {props.vse.map((order) => <OrderItem order={order} key={order.name} />)}
+    <ul style={styles.ul}>
+      {orders.map((order) => <OrderItem order={order} key={order.name} />)}
     </ul>
   );
 }

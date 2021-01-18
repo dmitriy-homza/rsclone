@@ -3,9 +3,9 @@ import React from 'react';
 import Orders from './orders';
 import OrderList from './orderList';
 
-export default function Order() {
-  const [...vse] = Orders();
-  // console.log(Orders()[1].name);
+function Order() {
+  // const [...vse] = Orders();
+  console.log(Orders());
   // console.log(vse[1].name);
   // for (let i = 0; i <= vse.length - 1; i++) {
   //  const {
@@ -15,7 +15,9 @@ export default function Order() {
   return (
     <div className="orderList">
       <h1>Order List</h1>
-      <OrderList vse={vse} />
+      <OrderList vse={Orders()} />
     </div>
   );
 }
+
+export default Order;
