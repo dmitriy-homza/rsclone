@@ -3,15 +3,14 @@ import PropTypes from 'prop-types';
 
 function OrderItem({ order }) {
   const {
-    nomber, // table, option,
+    name, nomber,
   } = order;
   return (
     <li>
-      <div>
-
+      <span>
+        <div>{name}</div>
         <div>{nomber}</div>
-      </div>
-
+      </span>
     </li>
   );
 }

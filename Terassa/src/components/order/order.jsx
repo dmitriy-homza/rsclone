@@ -1,21 +1,29 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
 import Orders from './orders';
 import OrderList from './orderList';
+import FindOrder from './findOrder';
 
 function Order() {
-  // const [...vse] = Orders();
-  console.log(Orders());
-  // console.log(vse[1].name);
-  // for (let i = 0; i <= vse.length - 1; i++) {
-  //  const {
-  //   name, time, number, option,
-  // } = vse[i];
-  // }
+  const [orders, setOrder] = React.useState(Orders());
+  // console.log(Orders());
+  function addOrder(number) {
+    setOrder(
+      orders.concat([
+        {
+          nomber: number,
+          name: 'layra',
+          time: 'time',
+          table: 'number',
+          option: 'none',
+        },
+      ]),
+    );
+  }
   return (
     <div className="orderList">
+      <FindOrder onCreate={addOrder} />
       <h1>Order List</h1>
-      <OrderList vse={Orders()} />
+      <OrderList vse={orders} />
     </div>
   );
 }
