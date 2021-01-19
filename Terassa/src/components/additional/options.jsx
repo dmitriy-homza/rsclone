@@ -1,7 +1,7 @@
 /* eslint-disable no-return-assign */
 import React, { useState, useEffect } from 'react';
 import firebase from 'firebase/app';
-import Card from './card';
+import AdditionGroup from './additionGroup';
 // import additionals from './additional.json';
 import 'firebase/database';
 
@@ -18,17 +18,12 @@ const options = () => {
   return (
     <>
       <div className="additional-wrapper d-flex flex-wrap">
-        {answer ? Object.keys(answer).map((key) => (Array.from(answer[key])
-          .map((item) => (
-            <Card
-              key={`key${item.weight}`}
-              name={item.name}
-              weight={item.weight}
-              img={item.img}
-              description={item.description}
-              cost={item.cost}
-            />
-          ))
+        {typeof (answer) === 'object' ? Object.keys(answer).map((groupName) => (
+          <AdditionGroup
+            key={groupName}
+            groupName={groupName}
+            groupElements={Array.from(answer[groupName])}
+          />
         )) : 'false'}
       </div>
     </>

@@ -1,15 +1,17 @@
 body {
   main {
     .additional-wrapper {
-      .card {
-        .card-image {
-          width: 100%;
-          height: 200px;
-          background-size: cover;
+      .additional-group-wrapper {
+        .card {
+          .card-image {
+            width: 100%;
+            height: 200px;
+            background-size: cover;
+          }
+          display: flex;
+          flex-direction: column;
+          height: 100%;
         }
-        display: flex;
-        flex-direction: column;
-        height: 100%;
       }
     }
   }
