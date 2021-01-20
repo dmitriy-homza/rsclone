@@ -8,7 +8,8 @@ export default () => {
   const [selectedAdditional, addElement] = React.useState([]);
 
   function addAddition(element) {
-    addElement(selectedAdditional.push(element));
+    console.log(element, selectedAdditional);
+    addElement([...selectedAdditional, element]);
     console.log(element, selectedAdditional);
   }
 
@@ -16,7 +17,7 @@ export default () => {
     <>
       <Layout>
         <main className="d-flex">
-          <h2>{selectedAdditional[0]}</h2>
+          <h2>{selectedAdditional[selectedAdditional.length - 1]}</h2>
           <section className="col-12 col-sm-9">
             <Options addAddition1={addAddition} />
           </section>
