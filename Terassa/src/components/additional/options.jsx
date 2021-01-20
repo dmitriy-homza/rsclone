@@ -1,11 +1,10 @@
-/* eslint-disable no-return-assign */
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import firebase from 'firebase/app';
 import AdditionGroup from './additionGroup';
-// import additionals from './additional.json';
 import 'firebase/database';
 
-const options = () => {
+const options = ({ addAddition1 }) => {
   const [answer, setData] = useState('error');
 
   useEffect(() => {
@@ -23,11 +22,16 @@ const options = () => {
             key={groupName}
             groupName={groupName}
             groupElements={Array.from(answer[groupName])}
+            addAdditional2={addAddition1}
           />
         )) : 'false'}
       </div>
     </>
   );
+};
+
+options.propTypes = {
+  addAddition1: PropTypes.func.isRequired,
 };
 
 export default options;

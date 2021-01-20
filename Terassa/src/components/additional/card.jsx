@@ -10,7 +10,7 @@ import {
 } from 'reactstrap';
 
 const card = ({
-  name, weight, img, description, cost,
+  name, weight, img, description, cost, addAdditional3,
 }) => {
   const [answer, setData] = useState('../../images/empty.jpg');
 
@@ -48,7 +48,7 @@ const card = ({
               step="300"
               required
             />
-            <Button>+</Button>
+            <Button onClick={() => { addAdditional3(name); }}>+</Button>
             <Button>-</Button>
           </div>
         </CardBody>
@@ -63,6 +63,7 @@ card.propTypes = {
   img: PropTypes.string,
   description: PropTypes.string,
   cost: PropTypes.string,
+  addAdditional3: PropTypes.func.isRequired,
 };
 
 export default card;
