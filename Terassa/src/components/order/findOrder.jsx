@@ -21,6 +21,9 @@ function FindOrder({ onCreate }) {
     if (input.value().trim()) {
       onCreate(input.value());
       input.clear();
+    } else {
+      onCreate('');
+      input.clear();
     }
   }
   return (

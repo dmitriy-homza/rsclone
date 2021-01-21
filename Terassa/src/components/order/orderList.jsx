@@ -1,12 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import OrderItem from './orderItem';
+// import OrderItem from './orderItem';
 
 function OrderList({ vse }) {
-  const [...orders] = vse;
+  const { name, nomber } = vse;
+
   return (
     <ul>
-      {orders.map((order) => <OrderItem order={order} />)}
+      <li>
+        <span>
+          <div>{name}</div>
+          <div>{nomber}</div>
+        </span>
+      </li>
     </ul>
   );
 }

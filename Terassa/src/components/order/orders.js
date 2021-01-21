@@ -3,6 +3,10 @@
 export default function Orders() {
   const arr = [
     {
+      nomber: '',
+      name: 'Order not exist',
+    },
+    {
       nomber: 123,
       name: 'Nick',
       time: 'time',

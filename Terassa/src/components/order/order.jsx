@@ -6,22 +6,18 @@ import FindOrder from './findOrder';
 function Order() {
   const [orders, setOrder] = React.useState(Orders());
   // console.log(Orders());
-  function addOrder(number) {
+
+  function findOrder(number) {
     setOrder(
-      orders.concat([
-        {
-          nomber: number,
-          name: 'layra',
-          time: 'time',
-          table: 'number',
-          option: 'none',
-        },
-      ]),
+      orders.find((ord) => (ord.nomber.toString() === number)),
+      // arr.push(orders.find((ord) => ord.nomber === number)),
+
     );
   }
+
   return (
     <div className="orderList">
-      <FindOrder onCreate={addOrder} />
+      <FindOrder onCreate={findOrder} />
       <h1>Order List</h1>
       <OrderList vse={orders} />
     </div>
