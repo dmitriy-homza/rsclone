@@ -29,6 +29,11 @@ const Header = () => {
                 </NavLink>
               </NavItem>
               <NavItem>
+                <NavLink tag={Link} to="/additions" activeClassName="active">
+                  Additions
+                </NavLink>
+              </NavItem>
+              <NavItem>
                 <NavLink tag={Link} to="/contacts" activeClassName="active">
                   Contacts
                 </NavLink>
