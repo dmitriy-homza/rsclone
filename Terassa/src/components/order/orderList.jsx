@@ -1,22 +1,42 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import MenuDishes from './menuDishes';
 // import OrderItem from './orderItem';
 
 function OrderList({ vse }) {
-  const { name, nomber } = vse;
+  if (vse === undefined) {
+    const vce = {
+      name: 'Not exist',
+    };
+    const { name } = vce;
+    return (
+      <ul>
+        <li>
+          <span>
+            <div>{name}</div>
+          </span>
+        </li>
+      </ul>
+    );
+  }
+  const {
+    name, nomber, option, dishes,
+  } = vse;
 
   return (
     <ul>
       <li>
-        <span>
+        <div>
           <div>{name}</div>
-          <div>{nomber}</div>
-        </span>
+          <span>{nomber}</span>
+          <div>{option}</div>
+          <section><MenuDishes dishes={dishes} /></section>
+        </div>
       </li>
     </ul>
   );
 }
 OrderList.propTypes = {
-  vse: PropTypes.arrayOf(PropTypes.object).isRequired,
+  vse: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
 };
 export default OrderList;

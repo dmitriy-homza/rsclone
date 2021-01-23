@@ -4,42 +4,83 @@ export default function Orders() {
   const arr = [
     {
       nomber: '',
-      name: 'Order not exist',
+      name: 'Ведите номер закза',
+
     },
     {
       nomber: 123,
       name: 'Nick',
       time: 'time',
-      table: 'number',
+      table: {
+        persons: '3 person',
+        number: 12,
+      },
       option: 'none',
+      dishes: {
+        fist: 'soup',
+        second: 'potato',
+        drink: 'vodka',
+      },
     },
     {
       nomber: 12,
       name: 'Roman',
       time: 'time',
-      table: 'number',
+      table: {
+        persons: '3 person',
+        number: 12,
+      },
       option: 'none',
-    },
-    {
-      nomber: 23,
-      name: 'Bary',
-      time: 'time',
-      table: 'number',
-      option: 'none',
-    },
-    {
-      nomber: 13,
-      name: 'layra',
-      time: 'time',
-      table: 'number',
-      option: 'none',
+      dishes: {
+        fist: 'soup',
+        second: 'potato',
+        drink: 'vodka',
+      },
     },
     {
       nomber: 3,
-      name: 'Grethen',
+      name: 'AbraKadabra',
       time: 'time',
-      table: 'number',
+      table: {
+        persons: '3 person',
+        number: 12,
+      },
       option: 'none',
+      dishes: {
+        fist: 'soup',
+        second: 'potato',
+        drink: 'vodka',
+      },
+    },
+    {
+      nomber: 23,
+      name: 'Nick',
+      time: 'time',
+      table: {
+        persons: '3 person',
+        number: 12,
+      },
+      option: 'none',
+      dishes: {
+        fist: 'soup',
+        second: 'potato',
+        drink: 'vodka',
+      },
+    },
+    {
+      nomber: 1,
+      name: 'Nick',
+      time: 'time',
+      table: {
+        persons: '3 person',
+        number: 12,
+      },
+      option: 'none',
+      dishes: {
+        fist: 'soup',
+        second: 'potato',
+        drink: 'vodka',
+      },
     },
   ];
 
