@@ -43,6 +43,11 @@ const Header = () => {
                   Login
                 </NavLink>
               </NavItem>
+              <NavItem>
+                <NavLink tag={Link} to="/order" activeClassName="active">
+                  Order
+                </NavLink>
+              </NavItem>
             </Nav>
           </Collapse>
         </Navbar>
