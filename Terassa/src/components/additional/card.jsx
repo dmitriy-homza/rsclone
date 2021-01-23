@@ -1,5 +1,7 @@
+/* eslint-disable no-undef */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { store } from 'react-notifications-component';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
@@ -41,18 +43,44 @@ const card = ({
           <div className="controld">
             <input
               type="time"
-              id="appt"
+              id={weight}
               name="appt"
               min="09:00"
               max="18:00"
               step="300"
               required
             />
-            <Button onClick={() => { addAdditional3(name); }}>+</Button>
-            <Button>-</Button>
+            <Button onClick={() => {
+              if (!document.getElementById(`${weight}`).value) {
+                store.addNotification({
+                  title: 'Wonderful!',
+                  message: 'teodosii@react-notifications-component',
+                  type: 'warning',
+                  insert: 'top',
+                  container: 'top-right',
+                  animationIn: ['animate__animated animate__fadeIn'],
+                  animationOut: ['animate__animated animate__fadeOut'],
+                  dismiss: {
+                    duration: 5000,
+                  },
+                });
+              } else {
+                const positionObject = {
+                  name,
+                  weight,
+                  cost,
+                  time: document.getElementById(`${weight}`).value,
+                };
+                addAdditional3(positionObject);
+              }
+            }}
+            >
+              +
+            </Button>
           </div>
         </CardBody>
       </Card>
+
     </div>
   );
 };
