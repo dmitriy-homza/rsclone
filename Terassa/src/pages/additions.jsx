@@ -1,10 +1,11 @@
+/* eslint-disable max-len */
 /* eslint-disable no-param-reassign */
 import React from 'react';
 import ReactNotification from 'react-notifications-component';
 import Layout from '../components/layout';
 import Options from '../components/additional/options';
 import Basket from '../components/additional/basket';
-import '../styles/book.scss';
+import '../styles/addition.scss';
 
 export default () => {
   const [selectedAdditional, addElement] = React.useState([]);
@@ -25,7 +26,18 @@ export default () => {
       addElement([...selectedAdditional, element]);
     }
   }
-
+  function removePosition(positionId) {
+    let removeIndex = positionId;
+    selectedAdditional.forEach((item, index) => {
+      if (item.id === positionId) {
+        removeIndex = index;
+      }
+    });
+    selectedAdditional.splice(removeIndex, 1);
+    const newArray = selectedAdditional.slice();
+    addElement(newArray);
+  }
+  console.log(selectedAdditional);
   return (
     <>
       <Layout>
@@ -34,8 +46,8 @@ export default () => {
           <section className="col-12 col-sm-9">
             <Options addAddition1={addAddition} />
           </section>
-          <aside className="col-12 col-sm-3">
-            <Basket checkPosition={selectedAdditional} />
+          <aside className="col-12 col-sm-3 basket-container">
+            <Basket removePosition1={removePosition} key={selectedAdditional.length} checkPosition={selectedAdditional} />
           </aside>
         </main>
       </Layout>

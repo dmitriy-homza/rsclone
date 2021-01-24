@@ -7,7 +7,7 @@ import 'firebase/firestore';
 import 'firebase/auth';
 import 'firebase/storage';
 import {
-  Card, CardText, CardBody,
+  Tooltip, Card, CardText, CardBody,
   CardTitle, CardSubtitle, Button,
 } from 'reactstrap';
 
@@ -31,30 +31,42 @@ const card = ({
   const divStyle = {
     backgroundImage: `url('${answer}')`,
   };
+  const [tooltipOpen, setTooltipOpen] = useState(false);
+  const toggle = () => setTooltipOpen(!tooltipOpen);
   return (
     <div className="pt-3 col-md-4 col-sm-6 col-12">
       <Card id={name}>
         <div className="card-image" style={divStyle} />
         <CardBody className="d-flex flex-column">
           <CardTitle tag="h5">{name}</CardTitle>
-          <CardSubtitle tag="h6" className="mb-2 text-muted">{weight}</CardSubtitle>
+          <CardSubtitle tag="h6" className="mb-2 text-muted">
+            {weight}
+          </CardSubtitle>
           <CardText>{description}</CardText>
-          <div className="cost mt-auto">{cost}</div>
-          <div className="controld">
+          <div className="d-flex justify-content-between control mt-auto">
+            <div className="cost">
+              {cost}
+              $
+            </div>
+
             <input
               type="time"
-              id={weight}
+              id={['id', weight.slice(0, 3)].join('')}
               name="appt"
               min="09:00"
               max="18:00"
               step="300"
               required
             />
+            <Tooltip placement="top" isOpen={tooltipOpen} target={['id', weight.slice(0, 3)].join('')} toggle={toggle}>
+              {' '}
+              Choose a time to provide the service!
+            </Tooltip>
             <Button onClick={() => {
-              if (!document.getElementById(`${weight}`).value) {
+              if (!document.getElementById(`${['id', weight.slice(0, 3)].join('')}`).value) {
                 store.addNotification({
-                  title: 'Wonderful!',
-                  message: 'teodosii@react-notifications-component',
+                  title: 'Choose time!',
+                  message: 'Choose a time to provide the service',
                   type: 'warning',
                   insert: 'top',
                   container: 'top-right',
@@ -69,14 +81,14 @@ const card = ({
                   name,
                   weight,
                   cost,
-                  time: [document.getElementById(`${weight}`).value],
+                  time: [document.getElementById(`${['id', weight.slice(0, 3)].join('')}`).value],
                   quantity: 1,
                 };
                 addAdditional3(positionObject);
               }
             }}
             >
-              +
+              Add
             </Button>
           </div>
         </CardBody>

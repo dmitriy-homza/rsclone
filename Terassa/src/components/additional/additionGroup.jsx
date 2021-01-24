@@ -7,8 +7,8 @@ import 'firebase/database';
 const AdditionGroup = ({ groupName, groupElements, addAdditional2 }) => {
   return (
     <>
-      <div className="additional-group">
-        <h2>{groupName}</h2>
+      <div className="additional-group pb-4 pt-4">
+        <h2 className="pl-4 group-title mb-0">{groupName}</h2>
         <div className="additional-group-wrapper d-flex flex-wrap">
           {
               groupElements.map((item) => (
