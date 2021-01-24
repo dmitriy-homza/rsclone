@@ -1,25 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import OrderMenu from './orderMenu';
 // import OrderItem from './orderItem';
-function MenuDishes({ dishes }) {
-  const { ...Orderdishes } = dishes;
-  const { fist, second, drink } = Orderdishes;
-
+function MenuDishes({ menuItems }) {
+  const [...orderMenu] = menuItems;
   return (
     <div>
-      <div>
-        {fist}
-      </div>
-      <div>
-        {second}
-      </div>
-      <div>
-        {drink}
-      </div>
+      {orderMenu.map((dishesFromOrder) => <OrderMenu dishesFromOrder={dishesFromOrder} />)}
     </div>
   );
 }
 MenuDishes.propTypes = {
-  dishes: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  menuItems: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 export default MenuDishes;

@@ -5,52 +5,12 @@ export default function Orders() {
     {
       nomber: '',
       name: 'Ведите номер закза',
+      time: '',
+      table: {
 
-    },
-    {
-      nomber: 123,
-      name: 'Nick',
-      time: 'time',
-      table: {
-        persons: '3 person',
-        number: 12,
       },
-      option: 'none',
-      dishes: {
-        fist: 'soup',
-        second: 'potato',
-        drink: 'vodka',
-      },
-    },
-    {
-      nomber: 12,
-      name: 'Roman',
-      time: 'time',
-      table: {
-        persons: '3 person',
-        number: 12,
-      },
-      option: 'none',
-      dishes: {
-        fist: 'soup',
-        second: 'potato',
-        drink: 'vodka',
-      },
-    },
-    {
-      nomber: 3,
-      name: 'AbraKadabra',
-      time: 'time',
-      table: {
-        persons: '3 person',
-        number: 12,
-      },
-      option: 'none',
-      dishes: {
-        fist: 'soup',
-        second: 'potato',
-        drink: 'vodka',
-      },
+      option: [],
+      menu: [],
     },
     {
       nomber: 23,
@@ -60,27 +20,46 @@ export default function Orders() {
         persons: '3 person',
         number: 12,
       },
-      option: 'none',
-      dishes: {
-        fist: 'soup',
-        second: 'potato',
-        drink: 'vodka',
-      },
-    },
-    {
-      nomber: 1,
-      name: 'Nick',
-      time: 'time',
-      table: {
-        persons: '3 person',
-        number: 12,
-      },
-      option: 'none',
-      dishes: {
-        fist: 'soup',
-        second: 'potato',
-        drink: 'vodka',
-      },
+      option:
+        [
+          {
+            flovers: 'roses',
+            hookah: 'aple-limon',
+            special: 'за счет заведения',
+          },
+          {
+            flovers: 'хуезы',
+            hookah: 'хуельян',
+            special: 'пойти нихер',
+          },
+        ],
+      menu:
+        [
+          {
+            name: 'Сковородка Сельская с деревенскими колбасками',
+            weight: '416',
+            cost: '13.4',
+            time: ['17:00'],
+            quantity: 1,
+            id: '0',
+          },
+          {
+            name: 'Котлеты по-киевски',
+            weight: '455',
+            cost: '12.5',
+            time: ['17:40', '17:50'],
+            quantity: 2,
+            id: '1',
+          },
+          {
+            name: 'Сковородка с куриными бедрышками и сердечками',
+            weight: '485',
+            cost: '14.2',
+            time: ['18:40', '18:40', '18:40', '18:40', '18:40'],
+            quantity: 5,
+            id: '2',
+          },
+        ],
     },
   ];
 

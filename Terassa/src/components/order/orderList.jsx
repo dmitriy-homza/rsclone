@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import MenuDishes from './menuDishes';
 // import OrderItem from './orderItem';
+import Options from './options';
 
 function OrderList({ vse }) {
   if (vse === undefined) {
@@ -20,8 +21,10 @@ function OrderList({ vse }) {
     );
   }
   const {
-    name, nomber, option, dishes,
+    name, nomber, option, menu,
   } = vse;
+  console.log(option);
+  console.log(menu);
 
   return (
     <ul>
@@ -29,8 +32,8 @@ function OrderList({ vse }) {
         <div>
           <div>{name}</div>
           <span>{nomber}</span>
-          <div>{option}</div>
-          <section><MenuDishes dishes={dishes} /></section>
+          { <Options option={option} /> }
+          { <MenuDishes menuItems={menu} /> }
         </div>
       </li>
     </ul>
