@@ -16,7 +16,11 @@ const Basket = ({ checkPosition }) => {
 };
 
 Basket.propTypes = {
-  checkPosition: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)).isRequired,
+  // eslint-disable-next-line max-len
+  checkPosition: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string),
+    PropTypes.number]))).isRequired,
 };
 
 export default Basket;

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import firebase from 'firebase/app';
+import { Spinner } from 'reactstrap';
 import AdditionGroup from './additionGroup';
 import 'firebase/database';
 
@@ -24,7 +25,13 @@ const options = ({ addAddition1 }) => {
             groupElements={Array.from(answer[groupName])}
             addAdditional2={addAddition1}
           />
-        )) : 'false'}
+        ))
+          : (
+            <>
+              <Spinner color="primary" />
+              <span>Loading data...</span>
+            </>
+          )}
       </div>
     </>
   );

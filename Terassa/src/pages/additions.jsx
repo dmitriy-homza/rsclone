@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import React from 'react';
 import ReactNotification from 'react-notifications-component';
 import Layout from '../components/layout';
@@ -9,8 +10,20 @@ export default () => {
   const [selectedAdditional, addElement] = React.useState([]);
   function addAddition(element) {
     // eslint-disable-next-line no-param-reassign
+    let isRepeat = false;
     element.id = `${selectedAdditional.length}`;
-    addElement([...selectedAdditional, element]);
+    selectedAdditional.forEach((item) => {
+      if (item.name === element.name) {
+        isRepeat = true;
+        item.quantity += 1;
+        item.time = [...item.time, element.time[0]];
+      }
+    });
+    if (isRepeat) {
+      addElement([...selectedAdditional]);
+    } else {
+      addElement([...selectedAdditional, element]);
+    }
   }
 
   return (

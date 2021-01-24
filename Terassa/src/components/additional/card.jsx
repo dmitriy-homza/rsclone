@@ -69,7 +69,8 @@ const card = ({
                   name,
                   weight,
                   cost,
-                  time: document.getElementById(`${weight}`).value,
+                  time: [document.getElementById(`${weight}`).value],
+                  quantity: 1,
                 };
                 addAdditional3(positionObject);
               }
