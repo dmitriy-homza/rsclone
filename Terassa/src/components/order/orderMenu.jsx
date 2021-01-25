@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import '../../styles/order.scss';
+/* eslint linebreak-style: ["error", "windows"] */
 
 function OrderMenu({ dishesFromOrder }) {
   // const { ...dishes } = dishesFromOrder;
@@ -8,11 +10,14 @@ function OrderMenu({ dishesFromOrder }) {
   } = dishesFromOrder;
   return (
     <>
-      <div>{name}</div>
-      <div>{weigth}</div>
-      <div>{cost}</div>
-      <div>{time}</div>
-      <div>{quantity}</div>
+      <section className="dishesItem">
+        <div>{name}</div>
+        <div>{weigth}</div>
+        <div>{cost}</div>
+        <div>{time}</div>
+        <div>{quantity}</div>
+      </section>
+
     </>
   );
 }

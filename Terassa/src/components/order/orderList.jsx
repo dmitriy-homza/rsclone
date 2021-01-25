@@ -5,7 +5,8 @@ import MenuDishes from './menuDishes';
 import Options from './options';
 
 function OrderList({ vse }) {
-  if (vse === undefined) {
+  console.log(vse);
+  if (vse.constructor.name === 'Array') {
     const vce = {
       name: 'Not exist',
     };
@@ -23,8 +24,6 @@ function OrderList({ vse }) {
   const {
     name, nomber, option, menu,
   } = vse;
-  console.log(option);
-  console.log(menu);
 
   return (
     <ul>
@@ -32,8 +31,8 @@ function OrderList({ vse }) {
         <div>
           <div>{name}</div>
           <span>{nomber}</span>
-          { <Options option={option} /> }
-          { <MenuDishes menuItems={menu} /> }
+          {<Options option={option} />}
+          {<MenuDishes menuItems={menu} />}
         </div>
       </li>
     </ul>
