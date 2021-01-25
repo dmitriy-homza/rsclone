@@ -52,7 +52,8 @@ export default class login extends Component {
                 type="password"
                 onChange={this.handleChange}
               />
-              <Input type="submit" onClick={this.createAccount} />
+              <Input value="регистрация" type="submit" onClick={this.createAccount} />
+              <Input value="авторизация" type="submit" onClick={this.createAccount} />
             </InputGroup>
           </div>
         </Layout>
