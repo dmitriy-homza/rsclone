@@ -10,6 +10,7 @@ import {
   Tooltip, Card, CardText, CardBody,
   CardTitle, CardSubtitle, Button,
 } from 'reactstrap';
+import { GrAddCircle } from '@react-icons/all-files/gr/GrAddCircle';
 
 const card = ({
   name, weight, img, description, cost, addAdditional3,
@@ -88,7 +89,7 @@ const card = ({
               }
             }}
             >
-              Add
+              <GrAddCircle />
             </Button>
           </div>
         </CardBody>

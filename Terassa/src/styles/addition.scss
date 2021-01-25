@@ -56,8 +56,23 @@ body {
                 height: 100%;
                 outline: none;
               }
+              button {
+                svg {
+                  filter: invert(1);
+                }
+              }
               .cost {
                 font-size: 24px;
+              }
+              @media (min-width: 992px) and (max-width: 1091px) {
+                .cost {
+                  font-size: 16px;
+                }
+              }
+              @media (min-width: 768px) and (max-width: 865px) {
+                .cost {
+                  font-size: 16px;
+                }
               }
             }
           }
@@ -68,6 +83,10 @@ body {
       height: min-content;
       position: sticky;
       top: 0px;
+      .icon-open-mobile,
+      .total-cost-mobile {
+        display: none;
+      }
       .basket-wrapper {
         .check-element {
           animation-name: opacity;
@@ -105,6 +124,72 @@ body {
         border-top: 2px solid $brown;
         padding-top: 6px;
         margin-top: 12px;
+      }
+    }
+  }
+}
+
+@media (max-width: 991px) {
+  body {
+    main {
+      .basket-container {
+        background-color: white;
+        height: min-content;
+        position: sticky;
+        bottom: 0px;
+        h2 {
+          display: none;
+        }
+        .icon-open-mobile {
+          margin: 0px auto;
+          justify-content: center;
+          padding: 10px 0px 7px;
+          transition: 0.3s;
+          background-color: white;
+          border: 0px;
+          outline: none;
+          svg {
+            height: 25px;
+            width: 23px;
+          }
+        }
+        .basket-wrapper {
+          display: none;
+          padding-top: 0px !important;
+        }
+        .total-container {
+          border-top: 0px;
+          padding: 12px 0px;
+        }
+        .not-empty {
+          padding: 11px 5px;
+          margin-top: 0px;
+        }
+        .open {
+          height: 100vh;
+          display: flex;
+          flex-direction: column;
+          .total-container {
+            margin-top: auto;
+            border-top: 2px solid #cfab81;
+          }
+          .basket-wrapper {
+            display: block;
+            padding-top: inherit;
+            height: calc(100vh - 124px);
+            overflow: auto;
+          }
+          .icon-open-mobile {
+            transform: rotate(180deg);
+            transition: 0.3s;
+            margin-top: 7px;
+          }
+        }
+        .not-empty-check {
+          .icon-open-mobile {
+            display: block;
+          }
+        }
       }
     }
   }

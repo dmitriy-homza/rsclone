@@ -37,16 +37,15 @@ export default () => {
     const newArray = selectedAdditional.slice();
     addElement(newArray);
   }
-  console.log(selectedAdditional);
   return (
     <>
       <Layout>
         <ReactNotification />
-        <main className="d-flex">
-          <section className="col-12 col-sm-9">
+        <main className="d-flex flex-wrap">
+          <section className="col-12 col-lg-9">
             <Options addAddition1={addAddition} />
           </section>
-          <aside className="col-12 col-sm-3 basket-container">
+          <aside className="col-12 col-lg-3 basket-container">
             <Basket removePosition1={removePosition} key={selectedAdditional.length} checkPosition={selectedAdditional} />
           </aside>
         </main>
