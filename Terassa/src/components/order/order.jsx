@@ -2,7 +2,6 @@ import React from 'react';
 import Orders from './orders';
 import OrderList from './orderList';
 import FindOrder from './findOrder';
-import '../../styles/order.scss';
 
 function Order() {
   const [...orders] = Orders();
@@ -25,8 +24,7 @@ function Order() {
   console.log(order);
   if (order === undefined) {
     return (
-
-      <div className="orderList">
+      <div>
         <FindOrder onCreate={findOrder} />
         <h1>Order List</h1>
         <p> Валера все хуйня давай по новой</p>
@@ -34,7 +32,7 @@ function Order() {
     );
   }
   return (
-    <div className="orderList">
+    <div>
       <FindOrder onCreate={findOrder} />
       <h1>Order List</h1>
       <OrderList vse={order} />

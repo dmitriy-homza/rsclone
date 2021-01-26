@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import MenuDishes from './menuDishes';
 // import OrderItem from './orderItem';
 import Options from './options';
+import '../../styles/order.scss';
 
 function OrderList({ vse }) {
   console.log(vse);
@@ -12,13 +13,9 @@ function OrderList({ vse }) {
     };
     const { name } = vce;
     return (
-      <ul>
-        <li>
-          <span>
-            <div>{name}</div>
-          </span>
-        </li>
-      </ul>
+      <span>
+        {name}
+      </span>
     );
   }
   const {
@@ -28,7 +25,7 @@ function OrderList({ vse }) {
   return (
     <ul>
       <li>
-        <div>
+        <div className="orderList">
           <div>{name}</div>
           <span>{nomber}</span>
           {<Options option={option} />}
