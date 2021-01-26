@@ -6,10 +6,9 @@ import Options from './options';
 import '../../styles/order.scss';
 
 function OrderList({ vse }) {
-  console.log(vse);
   if (vse.constructor.name === 'Array') {
     const vce = {
-      name: 'Not exist',
+      name: 'Enter Order Number',
     };
     const { name } = vce;
     return (
@@ -23,16 +22,12 @@ function OrderList({ vse }) {
   } = vse;
 
   return (
-    <ul>
-      <li>
-        <div className="orderList">
-          <div>{name}</div>
-          <span>{nomber}</span>
-          {<Options option={option} />}
-          {<MenuDishes menuItems={menu} />}
-        </div>
-      </li>
-    </ul>
+    <div className="orderList">
+      <div>{name}</div>
+      <span>{nomber}</span>
+      {<Options option={option} />}
+      {<MenuDishes menuItems={menu} />}
+    </div>
   );
 }
 OrderList.propTypes = {

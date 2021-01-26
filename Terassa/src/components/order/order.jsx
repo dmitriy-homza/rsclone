@@ -32,7 +32,7 @@ function Order() {
     );
   }
   return (
-    <div>
+    <div className="allBlock">
       <FindOrder onCreate={findOrder} />
       <h1>Order List</h1>
       <OrderList vse={order} />

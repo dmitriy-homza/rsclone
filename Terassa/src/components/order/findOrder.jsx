@@ -1,6 +1,7 @@
 // eslint-disable jsx-props-no-spreading
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import '../../styles/order.scss';
 
 function useFindOrder(defaultValue = '') {
   const [value, setValue] = useState(defaultValue);
@@ -27,8 +28,9 @@ function FindOrder({ onCreate }) {
     }
   }
   return (
-    <form onSubmit={submitHandler}>
+    <form onSubmit={submitHandler} className="formStyle">
       <input
+        className="inputFind"
         placeholder="Order"
                 // eslint-disable-next-line
                 {...input.bind} // eslint-disable-line react/forbid-prop-types

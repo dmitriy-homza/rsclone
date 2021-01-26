@@ -4,21 +4,17 @@ import '../../styles/order.scss';
 /* eslint linebreak-style: ["error", "windows"] */
 
 function OrderMenu({ dishesFromOrder }) {
-  // const { ...dishes } = dishesFromOrder;
   const {
-    name, weigth, cost, time, quantity,
+    name, weight, cost, time, quantity,
   } = dishesFromOrder;
   return (
-    <>
-      <section className="dishesItem">
-        <div>{name}</div>
-        <div>{weigth}</div>
-        <div>{cost}</div>
-        <div>{time}</div>
-        <div>{quantity}</div>
-      </section>
-
-    </>
+    <ul className="dishesItem">
+      <li><span>{name}</span></li>
+      <li><span>{weight}</span></li>
+      <li><span>{cost}</span></li>
+      <li><span>{time}</span></li>
+      <li><span>{quantity}</span></li>
+    </ul>
   );
 }
 

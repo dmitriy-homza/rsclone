@@ -26,11 +26,13 @@ export default function Orders() {
             flovers: 'roses',
             hookah: 'aple-limon',
             special: 'за счет заведения',
+            id: 1,
           },
           {
             flovers: 'хуезы',
             hookah: 'хуельян',
             special: 'пойти нихер',
+            id: 2,
           },
         ],
       menu:

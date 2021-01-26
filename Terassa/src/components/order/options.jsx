@@ -6,12 +6,16 @@ function Options({ option }) {
   const [...opt] = option;
   return (
     <div>
-      { opt.map((element) => <OptionElement element={element} />) }
+      { opt.map((element) => (
+        <OptionElement
+          element={element}
+          key={option.id}
+        />
+      )) }
     </div>
   );
 }
 Options.propTypes = {
   option: PropTypes.arrayOf(PropTypes.object).isRequired,
-
 };
 export default Options;
