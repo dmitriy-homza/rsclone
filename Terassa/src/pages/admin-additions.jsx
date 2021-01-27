@@ -51,12 +51,18 @@ export default () => {
                       key={groupName}
                       groupName={groupName}
                       groupElements={Array.from(answer[groupName])}
+                      additionsObject={answer}
+                      setAdditionsObject={setData}
                     />
                   ))
                 ) : (
                   <>
-                    <Spinner color="primary" />
-                    <span>Loading data...</span>
+                    <tr>
+                      <td colSpan="5">
+                        <Spinner color="primary" />
+                        <span>Loading data...</span>
+                      </td>
+                    </tr>
                   </>
                 )}
               </tbody>

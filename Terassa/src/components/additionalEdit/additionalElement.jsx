@@ -8,7 +8,15 @@ import 'firebase/auth';
 import 'firebase/storage';
 
 const AdditionalElement = ({
-  groupElements1, name, weight, img, description, cost,
+  name,
+  weight,
+  img,
+  description,
+  cost,
+  groupName,
+  elementIndex,
+  additionsObject,
+  setAdditionsObject,
 }) => {
   const [answer, setData] = useState('../../images/empty.jpg');
 
@@ -28,35 +36,47 @@ const AdditionalElement = ({
   const [isEdit, setIsEdit] = useState(false);
   const toggle = () => setIsEdit(!isEdit);
 
-  const [editableName, setName] = useState(name);
+  const newAdditionObject = { ...additionsObject };
 
   function handleChange(event) {
-    setName(event.target.value);
-    // eslint-disable-next-line no-param-reassign
-    name = editableName;
-    console.log(name);
-    console.log(groupElements1);
+    newAdditionObject[groupName][elementIndex].name = event.target.value;
   }
 
   return isEdit ? (
     <tr>
       <td>
-        <textarea onChange={handleChange} rows="3" defaultValue={name} />
+        <textarea
+          defaultValue={newAdditionObject[groupName][elementIndex].name}
+          onChange={handleChange}
+          rows="1"
+        />
       </td>
       <td>
-        <textarea rows="3">{description}</textarea>
+        <textarea
+          defaultValue={newAdditionObject[groupName][elementIndex].description}
+          onChange={handleChange}
+          rows="3"
+        />
       </td>
       <td>
-        <textarea rows="3">{cost}</textarea>
+        <textarea
+          defaultValue={newAdditionObject[groupName][elementIndex].cost}
+          onChange={handleChange}
+          rows="1"
+        />
       </td>
       <td>
-        <textarea rows="3">{weight}</textarea>
+        <textarea
+          defaultValue={newAdditionObject[groupName][elementIndex].weight}
+          onChange={handleChange}
+          rows="1"
+        />
       </td>
       <td>
         <img src={answer} width="30" alt="Additional" />
       </td>
       <td>
-        <Button>Отправить</Button>
+        <Button onClick={() => setAdditionsObject(newAdditionObject)}>Отправить</Button>
       </td>
     </tr>
   ) : (
@@ -79,12 +99,16 @@ const AdditionalElement = ({
 };
 
 AdditionalElement.propTypes = {
-  groupElements1: PropTypes.PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)).isRequired,
   name: PropTypes.string.isRequired,
   weight: PropTypes.string.isRequired,
   img: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   cost: PropTypes.string.isRequired,
+  groupName: PropTypes.string.isRequired,
+  elementIndex: PropTypes.number.isRequired,
+  additionsObject: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)))
+    .isRequired,
+  setAdditionsObject: PropTypes.func.isRequired,
 };
 
 export default AdditionalElement;
