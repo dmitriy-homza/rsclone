@@ -6,17 +6,6 @@ import Options from './options';
 import '../../styles/order.scss';
 
 function OrderList({ vse }) {
-  if (vse.constructor.name === 'Array') {
-    const vce = {
-      name: 'Enter Order Number',
-    };
-    const { name } = vce;
-    return (
-      <span>
-        {name}
-      </span>
-    );
-  }
   const {
     name, nomber, option, menu,
   } = vse;
