@@ -1,9 +1,7 @@
 /* eslint-disable implicit-arrow-linebreak */
 import React, { useState } from 'react';
 import { Link } from 'gatsby';
-import {
-  Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavLink, NavItem,
-} from 'reactstrap';
+import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavLink, NavItem } from 'reactstrap';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -41,6 +39,16 @@ const Header = () => {
               <NavItem>
                 <NavLink tag={Link} to="/login" activeClassName="active">
                   Login
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink tag={Link} to="/admin-additions" activeClassName="active">
+                  Admin-additions
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink tag={Link} to="/order" activeClassName="active">
+                  Order
                 </NavLink>
               </NavItem>
             </Nav>
