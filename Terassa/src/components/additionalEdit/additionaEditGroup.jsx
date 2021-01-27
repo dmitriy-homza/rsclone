@@ -1,13 +1,20 @@
 /* eslint-disable */
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import AdditionalElement from './additionalElement';
 import 'firebase/database';
 
-const AdditionEditGroup = ({ groupName, groupElements, additionsObject, setAdditionsObject }) => {
+const AdditionEditGroup = ({
+  groupName,
+  groupElements,
+  additionsObject,
+  setAdditionsObject,
+  isEdit,
+  setIsEdit,
+}) => {
   return (
     <>
-      <tr>
+      <tr id={groupName}>
         <td colSpan="5">{groupName}</td>
       </tr>
       {groupElements.map((item, index) => (
@@ -22,6 +29,8 @@ const AdditionEditGroup = ({ groupName, groupElements, additionsObject, setAddit
           elementIndex={index}
           additionsObject={additionsObject}
           setAdditionsObject={setAdditionsObject}
+          isEdit={isEdit}
+          setIsEdit={setIsEdit}
         />
       ))}
     </>
@@ -33,6 +42,8 @@ AdditionEditGroup.propTypes = {
   additionsObject: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)))
     .isRequired,
   setAdditionsObject: PropTypes.func.isRequired,
+  isEdit: PropTypes.string.isRequired,
+  setIsEdit: PropTypes.func.isRequired,
 };
 
 export default AdditionEditGroup;
