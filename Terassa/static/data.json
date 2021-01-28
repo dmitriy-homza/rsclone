@@ -1,0 +1,62 @@
+{
+  "Dishes": [
+    {
+      "cost": "13.4",
+      "description": "Served with scrambled eggs, potato pancakes, cracklings with onions and sour cream",
+      "img": "additionals/1.jpeg",
+      "name": "Rustic pan",
+      "weight": "416 gr."
+    },
+    {
+      "cost": "12.5",
+      "description": "Chicken fillet cutlets stuffed with butter and dill",
+      "img": "additionals/2.jpeg",
+      "name": "The Kiev's cutlets",
+      "weight": "455 gr."
+    },
+    {
+      "cost": "14.2",
+      "description": "Frying pan with chicken thighs",
+      "img": "additionals/3.jpeg",
+      "name": "Chicken thighs and hearts",
+      "weight": "485 gr."
+    },
+    {
+      "cost": "17.9",
+      "description": "Chopped beef sirloin steak, served with scrambled eggs, fried potatoes",
+      "img": "additionals/4.jpeg",
+      "name": "Beefsteak with fried potatoes",
+      "weight": "358 gr."
+    },
+    {
+      "cost": "12.5",
+      "description": "fried blood sausages, served with stewed cabbage, fried potatoes",
+      "img": "additionals/6.jpeg",
+      "name": "Assorted sausages",
+      "weight": "543 gr."
+    },
+    {
+      "cost": "12.9",
+      "description": "Pancakes with beef goulash with carrots, onions, tomatoes and garlic",
+      "img": "additionals/7.jpeg",
+      "name": "Potato pancakes with beef",
+      "weight": "521 gr."
+    }
+  ],
+  "Services": [
+    {
+      "cost": "10",
+      "description": "Upon arrival at the restaurant, please your girlfriend with a luxurious bouquet, she will definitely appreciate your gift",
+      "img": "additionals/5.jpg",
+      "name": "Flowers for a girl",
+      "weight": "Details by phone"
+    },
+    {
+      "cost": "15",
+      "description": "Order a hookah just in time for your arrival",
+      "img": "additionals/8.jfif",
+      "name": "Hookah",
+      "weight": "For 1 hour"
+    }
+  ]
+}
