@@ -51,7 +51,11 @@ const AdditionalElement = ({
     newAdditionObject[groupName][elementIndex].img = `additionals/${fileName}`;
     const ref = firebase.storage().ref(`additionals/${fileName}`);
     ref.put(file).then(() => {
-      console.log(document.getElementById('new-image').files[0]);
+      console.log('картинка отправилась');
+      newAdditionObject[groupName][elementIndex].id = `${Date.now()}`;
+      setAdditionsObject(newAdditionObject);
+      writeNewAdditions(newAdditionObject);
+      setIsEdit('');
     });
   }
 
@@ -93,10 +97,6 @@ const AdditionalElement = ({
           onClick={() => {
             if (document.getElementById('new-image').files[0]) {
               uploadNewImage();
-              newAdditionObject[groupName][elementIndex].id = `${Date.now()}`;
-              setAdditionsObject(newAdditionObject);
-              writeNewAdditions(newAdditionObject);
-              setIsEdit('');
             } else {
               newAdditionObject[groupName][elementIndex].id = `${Date.now()}`;
               setAdditionsObject(newAdditionObject);

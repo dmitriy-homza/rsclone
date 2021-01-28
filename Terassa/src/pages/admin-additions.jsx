@@ -20,6 +20,16 @@ import Layout from '../components/layout';
 import AdditionalEditGroup from '../components/additionalEdit/additionaEditGroup';
 
 export default () => {
+  const [defaultAdditions, setDefaultAdditions] = useState('');
+
+  const fetchDataDefault = async () => {
+    const result = await firebase.database().ref('defaultAdditionals').once('value').then((snapshot) => snapshot.val());
+    setDefaultAdditions(result);
+  };
+  useEffect(() => {
+    fetchDataDefault();
+  }, []);
+
   const [answer, setData] = useState('error');
 
   useEffect(() => {
@@ -68,6 +78,16 @@ export default () => {
         <main className="pt-3 pb-3">
           <div className="additional-edit d-flex flex-wrap">
             <h2>Edit additionals</h2>
+            <Button onClick={() => {
+              fetchDataDefault();
+              writeNewAdditions(defaultAdditions);
+              setData(defaultAdditions);
+              console.log(defaultAdditions, answer);
+              setIsEdit('');
+            }}
+            >
+              Reset
+            </Button>
             <Button
               onClick={() => {
                 if (!isEdit) {

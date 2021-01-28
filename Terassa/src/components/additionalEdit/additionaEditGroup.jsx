@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { store } from 'react-notifications-component';
 import { Button } from 'reactstrap';
 import AdditionalElement from './additionalElement';
 import 'firebase/database';
@@ -30,12 +31,29 @@ const AdditionEditGroup = ({
   return (
     <>
       <tr>
-        <td colSpan="4">{groupName}</td>
-        <td>
+        <td colSpan="3">{groupName}</td>
+        <td colSpan="2">
           <Button onClick={() => {
-            addNewAddition(additionsObject);
+            if (!isEdit) {
+              addNewAddition(additionsObject);
+            } else {
+              store.addNotification({
+                title: 'Save changes!',
+                message: 'Please save all changes you made.',
+                type: 'warning',
+                insert: 'top',
+                container: 'top-right',
+                animationIn: ['animate__animated animate__fadeIn'],
+                animationOut: ['animate__animated animate__fadeOut'],
+                dismiss: {
+                  duration: 5000,
+                },
+              });
+            }
           }}
-          />
+          >
+            New Addition
+          </Button>
         </td>
       </tr>
       {groupElements.map((item, index) => (
