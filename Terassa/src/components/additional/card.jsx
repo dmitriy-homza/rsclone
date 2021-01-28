@@ -7,13 +7,12 @@ import 'firebase/firestore';
 import 'firebase/auth';
 import 'firebase/storage';
 import {
-  Tooltip, Card, CardText, CardBody,
-  CardTitle, CardSubtitle, Button,
+  Tooltip, Card, CardText, CardBody, CardTitle, CardSubtitle, Button,
 } from 'reactstrap';
 import { GrAddCircle } from '@react-icons/all-files/gr/GrAddCircle';
 
 const card = ({
-  name, weight, img, description, cost, addAdditional3,
+  name, weight, img, description, cost, id, addAdditional3,
 }) => {
   const [answer, setData] = useState('../../images/empty.jpg');
 
@@ -52,49 +51,54 @@ const card = ({
 
             <input
               type="time"
-              id={['id', weight.slice(0, 3)].join('')}
+              id={['id', id].join('')}
               name="appt"
               min="09:00"
               max="18:00"
               step="300"
               required
             />
-            <Tooltip placement="top" isOpen={tooltipOpen} target={['id', weight.slice(0, 3)].join('')} toggle={toggle}>
+            <Tooltip
+              placement="top"
+              isOpen={tooltipOpen}
+              target={['id', id].join('')}
+              toggle={toggle}
+            >
               {' '}
               Choose a time to provide the service!
             </Tooltip>
-            <Button onClick={() => {
-              if (!document.getElementById(`${['id', weight.slice(0, 3)].join('')}`).value) {
-                store.addNotification({
-                  title: 'Choose time!',
-                  message: 'Choose a time to provide the service',
-                  type: 'warning',
-                  insert: 'top',
-                  container: 'top-right',
-                  animationIn: ['animate__animated animate__fadeIn'],
-                  animationOut: ['animate__animated animate__fadeOut'],
-                  dismiss: {
-                    duration: 5000,
-                  },
-                });
-              } else {
-                const positionObject = {
-                  name,
-                  weight,
-                  cost,
-                  time: [document.getElementById(`${['id', weight.slice(0, 3)].join('')}`).value],
-                  quantity: 1,
-                };
-                addAdditional3(positionObject);
-              }
-            }}
+            <Button
+              onClick={() => {
+                if (!document.getElementById(`${['id', id].join('')}`).value) {
+                  store.addNotification({
+                    title: 'Choose time!',
+                    message: 'Choose a time to provide the service',
+                    type: 'warning',
+                    insert: 'top',
+                    container: 'top-right',
+                    animationIn: ['animate__animated animate__fadeIn'],
+                    animationOut: ['animate__animated animate__fadeOut'],
+                    dismiss: {
+                      duration: 5000,
+                    },
+                  });
+                } else {
+                  const positionObject = {
+                    name,
+                    weight,
+                    cost,
+                    time: [document.getElementById(`${['id', id].join('')}`).value],
+                    quantity: 1,
+                  };
+                  addAdditional3(positionObject);
+                }
+              }}
             >
               <GrAddCircle />
             </Button>
           </div>
         </CardBody>
       </Card>
-
     </div>
   );
 };
@@ -105,6 +109,7 @@ card.propTypes = {
   img: PropTypes.string,
   description: PropTypes.string,
   cost: PropTypes.string,
+  id: PropTypes.string,
   addAdditional3: PropTypes.func.isRequired,
 };
 
