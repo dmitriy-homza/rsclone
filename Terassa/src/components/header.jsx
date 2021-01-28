@@ -1,7 +1,9 @@
 /* eslint-disable implicit-arrow-linebreak */
 import React, { useState } from 'react';
 import { Link } from 'gatsby';
-import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavLink, NavItem } from 'reactstrap';
+import {
+  Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavLink, NavItem,
+} from 'reactstrap';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
