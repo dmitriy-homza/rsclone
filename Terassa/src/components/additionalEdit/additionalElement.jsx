@@ -21,6 +21,7 @@ const AdditionalElement = ({
   setAdditionsObject,
   isEdit,
   setIsEdit,
+  writeNewAdditions,
 }) => {
   const [imageUrl, setData] = useState('../../images/empty.jpg');
 
@@ -39,8 +40,8 @@ const AdditionalElement = ({
 
   const newAdditionObject = { ...additionsObject };
 
-  function handleChange(event) {
-    newAdditionObject[groupName][elementIndex].name = event.target.value;
+  function handleChange(event, prop) {
+    newAdditionObject[groupName][elementIndex][prop] = event.target.value;
   }
 
   function uploadNewImage() {
@@ -54,33 +55,33 @@ const AdditionalElement = ({
     });
   }
 
-  return isEdit === `${newAdditionObject[groupName][elementIndex].name}` ? (
+  return isEdit === `${newAdditionObject[groupName][elementIndex].id}` ? (
     <tr>
       <td>
         <textarea
           defaultValue={newAdditionObject[groupName][elementIndex].name}
-          onChange={handleChange}
+          onChange={(event) => handleChange(event, 'name')}
           rows="1"
         />
       </td>
       <td>
         <textarea
           defaultValue={newAdditionObject[groupName][elementIndex].description}
-          onChange={handleChange}
+          onChange={(event) => handleChange(event, 'description')}
           rows="3"
         />
       </td>
       <td>
         <textarea
           defaultValue={newAdditionObject[groupName][elementIndex].cost}
-          onChange={handleChange}
+          onChange={(event) => handleChange(event, 'cost')}
           rows="1"
         />
       </td>
       <td>
         <textarea
           defaultValue={newAdditionObject[groupName][elementIndex].weight}
-          onChange={handleChange}
+          onChange={(event) => handleChange(event, 'weight')}
           rows="1"
         />
       </td>
@@ -90,17 +91,42 @@ const AdditionalElement = ({
       <td>
         <Button
           onClick={() => {
-            uploadNewImage();
-            setAdditionsObject(newAdditionObject);
+            if (document.getElementById('new-image').files[0]) {
+              uploadNewImage();
+              newAdditionObject[groupName][elementIndex].id = `${Date.now()}`;
+              setAdditionsObject(newAdditionObject);
+              writeNewAdditions(newAdditionObject);
+              setIsEdit('');
+            } else {
+              newAdditionObject[groupName][elementIndex].id = `${Date.now()}`;
+              setAdditionsObject(newAdditionObject);
+              writeNewAdditions(newAdditionObject);
+              setIsEdit('');
+            }
           }}
         >
           Отправить
         </Button>
       </td>
+      <td>
+        <Button
+          onClick={() => {
+            newAdditionObject[groupName].splice(elementIndex, 1);
+            if (!newAdditionObject[groupName][0]) {
+              delete newAdditionObject[groupName];
+            }
+            setAdditionsObject(newAdditionObject);
+            writeNewAdditions(newAdditionObject);
+            setIsEdit('');
+          }}
+        >
+          Удалить
+        </Button>
+      </td>
     </tr>
   ) : (
     <>
-      <tr onClick={() => setIsEdit(newAdditionObject[groupName][elementIndex].name)}>
+      <tr onClick={() => setIsEdit(newAdditionObject[groupName][elementIndex].id)}>
         <td>{name}</td>
         <td>{description}</td>
         <td>{cost}</td>
@@ -126,6 +152,7 @@ AdditionalElement.propTypes = {
   setAdditionsObject: PropTypes.func.isRequired,
   isEdit: PropTypes.string.isRequired,
   setIsEdit: PropTypes.func.isRequired,
+  writeNewAdditions: PropTypes.func.isRequired,
 };
 
 export default AdditionalElement;

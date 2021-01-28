@@ -13,7 +13,9 @@ import {
   InputGroupText,
   InputGroupAddon,
   Input,
+  FormFeedback,
 } from 'reactstrap';
+import ReactNotification, { store } from 'react-notifications-component';
 import Layout from '../components/layout';
 import AdditionalEditGroup from '../components/additionalEdit/additionaEditGroup';
 
@@ -31,7 +33,6 @@ export default () => {
     };
     fetchData();
   }, []);
-  console.log(answer);
   const [isEdit, setIsEdit] = useState('');
 
   function writeNewAdditions(additions) {
@@ -49,6 +50,7 @@ export default () => {
         img: 'additionals/empty.jpg',
         name: 'New additional',
         weight: '0 gr.',
+        id: `${Date.now()}`,
       },
     ];
     const name = document.getElementById('name-of-new-category').value;
@@ -56,17 +58,38 @@ export default () => {
     newAdditions[name] = newElement;
     setData(newAdditions);
     toggle();
-    setIsEdit(newAdditions[name][0].name);
+    setIsEdit(newAdditions[name][0].id);
   }
 
   return (
     <>
       <Layout>
+        <ReactNotification />
         <main className="pt-3 pb-3">
           <div className="additional-edit d-flex flex-wrap">
             <h2>Edit additionals</h2>
-            <Button onClick={() => toggle()}>Add Category</Button>
-            <Button onClick={() => writeNewAdditions(answer)}>Update</Button>
+            <Button
+              onClick={() => {
+                if (!isEdit) {
+                  toggle();
+                } else {
+                  store.addNotification({
+                    title: 'Save changes!',
+                    message: 'Please save all changes you made.',
+                    type: 'warning',
+                    insert: 'top',
+                    container: 'top-right',
+                    animationIn: ['animate__animated animate__fadeIn'],
+                    animationOut: ['animate__animated animate__fadeOut'],
+                    dismiss: {
+                      duration: 5000,
+                    },
+                  });
+                }
+              }}
+            >
+              Add Category
+            </Button>
             <table className="table table-bordered" id="dataTable" width="100%" cellSpacing="0">
               <thead>
                 <tr>
@@ -97,6 +120,7 @@ export default () => {
                       setAdditionsObject={setData}
                       isEdit={isEdit}
                       setIsEdit={setIsEdit}
+                      writeNewAdditions={writeNewAdditions}
                     />
                   ))
                 ) : (
@@ -122,14 +146,23 @@ export default () => {
                   <InputGroupText>Enter name:</InputGroupText>
                 </InputGroupAddon>
                 <Input pattern="[A-Za-z]{2,20}" required id="name-of-new-category" />
+                <FormFeedback id="invalid-form-message" className="d-none">
+                  Please enter the name of the group in Latin letters from 2 to 20 characters.
+                </FormFeedback>
               </InputGroup>
             </ModalBody>
             <ModalFooter>
               <Button
                 color="primary"
                 onClick={() => {
-                  if (/[A-Za-z]{2,20}/.test(document.getElementById('name-of-new-category'))) {
+                  if (
+                    /[A-Za-z]{2,20}/.test(document.getElementById('name-of-new-category').value)
+                  ) {
                     addNewCategory();
+                  } else {
+                    const input = document.getElementById('name-of-new-category');
+                    input.classList.add('is-invalid');
+                    document.getElementById('invalid-form-message').classList.remove('d-none');
                   }
                 }}
               >
