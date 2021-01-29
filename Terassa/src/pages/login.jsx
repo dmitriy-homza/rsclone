@@ -1,63 +1,94 @@
-import React, { Component } from 'react';
+/* eslint-disable */
 
+import React, { Component } from 'react';
+import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import { Helmet } from 'react-helmet';
-import {
-  InputGroup, InputGroupAddon, InputGroupText, Input,
-} from 'reactstrap';
-import firebase from '../components/firebase';
+import { Button } from 'reactstrap';
+
+import firebase from '../core/firebase';
+import { API } from '../core/constants';
 import Layout from '../components/layout';
+import Card from '../components/additional/card';
+
 import '../styles/index.scss';
 
+// Configure FirebaseUI.
+const uiConfig = {
+  // Popup signin flow rather than redirect flow.
+  signInFlow: 'popup',
+  // We will display Google and Facebook as auth providers.
+  signInOptions: [
+    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+    firebase.auth.GithubAuthProvider.PROVIDER_ID,
+  ],
+  callbacks: {
+    // Avoid redirects after sign-in.
+    signInSuccessWithAuthResult: () => false,
+  },
+};
+
 export default class login extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      email: '',
-      password: '',
-    };
-  }
+  state = {
+    hasAccount: false,
+    dishes: [],
+  };
 
   componentDidMount() {
-    const db = firebase.database();
-    console.log('db', db);
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({ hasAccount: true });
+        this.loadData(user);
+      } else {
+        this.setState({ hasAccount: false });
+      }
+    });
   }
 
-  handleChange = ({ target: { value, id } }) => {
-    this.setState({ [id]: value });
+  loadData = (user) => {
+    const db = firebase.database();
+    const userId = user.uid;
+    const userDataRef = db.ref(userId);
+
+    userDataRef.on('value', (data) => {
+      const userData = data.val();
+      if (userData) {
+        this.setState({ dishes: userData[API.ADDITIONALS][API.DISHES] });
+      }
+    });
   };
 
-  createAccount = () => {
-    const { email, password } = this.state;
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
-      .catch((error) => console.log(error));
-  };
+  renderDish = (dish) => (
+    <Card
+      key={`key${dish.name}`}
+      name={dish.name}
+      weight={dish.weight}
+      img={dish.img}
+      description={dish.description}
+      cost={dish.cost}
+    />
+  );
+
+  renderDishes = () => this.state.dishes.map(this.renderDish);
 
   render() {
+    const { hasAccount } = this.state;
     return (
-      <div>
-        {' '}
-        <Helmet title="Terassa - Login" />
-        <Layout>
-          <div>
-            <InputGroup>
-              <InputGroupAddon addonType="prepend">
-                <InputGroupText>@</InputGroupText>
-              </InputGroupAddon>
-              <Input placeholder="email" id="email" type="text" onChange={this.handleChange} />
-              <Input
-                placeholder="password"
-                id="password"
-                type="password"
-                onChange={this.handleChange}
-              />
-              <Input value="регистрация" type="submit" onClick={this.createAccount} />
-              <Input value="авторизация" type="submit" onClick={this.createAccount} />
-            </InputGroup>
+      <Layout>
+        {hasAccount ? (
+          <div id="signed-In">
+            <p>Welcome {firebase.auth().currentUser.displayName}! You are now signed-in!</p>
+            <Button onClick={() => firebase.auth().signOut()}>Sign-out</Button>
+            <div>{this.renderDishes()}</div>
           </div>
-        </Layout>
-      </div>
+        ) : (
+          <div id="signed-out">
+            <h1>My App</h1>
+            <p>Please sign-in:</p>
+            <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
+          </div>
+        )}
+        <Helmet title="Terassa - Login" />
+      </Layout>
     );
   }
 }

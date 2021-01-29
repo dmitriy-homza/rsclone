@@ -46,7 +46,11 @@ export default () => {
             <Options addAddition1={addAddition} />
           </section>
           <aside className="col-12 col-lg-3 basket-container">
-            <Basket removePosition1={removePosition} key={selectedAdditional.length} checkPosition={selectedAdditional} />
+            <Basket
+              removePosition1={removePosition}
+              key={selectedAdditional.length}
+              checkPosition={selectedAdditional}
+            />
           </aside>
         </main>
       </Layout>

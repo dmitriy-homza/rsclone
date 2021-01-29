@@ -4,6 +4,10 @@ import PropTypes from 'prop-types';
 import { VscDebugContinue } from '@react-icons/all-files/vsc/VscDebugContinue';
 import { IoIosArrowUp } from '@react-icons/all-files/io/IoIosArrowUp';
 import { Button } from 'reactstrap';
+
+import { saveData } from '../../core/api';
+import { API } from '../../core/constants';
+
 import BasketElement from './basketElement';
 
 const Basket = ({ removePosition1, checkPosition }) => {
@@ -15,6 +19,13 @@ const Basket = ({ removePosition1, checkPosition }) => {
   const [collapsed, setCollapsed] = useState(false);
 
   const toggleNavbar = () => setCollapsed(!collapsed);
+
+  const onContinue = () => {
+    saveData(API.ADDITIONALS, {
+      [API.DISHES]: checkPosition,
+    });
+  };
+
   return (
     <div className={[collapsed ? 'open' : '', checkPosition.length ? 'not-empty-check' : ''].join(' ')}>
       <h2 className="pt-4">Basket</h2>
@@ -30,7 +41,7 @@ const Basket = ({ removePosition1, checkPosition }) => {
           {' '}
           {checkPosition.length > 0 ? `Total cost: ${totalCost}$` : 'Your basket is empty!' }
         </span>
-        <Button>
+        <Button onClick={onContinue}>
           <VscDebugContinue />
           {' '}
           Continue
