@@ -4,6 +4,8 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import firebase from 'firebase/app';
+import { RiSave3Fill } from '@react-icons/all-files/ri/RiSave3Fill';
+import { MdDeleteForever } from '@react-icons/all-files/md/MdDeleteForever';
 import { Button } from 'reactstrap';
 import 'firebase/firestore';
 import 'firebase/auth';
@@ -94,6 +96,7 @@ const AdditionalElement = ({
       </td>
       <td>
         <Button
+          color="success"
           onClick={() => {
             if (document.getElementById('new-image').files[0]) {
               uploadNewImage();
@@ -105,11 +108,12 @@ const AdditionalElement = ({
             }
           }}
         >
-          Отправить
+          <RiSave3Fill />
         </Button>
       </td>
       <td>
         <Button
+          color="danger"
           onClick={() => {
             newAdditionObject[groupName].splice(elementIndex, 1);
             if (!newAdditionObject[groupName][0]) {
@@ -120,7 +124,7 @@ const AdditionalElement = ({
             setIsEdit('');
           }}
         >
-          Удалить
+          <MdDeleteForever />
         </Button>
       </td>
     </tr>
