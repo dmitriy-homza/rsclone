@@ -15,6 +15,8 @@ import {
   Input,
   FormFeedback,
 } from 'reactstrap';
+import { BiReset } from '@react-icons/all-files/bi/BiReset';
+import { AiFillFolderAdd } from '@react-icons/all-files/ai/AiFillFolderAdd';
 import ReactNotification, { store } from 'react-notifications-component';
 import Layout from '../components/layout';
 import AdditionalEditGroup from '../components/additionalEdit/additionaEditGroup';
@@ -71,6 +73,8 @@ export default () => {
     setIsEdit(newAdditions[name][0].id);
   }
 
+  const tableClasses = isEdit ? 'table table-bordered is-edit' : 'table table-bordered';
+
   return (
     <>
       <Layout>
@@ -82,10 +86,10 @@ export default () => {
               fetchDataDefault();
               writeNewAdditions(defaultAdditions);
               setData(defaultAdditions);
-              console.log(defaultAdditions, answer);
               setIsEdit('');
             }}
             >
+              <BiReset />
               Reset
             </Button>
             <Button
@@ -108,9 +112,10 @@ export default () => {
                 }
               }}
             >
+              <AiFillFolderAdd />
               Add Category
             </Button>
-            <table className="table table-bordered" id="dataTable" width="100%" cellSpacing="0">
+            <table className={tableClasses} id="dataTable" width="100%" cellSpacing="0">
               <thead>
                 <tr>
                   <th>Name</th>
