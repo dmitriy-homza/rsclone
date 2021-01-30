@@ -17,7 +17,7 @@ export default function AdminTableRender(props) {
     
     const bgImage = PIXI.Texture.from(`${props.bgImage}`);
     
-    console.log('1 1');
+    console.log('00');
     
     ref.current.appendChild(app.view);
     app.start();

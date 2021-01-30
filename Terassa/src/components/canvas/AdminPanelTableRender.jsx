@@ -4,6 +4,8 @@ import * as PIXI from 'pixi.js';
 import AdminTableRender from './AdminTableRender';
 import cursor from './cursor.png';
 
+
+
 const samples = {
   roomPlan: 'plan.jpg',
   cursorImage: cursor,

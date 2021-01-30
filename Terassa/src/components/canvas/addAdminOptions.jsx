@@ -1,5 +1,7 @@
 /* eslint-disable */
 
+
+
 export default function addAdminOptions(container, table) {
   container
     .on('pointerover', () => {
