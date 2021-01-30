@@ -3,6 +3,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import * as PIXI from 'pixi.js';
 import addAdminOptions from './addAdminOptions';
 
+
 export default function AdminTableRender(props) {
 
   const ref = useRef(null);
@@ -17,7 +18,7 @@ export default function AdminTableRender(props) {
     
     const bgImage = PIXI.Texture.from(`${props.bgImage}`);
     
-    console.log('00');
+    console.log('111');
     
     ref.current.appendChild(app.view);
     app.start();

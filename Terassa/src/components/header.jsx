@@ -48,6 +48,11 @@ const Header = () => {
                   Order
                 </NavLink>
               </NavItem>
+              <NavItem>
+                <NavLink tag={Link} to="/adminPanel" activeClassName="active">
+                  AdminPanel
+                </NavLink>
+              </NavItem>
             </Nav>
           </Collapse>
         </Navbar>
