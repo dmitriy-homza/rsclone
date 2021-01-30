@@ -7,14 +7,14 @@ import '../../styles/order.scss';
 
 function OrderList({ order }) {
   const {
-    name, nomber, table, additions, date,
+    name, table, additions, date,
   } = order;
 
   return (
     <div className="orderList">
       <div>{name}</div>
-      <span>{nomber}</span>
-      <span>{date}</span>
+
+      <div>{date}</div>
       {<Options table={table} />}
       {<MenuDishes additions={additions} />}
     </div>

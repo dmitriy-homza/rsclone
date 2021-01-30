@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import '../../styles/order.scss';
+import { ListGroup, ListGroupItem } from 'reactstrap';
 /* eslint linebreak-style: ["error", "windows"] */
 
 function OrderMenu({ dishesFromOrder }) {
@@ -10,12 +11,13 @@ function OrderMenu({ dishesFromOrder }) {
   console.log(dishesFromOrder);
 
   return (
-    <ul className="dishesItem">
-      <li><span>{name}</span></li>
-      <li><span>{weight}</span></li>
-      <li><span>{cost}</span></li>
-      <li><span>{quantity}</span></li>
-    </ul>
+    <ListGroup horizontal>
+      <ListGroupItem>{name}</ListGroupItem>
+      <ListGroupItem>{weight}</ListGroupItem>
+      <ListGroupItem>{cost}</ListGroupItem>
+      <ListGroupItem>{quantity}</ListGroupItem>
+
+    </ListGroup>
   );
 }
 
