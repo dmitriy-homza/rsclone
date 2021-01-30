@@ -5,21 +5,22 @@ import MenuDishes from './menuDishes';
 import Options from './options';
 import '../../styles/order.scss';
 
-function OrderList({ vse }) {
+function OrderList({ order }) {
   const {
-    name, nomber, option, menu,
-  } = vse;
+    name, nomber, table, additions, date,
+  } = order;
 
   return (
     <div className="orderList">
       <div>{name}</div>
       <span>{nomber}</span>
-      {<Options option={option} />}
-      {<MenuDishes menuItems={menu} />}
+      <span>{date}</span>
+      {<Options table={table} />}
+      {<MenuDishes additions={additions} />}
     </div>
   );
 }
 OrderList.propTypes = {
-  vse: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  order: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
 };
 export default OrderList;

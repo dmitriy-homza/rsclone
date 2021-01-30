@@ -35,7 +35,7 @@ function Order() {
     <div className="allBlock">
       <FindOrder onCreate={findOrder} />
       <h1>Order List</h1>
-      {order === ts ? 'Not exsist' : <OrderList vse={order} />}
+      {order === ts ? 'Not exsist' : <OrderList order={order} />}
     </div>
   );
 }

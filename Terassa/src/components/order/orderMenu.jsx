@@ -5,14 +5,15 @@ import '../../styles/order.scss';
 
 function OrderMenu({ dishesFromOrder }) {
   const {
-    name, weight, cost, time, quantity,
+    name, weight, cost, quantity,
   } = dishesFromOrder;
+  console.log(dishesFromOrder);
+
   return (
     <ul className="dishesItem">
       <li><span>{name}</span></li>
       <li><span>{weight}</span></li>
       <li><span>{cost}</span></li>
-      <li><span>{time}</span></li>
       <li><span>{quantity}</span></li>
     </ul>
   );
