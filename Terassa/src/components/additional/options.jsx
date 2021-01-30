@@ -1,11 +1,11 @@
-/* eslint-disable no-return-assign */
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import firebase from 'firebase/app';
-import Card from './card';
-// import additionals from './additional.json';
+import { Spinner } from 'reactstrap';
+import AdditionGroup from './additionGroup';
 import 'firebase/database';
 
-const options = () => {
+const options = ({ addAddition1 }) => {
   const [answer, setData] = useState('error');
 
   useEffect(() => {
@@ -17,25 +17,28 @@ const options = () => {
   }, []);
   return (
     <>
-      <div className="dishes">
-        <h2>Dishes</h2>
-        <div className="dishes-wrapper d-flex flex-wrap">
-          {answer ? Object.keys(answer).map((key) => (Array.from(answer[key])
-            .map((item) => (
-              <Card
-                key={`key${item.weight}`}
-                name={item.name}
-                weight={item.weight}
-                img={item.img}
-                description={item.description}
-                cost={item.cost}
-              />
-            ))
-          )) : 'false'}
-        </div>
+      <div className="additional-wrapper d-flex flex-wrap">
+        {typeof (answer) === 'object' ? Object.keys(answer).map((groupName) => (
+          <AdditionGroup
+            key={groupName}
+            groupName={groupName}
+            groupElements={Array.from(answer[groupName])}
+            addAdditional2={addAddition1}
+          />
+        ))
+          : (
+            <>
+              <Spinner color="primary" />
+              <span>Loading data...</span>
+            </>
+          )}
       </div>
     </>
   );
+};
+
+options.propTypes = {
+  addAddition1: PropTypes.func.isRequired,
 };
 
 export default options;
