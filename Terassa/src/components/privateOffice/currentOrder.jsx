@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 // import { ListGroup } from 'reactstrap';
-import Display from './reflect';
+import Display from './display';
 
 function CurrentOrder({ orderList }) {
   const [...ord] = orderList;
@@ -11,6 +11,7 @@ function CurrentOrder({ orderList }) {
       {ord.map((fromOrder) => (
         <Display
           fromOrder={fromOrder}
+          key={fromOrder.date}
         />
       ))}
     </>

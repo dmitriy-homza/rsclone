@@ -4,14 +4,17 @@ import React, { useState } from 'react';
 import {
   Button, Modal, ModalHeader, ModalBody, ModalFooter,
 } from 'reactstrap';
-
 import PropTypes from 'prop-types';
+import Menudishes from '../order/menuDishes';
+import Options from '../order/options';
 // import { ListGroupItem } from 'reactstrap';
 // import Modal from './modal';
 
 function Display({ fromOrder }) {
   const { ...display } = fromOrder;
-  const { name, date, nomber } = display;
+  const {
+    name, date, nomber, additions, table,
+  } = display;
 
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
@@ -28,14 +31,22 @@ function Display({ fromOrder }) {
       <Modal isOpen={modal} toggle={toggle}>
         <ModalHeader toggle={toggle}>Modal title</ModalHeader>
         <ModalBody>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+
+          <td>{name}</td>
+          <td>{date}</td>
+          <Menudishes additions={additions} />
+          <tr>
+            <td>номер столика</td>
+            <td>количество человек</td>
+          </tr>
+          <tr>
+            <Options table={table} />
+          </tr>
         </ModalBody>
         <ModalFooter>
-          <Button color="primary" onClick={toggle}>Do Something</Button>
+          <Button color="primary" onClick={toggle}>Pедактировать заказ</Button>
           {' '}
-          <Button color="secondary" onClick={toggle}>Cancel</Button>
+          <Button color="secondary" onClick={toggle}>Закрыть</Button>
         </ModalFooter>
       </Modal>
     </tr>

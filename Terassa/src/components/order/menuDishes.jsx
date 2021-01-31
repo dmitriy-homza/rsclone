@@ -1,4 +1,8 @@
 import React from 'react';
+import {
+  Row,
+
+} from 'reactstrap';
 import PropTypes from 'prop-types';
 import OrderMenu from './orderMenu';
 import '../../styles/order.scss';
@@ -9,20 +13,40 @@ function MenuDishes({ additions }) {
   const { dishes, services } = orderMenu;
 
   return (
-    <div className="dishesItem">
-      {dishes.map((dishesFromOrder) => (
-        <OrderMenu
-          dishesFromOrder={dishesFromOrder}
-          key={dishesFromOrder.id}
-        />
-      )) }
-      {services.map((servicesFromOrder) => (
-        <ServicesMenu
-          servicesFromOrder={servicesFromOrder}
-          key={servicesFromOrder.id}
-        />
-      )) }
-    </div>
+    <>
+      <thead>
+        <Row>
+          <th>Название блюда</th>
+          <th>Вес</th>
+          <th>Цена</th>
+          <th>Количество порций</th>
+        </Row>
+      </thead>
+      <tbody>
+        {dishes.map((dishesFromOrder) => (
+          <OrderMenu
+            dishesFromOrder={dishesFromOrder}
+            key={dishesFromOrder.id}
+          />
+        ))}
+      </tbody>
+      <thead>
+        <Row>
+          <th>Название блюда</th>
+          <th>Вес</th>
+          <th>Цена</th>
+          <th>Количество порций</th>
+        </Row>
+      </thead>
+      <tbody>
+        {services.map((servicesFromOrder) => (
+          <ServicesMenu
+            servicesFromOrder={servicesFromOrder}
+            key={servicesFromOrder.id}
+          />
+        ))}
+      </tbody>
+    </>
   );
 }
 MenuDishes.propTypes = {

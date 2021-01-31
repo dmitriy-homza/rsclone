@@ -24,19 +24,23 @@ function Order() {
   console.log(order);
   if (order === undefined) {
     return (
-      <div>
+      <section>
         <FindOrder onCreate={findOrder} />
         <h1>Order List</h1>
-        <p> Валера все хуйня давай по новой</p>
-      </div>
+        <p> Заказ с таким номером не существует</p>
+      </section>
     );
   }
   return (
-    <div className="allBlock">
-      <FindOrder onCreate={findOrder} />
-      <h1>Order List</h1>
-      {order === ts ? 'Not exsist' : <OrderList order={order} />}
-    </div>
+    <>
+      <div className="allBlock">
+        <FindOrder onCreate={findOrder} />
+      </div>
+      <div>
+        <h1>Order List</h1>
+        {order === ts ? 'Введите номер заказа' : <OrderList order={order} />}
+      </div>
+    </>
   );
 }
 

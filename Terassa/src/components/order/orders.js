@@ -4,7 +4,6 @@ export default function Orders() {
   // eslint-disable-next-line no-unused-vars
   const unicID = {
     orders: {
-
       'Sun Mar 07 2021 20:40:00 GMT+0300': {
         table: {},
         additions: {
@@ -52,7 +51,11 @@ export default function Orders() {
           name: 'Сковородка с куриными бедрышками и сердечками', weight: '485', cost: '14.2', time: ['18:40', '18:40', '18:40', '18:40', '18:40'], quantity: 5, id: '2',
         }],
         services: [{
-          name: 'Кальян', weight: '485', cost: '14.2', time: ['18:40', '18:40', '18:40', '18:40', '18:40'], quantity: 5, id: '2',
+          name: 'Кальян', weight: '485', cost: '14.2', time: ['18:40', '18:40'], quantity: 5, id: '2',
+
+        },
+        {
+          name: 'Кокаинум', weight: '485', cost: '14.2', time: ['18:40'], quantity: 5, id: '2',
 
         }],
 

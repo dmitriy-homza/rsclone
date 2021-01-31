@@ -11,13 +11,13 @@ function ServicesMenu({ servicesFromOrder }) {
   console.log(name, weight, cost, time, quantity);
 
   return (
-    <ul className="dishesItem">
-      <li><span>{name}</span></li>
-      <li><span>{weight}</span></li>
-      <li><span>{cost}</span></li>
-      <li><span>{time}</span></li>
-      <li><span>{quantity}</span></li>
-    </ul>
+    <tr>
+      <td><span>{name}</span></td>
+      <td><span>{weight}</span></td>
+      <td><span>{cost}</span></td>
+      <td><span>{time}</span></td>
+      <td><span>{quantity}</span></td>
+    </tr>
   );
 }
 

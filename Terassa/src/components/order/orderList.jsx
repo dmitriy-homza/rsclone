@@ -1,4 +1,8 @@
 import React from 'react';
+import {
+  TabPane, Row, Col,
+  Table,
+} from 'reactstrap';
 import PropTypes from 'prop-types';
 import MenuDishes from './menuDishes';
 // import OrderItem from './orderItem';
@@ -7,17 +11,41 @@ import '../../styles/order.scss';
 
 function OrderList({ order }) {
   const {
-    name, table, additions, date,
+    name, table, additions, date, nomber,
   } = order;
-
   return (
-    <div className="orderList">
-      <div>{name}</div>
-
-      <div>{date}</div>
-      {<Options table={table} />}
-      {<MenuDishes additions={additions} />}
-    </div>
+    <>
+      <TabPane tabId="1">
+        <Table>
+          <thead>
+            <Row>
+              <Col>#</Col>
+              <Col>Name</Col>
+              <Col>Date</Col>
+            </Row>
+          </thead>
+          <tbody>
+            <Row>
+              <Col>{nomber}</Col>
+              <Col>{name}</Col>
+              <Col>{date}</Col>
+            </Row>
+          </tbody>
+          <tbody>
+            <thead>
+              <Row>
+                <th>номер столика</th>
+                <th>количество человек</th>
+              </Row>
+            </thead>
+            <Options table={table} />
+          </tbody>
+          <tbody>
+            <MenuDishes additions={additions} />
+          </tbody>
+        </Table>
+      </TabPane>
+    </>
   );
 }
 OrderList.propTypes = {
