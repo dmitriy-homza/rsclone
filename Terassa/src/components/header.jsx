@@ -53,6 +53,11 @@ const Header = () => {
                   Order
                 </NavLink>
               </NavItem>
+              <NavItem>
+                <NavLink tag={Link} to="/private" activeClassName="active">
+                  Private
+                </NavLink>
+              </NavItem>
             </Nav>
           </Collapse>
         </Navbar>
