@@ -14,29 +14,27 @@ const UserOrder = () => {
   };
 
   const [...orders] = Orders();
-  const arr = [];
-  function createArrOrder(array) {
-    array.forEach((element) => {
-      arr.push(element);
-    });
-    return arr;
-  }
-  const [...ord] = createArrOrder(orders);
-  const [order, setOrder] = React.useState(ord);
+  const pastOrders = [];
+  const currentOrders = [];
 
-  function sorCurrenttOrder(date) {
-    setOrder(ord.filter((elem) => (Date.parse(elem.date) < date)));
+  function sortOrder() {
+    orders.forEach((element) => {
+      if (Date.parse(element.date) > Date.now()) {
+        currentOrders.push(element);
+      } else if (Date.parse(element.date) < Date.now()) {
+        pastOrders.push(element);
+      }
+    });
+    return (currentOrders, pastOrders);
   }
-  function sortFutureOrder(date) {
-    setOrder(ord.filter((elem) => (Date.parse(elem.date) > date)));
-  }
+  sortOrder();
   return (
     <div>
       <Nav tabs>
         <NavItem>
           <NavLink
             className={classnames({ active: activeTab === '1' })}
-            onClick={() => { toggle('1'); sorCurrenttOrder(Date.now()); }}
+            onClick={() => { toggle('1'); }}
           >
             Активные заказы
           </NavLink>
@@ -44,7 +42,7 @@ const UserOrder = () => {
         <NavItem>
           <NavLink
             className={classnames({ active: activeTab === '2' })}
-            onClick={() => { toggle('2'); sortFutureOrder(Date.now()); }}
+            onClick={() => { toggle('2'); }}
           >
             История заказов
           </NavLink>
@@ -55,7 +53,6 @@ const UserOrder = () => {
           <Row>
             <Col sm="12">
               <h4>Tab 1 Contents</h4>
-              <CurrentOrder orderList={order} />
               <Table hover>
                 <thead>
                   <tr>
@@ -65,7 +62,7 @@ const UserOrder = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  <CurrentOrder orderList={order} />
+                  <CurrentOrder orderList={currentOrders} />
                 </tbody>
               </Table>
             </Col>
@@ -75,7 +72,6 @@ const UserOrder = () => {
           <Row>
             <Col sm="12">
               <h4>Tab 2 Contents</h4>
-              <CurrentOrder orderList={order} />
               <Table hover>
                 <thead>
                   <tr>
@@ -85,7 +81,9 @@ const UserOrder = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  <CurrentOrder orderList={order} />
+
+                  <CurrentOrder orderList={pastOrders} />
+
                 </tbody>
               </Table>
             </Col>
