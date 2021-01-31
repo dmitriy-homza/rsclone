@@ -6,7 +6,10 @@ import PropTypes from 'prop-types';
 import firebase from 'firebase/app';
 import { RiSave3Fill } from '@react-icons/all-files/ri/RiSave3Fill';
 import { MdDeleteForever } from '@react-icons/all-files/md/MdDeleteForever';
+import { FiDownload } from '@react-icons/all-files/fi/FiDownload';
+import { BsCardImage } from '@react-icons/all-files/bs/BsCardImage';
 import { Button } from 'reactstrap';
+
 import 'firebase/firestore';
 import 'firebase/auth';
 import 'firebase/storage';
@@ -62,39 +65,56 @@ const AdditionalElement = ({
   }
 
   return isEdit === `${newAdditionObject[groupName][elementIndex].id}` ? (
-    <tr>
-      <td>
+    <tr id="editedElement" className="edit-element">
+      <td className="title">
         <textarea
           defaultValue={newAdditionObject[groupName][elementIndex].name}
           onChange={(event) => handleChange(event, 'name')}
           rows="1"
         />
       </td>
-      <td>
+      <td className="description">
         <textarea
+          className="description-input"
           defaultValue={newAdditionObject[groupName][elementIndex].description}
           onChange={(event) => handleChange(event, 'description')}
-          rows="3"
         />
       </td>
-      <td>
+      <td className="cost">
         <textarea
           defaultValue={newAdditionObject[groupName][elementIndex].cost}
           onChange={(event) => handleChange(event, 'cost')}
           rows="1"
         />
       </td>
-      <td>
+      <td className="weight">
         <textarea
           defaultValue={newAdditionObject[groupName][elementIndex].weight}
           onChange={(event) => handleChange(event, 'weight')}
           rows="1"
         />
       </td>
-      <td>
-        <input type="file" id="new-image" />
+      <td className="image">
+        <label htmlFor="new-image">
+          <div id="upload-container">
+            <div className="d-flex">
+              <FiDownload id="isReady" />
+              <BsCardImage id="isSelected" className="d-none" />
+              <input
+                type="file"
+                id="new-image"
+                onChange={() => {
+                  if (document.getElementById('new-image').files[0]) {
+                    document.getElementById('isReady').classList.add('d-none');
+                    document.getElementById('isSelected').classList.remove('d-none');
+                  }
+                }}
+              />
+            </div>
+          </div>
+        </label>
       </td>
-      <td>
+      <td className="control-buttons">
         <Button
           color="success"
           onClick={() => {
@@ -111,7 +131,7 @@ const AdditionalElement = ({
           <RiSave3Fill />
         </Button>
       </td>
-      <td>
+      <td className="control-buttons">
         <Button
           color="danger"
           onClick={() => {
@@ -130,12 +150,12 @@ const AdditionalElement = ({
     </tr>
   ) : (
     <>
-      <tr onClick={() => setIsEdit(newAdditionObject[groupName][elementIndex].id)}>
-        <td>{name}</td>
-        <td>{description}</td>
-        <td>{cost}</td>
-        <td>{weight}</td>
-        <td>
+      <tr className="category-element" onClick={() => setIsEdit(newAdditionObject[groupName][elementIndex].id)}>
+        <td className="title">{name}</td>
+        <td className="description">{description}</td>
+        <td className="cost">{cost}</td>
+        <td className="weight">{weight}</td>
+        <td className="image">
           <img src={imageUrl} width="30" alt="Additional" />
         </td>
       </tr>

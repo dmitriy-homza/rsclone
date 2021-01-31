@@ -69,8 +69,8 @@ export default () => {
     const newAdditions = { ...answer };
     newAdditions[name] = newElement;
     setData(newAdditions);
-    toggle();
     setIsEdit(newAdditions[name][0].id);
+    toggle();
   }
 
   const tableClasses = isEdit ? 'table table-bordered is-edit' : 'table table-bordered';
@@ -81,40 +81,50 @@ export default () => {
         <ReactNotification />
         <main className="pt-3 pb-3">
           <div className="additional-edit d-flex flex-wrap">
-            <h2>Edit additionals</h2>
-            <Button onClick={() => {
-              fetchDataDefault();
-              writeNewAdditions(defaultAdditions);
-              setData(defaultAdditions);
-              setIsEdit('');
-            }}
-            >
-              <BiReset />
-              Reset
-            </Button>
-            <Button
-              onClick={() => {
-                if (!isEdit) {
-                  toggle();
-                } else {
-                  store.addNotification({
-                    title: 'Save changes!',
-                    message: 'Please save all changes you made.',
-                    type: 'warning',
-                    insert: 'top',
-                    container: 'top-right',
-                    animationIn: ['animate__animated animate__fadeIn'],
-                    animationOut: ['animate__animated animate__fadeOut'],
-                    dismiss: {
-                      duration: 5000,
-                    },
-                  });
-                }
-              }}
-            >
-              <AiFillFolderAdd />
-              Add Category
-            </Button>
+            <div className="editions-header">
+              <h2>Edit additionals</h2>
+              <div>
+                <Button
+                  color="primary"
+                  className="btn-icon-split"
+                  onClick={() => {
+                    fetchDataDefault();
+                    writeNewAdditions(defaultAdditions);
+                    setData(defaultAdditions);
+                    setIsEdit('');
+                  }}
+                >
+                  <span className="icon text-white-50"><BiReset /></span>
+                  <span className="text">Reset</span>
+                </Button>
+                <Button
+                  color="primary"
+                  className="btn-icon-split"
+                  onClick={() => {
+                    if (!isEdit) {
+                      toggle();
+                    } else {
+                      store.addNotification({
+                        title: 'Save changes!',
+                        message: 'Please save all changes you made.',
+                        type: 'warning',
+                        insert: 'top',
+                        container: 'top-right',
+                        animationIn: ['animate__animated animate__fadeIn'],
+                        animationOut: ['animate__animated animate__fadeOut'],
+                        dismiss: {
+                          duration: 5000,
+                        },
+                      });
+                    }
+                  }}
+                >
+                  <span className="icon text-white-50"><AiFillFolderAdd /></span>
+                  <span className="text">Add Category</span>
+                </Button>
+              </div>
+
+            </div>
             <table className={tableClasses} id="dataTable" width="100%" cellSpacing="0">
               <thead>
                 <tr>
@@ -151,9 +161,9 @@ export default () => {
                 ) : (
                   <>
                     <tr>
-                      <td colSpan="5">
+                      <td className="d-flex" colSpan="5">
                         <Spinner color="primary" />
-                        <span>Loading data...</span>
+                        <span className="m-auto align-self-center">Loading data...</span>
                       </td>
                     </tr>
                   </>
@@ -184,6 +194,9 @@ export default () => {
                     /[A-Za-z]{2,20}/.test(document.getElementById('name-of-new-category').value)
                   ) {
                     addNewCategory();
+                    setTimeout(() => document.getElementById('editedElement').scrollIntoView({
+                      behavior: 'smooth',
+                    }), 500);
                   } else {
                     const input = document.getElementById('name-of-new-category');
                     input.classList.add('is-invalid');
