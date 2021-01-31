@@ -15,8 +15,13 @@ import '../styles/book.scss';
 export default () => {
   const [page, setPage] = useState('tables');
 
-  const visitTime = Date.parse(localStorage.getItem('date'));
-  const tables = localStorage.getItem('tables');
+  let visitTime; let
+    tables;
+
+  function takeProps() {
+    tables = 'Столы';
+    visitTime = `${document.getElementById('date').value}T${document.getElementById('time').value}+03:00`;
+  }
   const [selectedAdditional, addElement] = React.useState([]);
   function addAddition(element) {
     // eslint-disable-next-line no-param-reassign
@@ -68,8 +73,7 @@ export default () => {
         <button
           onClick={() => {
             if (document.getElementById('date').value && document.getElementById('time').value) {
-              localStorage.setItem('date', `${document.getElementById('date').value}T${document.getElementById('time').value}+03:00`);
-              localStorage.setItem('tables', 'Столы');
+              takeProps();
               setPage('additions');
             } else {
               store.addNotification({
