@@ -28,6 +28,10 @@ body {
         align-items: center;
         justify-content: space-between;
         margin-right: 116px;
+        h2 {
+          font-weight: 800;
+          color: #ac865c;
+        }
         button {
           margin-left: 15px;
         }
@@ -63,7 +67,7 @@ body {
       table {
         border: 0px;
         border-collapse: collapse;
-        width: calc(100% - 116px);
+        width: calc(100% - 115px);
         tbody {
           color: $font-dark;
           .control-buttons {
@@ -79,9 +83,16 @@ body {
               }
             }
           }
+          .category-name {
+            background-color: #fff2e3;
+            h5 {
+              font-weight: 600;
+            }
+          }
           .category-element {
             transition: 0.3s;
             height: 80px;
+            cursor: pointer;
           }
           .edit-element {
             transition: 0.3s;
@@ -174,7 +185,7 @@ body {
               width: calc(100% * 0.2 - 116px * 0.2);
             }
             .description {
-              width: calc(100% * 0.4 - 116px * 0.4);
+              width: calc(40.7%);
             }
             .cost,
             .weight {

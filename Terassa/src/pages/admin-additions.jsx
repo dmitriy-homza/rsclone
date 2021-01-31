@@ -80,8 +80,8 @@ export default () => {
       <Layout>
         <ReactNotification />
         <main className="pt-3 pb-3">
-          <div className="additional-edit d-flex flex-wrap">
-            <div className="editions-header">
+          <div className="additional-edit p-3 d-flex flex-wrap">
+            <div className="editions-header pb-3">
               <h2>Edit additionals</h2>
               <div>
                 <Button
