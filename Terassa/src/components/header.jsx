@@ -29,11 +29,6 @@ const Header = () => {
                 </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink tag={Link} to="/contacts" activeClassName="active">
-                  Contacts
-                </NavLink>
-              </NavItem>
-              <NavItem>
                 <NavLink tag={Link} to="/login" activeClassName="active">
                   Login
                 </NavLink>
