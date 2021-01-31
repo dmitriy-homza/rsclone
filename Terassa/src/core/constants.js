@@ -1,9 +1,8 @@
 /* eslint-disable */
 
 const API = {
+    VISITTIME: 'visit',
     ADDITIONALS: 'additionals',
-    SERVICES: 'services',
-    DISHES: 'dishes'
 }
 
 

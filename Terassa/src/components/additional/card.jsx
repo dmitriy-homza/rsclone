@@ -12,7 +12,7 @@ import {
 import { GrAddCircle } from '@react-icons/all-files/gr/GrAddCircle';
 
 const card = ({
-  name, weight, img, description, cost, id, addAdditional3,
+  name, weight, img, description, cost, id, addAdditional3, groupName,
 }) => {
   const [answer, setData] = useState('../../images/empty.jpg');
 
@@ -89,6 +89,7 @@ const card = ({
                     cost,
                     time: [document.getElementById(`${['id', id].join('')}`).value],
                     quantity: 1,
+                    groupName,
                   };
                   addAdditional3(positionObject);
                 }
@@ -111,6 +112,7 @@ card.propTypes = {
   cost: PropTypes.string,
   id: PropTypes.string,
   addAdditional3: PropTypes.func.isRequired,
+  groupName: PropTypes.string,
 };
 
 export default card;
