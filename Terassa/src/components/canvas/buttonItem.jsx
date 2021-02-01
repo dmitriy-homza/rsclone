@@ -35,6 +35,7 @@ const ButtonItem = ({
         name="chooseMode"
         value={image}
         mode={mode}
+        class="button-input"
       />
       <label htmlFor={id} onClick={() => localStorage.setItem('currentMode', JSON.stringify(({ 'image': answer, mode, id })))}>
         <div className="chooseModeButton" style={divStyle} />
