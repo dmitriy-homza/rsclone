@@ -50,16 +50,9 @@ const Basket = ({
     DBObject.visit = Date.parse(visitTime);
     DBObject.additions = {};
     checkPosition.forEach((element) => {
-      DBObject.additions[element.groupName] = {
-        cost: element.cost,
-        id: element.id,
-        name: element.name,
-        quantity: element.quantity,
-        time: element.time,
-        weight: element.weight,
-      };
+      // eslint-disable-next-line no-unused-expressions
+      DBObject.additions[element.groupName] ? DBObject.additions[element.groupName] = [...DBObject.additions[element.groupName], element] : DBObject.additions[element.groupName] = [element];
     });
-    console.log(DBObject);
     saveData(`${numberOfOrder}`, DBObject);
   };
 
