@@ -37,7 +37,11 @@ const AdminTableRender = ({
   }, []);
 
   function createCanvas() {
-    console.log(loadedTables)
+    if (localStorage.getItem('currentMode')) {
+      localStorage.removeItem('currentMode');
+    }
+    document.getElementById('0').click()
+
     function removeChild() {
       if (currentContainer) {
         app.stage.removeChild(currentContainer)
@@ -158,10 +162,14 @@ const AdminTableRender = ({
 
         container
           .on('pointerover', () => {
-            table.tint = 0x828272;
+            if (currentContainer != container) {
+              table.tint = 0x828272;
+            }
           })
           .on('pointerout', () => {
-            table.tint = 0xFFFFFF;
+            if (currentContainer != container) {
+              table.tint = 0xFFFFFF;
+            }
           })
           .on('pointerdown', (event) => {
             container.data = event.data;
@@ -186,8 +194,12 @@ const AdminTableRender = ({
             }
           })
           .on('pointertap', (ev) => {
+            if (currentTable) {
+              currentTable.tint = 0xFFFFFF;
+            }
             currentContainer = ev.target.parent;
             currentTable = ev.target;
+            currentTable.tint = 0xFF0000;
           });
 
         const text = new PIXI.Text(table.index,
@@ -255,6 +267,13 @@ const AdminTableRender = ({
 
     app.view.onclick = (ev) => {
       const currentMode = JSON.parse(localStorage.getItem('currentMode'))
+      if (currentMode && currentMode.mode === 'cursor') {
+        if (currentTable) {
+          currentTable.tint = 0xFFFFFF;
+        }
+        currentContainer = null;
+        currentTable = null;
+      }
       if (currentMode && currentMode.mode === 'create') {
         mousePosition.set(ev.layerX, ev.layerY);
         const found = app.renderer.plugins.interaction.hitTest(
@@ -304,10 +323,14 @@ const AdminTableRender = ({
 
           container
             .on('pointerover', () => {
-              table.tint = 0x828272;
+              if (currentContainer != container) {
+                table.tint = 0x828272;
+              }
             })
             .on('pointerout', () => {
-              table.tint = 0xFFFFFF;
+              if (currentContainer != container) {
+                table.tint = 0xFFFFFF;
+              }
             })
             .on('pointerdown', (event) => {
               container.data = event.data;
@@ -332,7 +355,12 @@ const AdminTableRender = ({
               }
             })
             .on('pointertap', (ev) => {
+              if (currentTable) {
+                currentTable.tint = 0xFFFFFF;
+              }
               currentContainer = ev.target.parent;
+              currentTable = ev.target;
+              currentTable.tint = 0xFF0000;
             });
 
           

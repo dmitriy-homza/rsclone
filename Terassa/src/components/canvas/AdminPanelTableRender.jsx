@@ -28,7 +28,7 @@ const AdminPanelTableRender = () => {
         )) : 'Loading Data'}
       </div>
       <div id="canvasWrapper">
-        {document.getElementById('canvasWrapper') ? (<AdminTableRender bgImage={fbData.bgImage} tableImages={fbData.tables} cursorImage={fbData.cursorImage}/>) : console.log('none')}
+        {document.getElementById('canvasWrapper') ? (<AdminTableRender bgImage={fbData.bgImage} tableImages={fbData.tables} cursorImage={fbData.cursorImage}/>) : 'false'}
       </div>
     </>
   );
