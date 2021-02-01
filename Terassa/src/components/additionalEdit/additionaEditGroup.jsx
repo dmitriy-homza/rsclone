@@ -42,6 +42,10 @@ const AdditionEditGroup = ({
               onClick={() => {
                 if (!isEdit) {
                   addNewAddition(additionsObject);
+                  // eslint-disable-next-line no-undef
+                  setTimeout(() => document.getElementById('editedElement').scrollIntoView({
+                    behavior: 'smooth',
+                  }), 500);
                 } else {
                   store.addNotification({
                     title: 'Save changes!',

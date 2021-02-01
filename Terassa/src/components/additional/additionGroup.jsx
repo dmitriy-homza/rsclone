@@ -20,6 +20,7 @@ const AdditionGroup = ({ groupName, groupElements, addAdditional2 }) => {
               cost={item.cost}
               id={item.id}
               addAdditional3={addAdditional2}
+              groupName={groupName}
             />
           ))}
         </div>

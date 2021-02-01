@@ -6,11 +6,12 @@ import { IoIosArrowUp } from '@react-icons/all-files/io/IoIosArrowUp';
 import { Button } from 'reactstrap';
 
 import { saveData } from '../../core/api';
-import { API } from '../../core/constants';
 
 import BasketElement from './basketElement';
 
-const Basket = ({ removePosition1, checkPosition }) => {
+const Basket = ({
+  removePosition1, checkPosition, visitTime, tables,
+}) => {
   let id = 1;
   // eslint-disable-next-line max-len
   const totalCost = checkPosition.reduce(((sum, item) => sum + +item.cost * item.quantity), 0).toFixed(1);
@@ -21,9 +22,22 @@ const Basket = ({ removePosition1, checkPosition }) => {
   const toggleNavbar = () => setCollapsed(!collapsed);
 
   const onContinue = () => {
-    saveData(API.ADDITIONALS, {
-      [API.DISHES]: checkPosition,
+    const DBObject = {};
+    DBObject.tables = tables;
+    DBObject.visit = visitTime;
+    DBObject.additions = {};
+    checkPosition.forEach((element) => {
+      DBObject.additions[element.groupName] = {
+        cost: element.cost,
+        id: element.id,
+        name: element.name,
+        quantity: element.quantity,
+        time: element.time,
+        weight: element.weight,
+      };
     });
+    console.log(DBObject);
+    saveData('/', DBObject);
   };
 
   return (
@@ -57,6 +71,8 @@ Basket.propTypes = {
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string),
     PropTypes.number]))).isRequired,
+  visitTime: PropTypes.number.isRequired,
+  tables: PropTypes.string.isRequired,
 };
 
 export default Basket;
