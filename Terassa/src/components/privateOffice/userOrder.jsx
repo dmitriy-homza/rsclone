@@ -4,8 +4,11 @@ import {
   Table,
 } from 'reactstrap';
 import classnames from 'classnames';
-import firebase from './firebase';
-import Orders from '../order/orders';
+import firebase from 'firebase/app';
+import 'firebase/firestore';
+import 'firebase/auth';
+import 'firebase/storage';
+// import Orders from '../order/orders';
 import CurrentOrder from './currentOrder';
 
 const UserOrder = () => {
@@ -13,33 +16,52 @@ const UserOrder = () => {
   const toggle = (tab) => {
     if (activeTab !== tab) setActiveTab(tab);
   };
+  const order = {};
 
-  const userId = firebase.auth().currentUser.uid;
-  const [answer, setData] = useState('error');
-
+  const [answer, setData] = useState(order);
   useEffect(() => {
-    const fetchData = async () => {
-      const result = await firebase.database().ref(`users/${userId}/orders`).once('value').then((snapshot) => snapshot.val());
-      setData(result);
-    };
-    fetchData();
-  }, []);
-  console.log(answer);
-  const [...orders] = Orders();
-  const pastOrders = [];
-  const currentOrders = [];
-
-  function sortOrder() {
-    orders.forEach((element) => {
-      if (Date.parse(element.date) > Date.now()) {
-        currentOrders.push(element);
-      } else if (Date.parse(element.date) < Date.now()) {
-        pastOrders.push(element);
-      }
+    firebase.auth().onAuthStateChanged((user) => {
+      const userId = user.uid;
+      const fetchData = async () => {
+        const result = await firebase.database().ref(`users/${userId}/orders`).once('value').then((snapshot) => snapshot.val());
+        setData(result);
+      };
+      fetchData();
     });
-    return (currentOrders, pastOrders);
-  }
-  sortOrder();
+  }, []);
+
+  const pastOrders1 = [];
+  const currentOrders1 = [];
+
+  const keysOrders = Object.keys(answer);
+  keysOrders.forEach((element) => {
+    if (element < Date.now()) {
+      pastOrders1.push(answer[element]);
+    } else if (element < Date.now()) {
+      currentOrders1.push(answer[element]);
+    }
+  });
+  console.log(keysOrders);
+
+  console.log(answer);
+  console.log(currentOrders1);
+  console.log(pastOrders1);
+
+  /* const [...orders] = Orders();
+   const pastOrders = [];
+   const currentOrders = [];
+
+   function sortOrder() {
+     orders.forEach((element) => {
+       if (Date.parse(element.date) > Date.now()) {
+         currentOrders.push(element);
+       } else if (Date.parse(element.date) < Date.now()) {
+         pastOrders.push(element);
+       }
+     });
+     return (currentOrders, pastOrders);
+   } */
+  // sortOrder();
   return (
     <div>
       <Nav tabs>
@@ -74,7 +96,9 @@ const UserOrder = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  <CurrentOrder orderList={currentOrders} />
+
+                  {currentOrders1.length !== 0 ? <CurrentOrder orderList={currentOrders1} /> : 'Not'}
+
                 </tbody>
               </Table>
             </Col>
@@ -93,9 +117,7 @@ const UserOrder = () => {
                   </tr>
                 </thead>
                 <tbody>
-
-                  <CurrentOrder orderList={pastOrders} />
-
+                  {pastOrders1.length !== 0 ? <CurrentOrder orderList={pastOrders1} /> : 'Not nothing'}
                 </tbody>
               </Table>
             </Col>

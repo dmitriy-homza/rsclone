@@ -5,27 +5,50 @@ import {
   Button, Modal, ModalHeader, ModalBody, ModalFooter,
 } from 'reactstrap';
 import PropTypes from 'prop-types';
-import Menudishes from '../order/menuDishes';
-import Options from '../order/options';
+// import Menudishes from '../order/menuDishes';
+// import Options from '../order/options';
+// import Time from './time';
 // import { ListGroupItem } from 'reactstrap';
 // import Modal from './modal';
 
 function Display({ fromOrder }) {
   const { ...display } = fromOrder;
   const {
-    name, date, nomber, additions, table,
+    cost, name, quantity, weigth,
   } = display;
-
+  console.log(display);
+  /* function transformTimeArray(inputArray) {
+    const array = inputArray.slice();
+    array.sort();
+    for (let index = 0; index < array.length; index += 1) {
+      if (typeof (array[index]) === 'string') {
+        array[index] = [1, array[index]];
+      }
+      if (index !== array.length - 1) {
+        if (array[index][1] === array[index + 1]) {
+          array[index][0] += 1;
+          array.splice(index + 1, 1);
+          index -= 1;
+        }
+      }
+    }
+    return array;
+  } */
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
   return (
 
     <tr onClick={toggle}>
-      <th scope="row">
-        {nomber}
-      </th>
+
       <td>{name}</td>
-      <td>{date}</td>
+      <td>{cost}</td>
+      <td>{quantity}</td>
+      <td>{weigth}</td>
+      { /* transformTimeArray(time).map((timeElem) => (
+        <Time
+          timeElem={timeElem}
+        />
+      )) */}
 
       {/* <Button color="danger" onClick={toggle}>{ buttonLabel }</Button> */}
       <Modal isOpen={modal} toggle={toggle}>
@@ -33,15 +56,10 @@ function Display({ fromOrder }) {
         <ModalBody>
 
           <td>{name}</td>
-          <td>{date}</td>
-          <Menudishes additions={additions} />
-          <tr>
-            <td>номер столика</td>
-            <td>количество человек</td>
-          </tr>
-          <tr>
-            <Options table={table} />
-          </tr>
+
+          <td>номер столика</td>
+          <td>количество человек</td>
+
         </ModalBody>
         <ModalFooter>
           <Button color="primary" onClick={toggle}>Pедактировать заказ</Button>
