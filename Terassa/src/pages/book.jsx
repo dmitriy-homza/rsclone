@@ -15,16 +15,6 @@ import '../styles/book.scss';
 export default () => {
   const [page, setPage] = useState('tables');
 
-  let visitTime;
-  let tables;
-
-  function takeProps() {
-    tables = 'Столы';
-    visitTime = `${document.getElementById('date').value}T${
-      document.getElementById('time').value
-    }+03:00`;
-    console.log(tables, visitTime);
-  }
   const [selectedAdditional, addElement] = React.useState([]);
   function addAddition(element) {
     // eslint-disable-next-line no-param-reassign
@@ -70,7 +60,6 @@ export default () => {
                   document.getElementById('time').value
                 }+03:00`,
               });
-              takeProps();
             } else {
               store.addNotification({
                 title: 'Choose time!',
