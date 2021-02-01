@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   TabContent, TabPane, Nav, NavItem, NavLink, Row, Col,
   Table,
 } from 'reactstrap';
 import classnames from 'classnames';
+import firebase from './firebase';
 import Orders from '../order/orders';
 import CurrentOrder from './currentOrder';
 
@@ -13,6 +14,17 @@ const UserOrder = () => {
     if (activeTab !== tab) setActiveTab(tab);
   };
 
+  const userId = firebase.auth().currentUser.uid;
+  const [answer, setData] = useState('error');
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await firebase.database().ref(`users/${userId}/orders`).once('value').then((snapshot) => snapshot.val());
+      setData(result);
+    };
+    fetchData();
+  }, []);
+  console.log(answer);
   const [...orders] = Orders();
   const pastOrders = [];
   const currentOrders = [];
