@@ -36,6 +36,10 @@ const Basket = ({
         .once('value')
         .then((snapshot) => snapshot.val());
       setNumberOfOrder(result);
+      firebase
+        .database()
+        .ref('lastOrder')
+        .set(result + 1);
     };
     fetchData();
   }, []);

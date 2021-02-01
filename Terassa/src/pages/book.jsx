@@ -4,6 +4,9 @@
 /* eslint-disable max-len */
 /* eslint-disable no-param-reassign */
 import React, { useState } from 'react';
+import {
+  Alert, Form, Col, Row, FormGroup, Label, Input,
+} from 'reactstrap';
 import ReactNotification, { store } from 'react-notifications-component';
 import { FormGroup, Label, Input } from 'reactstrap';
 import Layout from '../components/layout';
@@ -30,8 +33,8 @@ export default () => {
       document.getElementById('time').value
     }+03:00`;
     console.log(tables, visitTime);
-    console.log(table);
   }
+
   const [selectedAdditional, addElement] = React.useState([]);
   function addAddition(element) {
     // eslint-disable-next-line no-param-reassign
