@@ -11,6 +11,12 @@ const saveData = (key, data) => {
 
     userDataRef.child(key).set(data);
   }
+  else {
+    const db = firebase.database();
+    const userDataRef = db.ref(`anonOrders`);
+
+    userDataRef.child(key).set(data);
+  }
 };
 
 export { saveData };
