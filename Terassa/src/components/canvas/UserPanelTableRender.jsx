@@ -6,7 +6,9 @@ import ButtonItem from './ButtonItem';
 import UserTableRender from './UserTableRender';
 import 'firebase/database';
 
-const userPanelTableRender = () => {
+const userPanelTableRender = ({
+   setTable, blockedTables
+}) => {
 
    const [fbData, setfbData] = useState(0);
 
@@ -19,11 +21,15 @@ const userPanelTableRender = () => {
    }, []);
 
    return (
-      <>
+      <div style={{ display:'flex', flexDirection:'row' }}>
          <div id="canvasWrapper">
-            {fbData ? document.getElementById('canvasWrapper') ? (<UserTableRender bgImage={fbData.bgImage} fbData={fbData.tables}/>) : 'false' : 'false'}
+            {fbData ? document.getElementById('canvasWrapper') ? (<UserTableRender bgImage={fbData.bgImage} fbData={fbData.tables} setTable={setTable} blockedTables={blockedTables}/>) : 'false' : 'false'}
          </div>
-      </>
+         <div>
+            <div id="tableInfo">
+            </div>
+         </div>
+      </div>
    );
 };
 

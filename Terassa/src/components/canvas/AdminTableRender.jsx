@@ -70,7 +70,7 @@ const AdminTableRender = ({
             obj.scaleY = underEl.scale.y;
             obj.rotation = underEl.transform.rotation;
             obj.texture = underEl._texture.textureCacheIds[0];
-            obj.unqueId = underEl.uniqueId;
+            obj.uniqueId = underEl.uniqueId;
             obj.id = underEl.id;
             arr.push(obj)
           }

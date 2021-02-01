@@ -8,7 +8,8 @@ import 'firebase/storage';
 import * as PIXI from 'pixi.js';
 
 const userTableRender = ({ 
-   bgImage, fbData
+   bgImage, fbData, setTable, blockedTables
+   
 }) => { 
    const [answer, setData] = useState(0);
    const [loadedTables, loadTables] = useState(0);
@@ -32,6 +33,7 @@ const userTableRender = ({
    }, []);
 
    function createCanvas() {
+      console.log('blockedTables: ', blockedTables);
       const canvas = document.getElementById('canvasWrapper')
 
       const app = new PIXI.Application({
@@ -55,8 +57,6 @@ const userTableRender = ({
          loadedTables.map(el => {
             const container = new PIXI.Container();
             container.type = 'container'
-            container.interactive = true;
-            container.buttonMode = true;
 
             container.x = el.x;
             container.y = el.y;
@@ -74,11 +74,17 @@ const userTableRender = ({
             table.scale.y = el.scaleY;
             table.rotation = el.rotation;
 
-            table.buttonMode = true;
-            table.interactive = true;
-
-            table.tint = 0x808080;
-            table.alpha = 0.7;
+            if (blockedTables.includes(table.uniqueId)) {
+               table.buttonMode = false;
+               table.interactive = false;
+               table.tint = 0xcccccc;
+               table.alpha = 0.2;
+            } else {
+               table.buttonMode = true;
+               table.interactive = true;
+               table.tint = 0x808080;
+               table.alpha = 0.7;
+            }
 
             container.addChild(table)
 
@@ -88,18 +94,26 @@ const userTableRender = ({
                      activeTable.tint = 0x808080;
                      activeTable.alpha = 0.7;
                   }
-
                   activeTable = ev.target;
                   activeTable.tint = 0xFFFFFF;
                   activeTable.alpha = 1;
 
                   fbData.forEach(el => {
                      if (table.id === el.id) {
-                        console.log('description', el.description)
-                        console.log('price', el.price)
+                        const discription = el.description
+                        const price = el.price
+
+                        const tableInfo = document.getElementById('tableInfo')
+                        tableInfo.innerHTML = `
+                           <p>Table №:${table.index}</p>
+                           <p>Description:${discription}</p>
+                           <p>Table price:${price}</p>
+                        `;
                      }
                   })
+                  setTable( table.uniqueId )
 
+                  
                });
 
             const text = new PIXI.Text(el.index,
@@ -142,15 +156,13 @@ const userTableRender = ({
       }
    }
 
-   
-
-
    if (answer !== 0 && loadedTables !== 0) {
       createCanvas()
       localStorage.setItem('state', 'loaded')
    }
 
    return <>
+
    </>;
 
 };
