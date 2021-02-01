@@ -58,6 +58,11 @@ const Header = () => {
                   AdminPanel
                 </NavLink>
               </NavItem>
+              <NavItem>
+                <NavLink tag={Link} to="/userPanel" activeClassName="active">
+                  UserPanel
+                </NavLink>
+              </NavItem>
             </Nav>
           </Collapse>
         </Navbar>

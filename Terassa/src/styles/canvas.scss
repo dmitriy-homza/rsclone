@@ -1,15 +1,13 @@
 .chooseModeButton {
   width: 100px;
   height: 100px;
-  background-position: cover;
-  background-size: cover;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
   margin: 5px;
   background-color: rgb(104, 86, 86);
-  opacity: 0.5;
 }
-.buttonChecked {
-  opacity: 1;
-}
+
 .remove,
 .save {
   width: 70px;
@@ -17,6 +15,12 @@
 }
 
 .hide {
+  display: none;
+}
+label {
+  opacity: 0.5;
+}
+input {
   display: none;
 }
 
