@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[7],{"sg+I":function(n,e,t){},tGlL:function(n,e,t){"use strict";t.r(e);var a=t("q1tI"),c=t.n(a),l=t("L12J");t("sg+I");e.default=function(){return c.a.createElement(c.a.Fragment,null,c.a.createElement(l.a,null,c.a.createElement("h1",null,"Account")))}}}]);
+//# sourceMappingURL=component---src-pages-account-jsx-5ecb904966b5ace51144.js.map
