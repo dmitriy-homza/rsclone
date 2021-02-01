@@ -51,7 +51,7 @@ const AdditionalElement = ({
 
   function uploadNewImage() {
     const file = document.getElementById('new-image').files[0];
-    const type = file.name.split('.')[1];
+    const type = document.getElementById('new-image').files[0] ? file.name.split('.')[1] : '.jpg';
     const fileName = `${Date.now()}.${type}`;
     newAdditionObject[groupName][elementIndex].img = `additionals/${fileName}`;
     const ref = firebase.storage().ref(`additionals/${fileName}`);

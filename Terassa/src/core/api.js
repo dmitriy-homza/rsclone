@@ -7,7 +7,7 @@ const saveData = (key, data) => {
   if (isLoggedIn) {
     const db = firebase.database();
     const userId = firebase.auth().currentUser.uid;
-    const userDataRef = db.ref(`users/${userId}/orders/${Date.now()}`);
+    const userDataRef = db.ref(`users/${userId}/orders/`);
 
     userDataRef.child(key).set(data);
   }
