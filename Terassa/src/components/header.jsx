@@ -44,12 +44,11 @@ const Header = () => {
                 </NavLink>
               </NavItem>
               <NavItem>
-
                 <NavLink tag={Link} to="/private" activeClassName="active">
                   Private
                 </NavLink>
-              </NavItem>    
-     <NavItem>
+              </NavItem>
+              <NavItem>
                 <NavLink tag={Link} to="/adminPanel" activeClassName="active">
                   AdminPanel
                 </NavLink>
@@ -57,8 +56,6 @@ const Header = () => {
               <NavItem>
                 <NavLink tag={Link} to="/userPanel" activeClassName="active">
                   UserPanel
-                 </NavLink>
-              </NavItem>
                 </NavLink>
               </NavItem>
             </Nav>

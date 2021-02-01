@@ -11,8 +11,7 @@ const userTableRender = ({
    bgImage, fbData
 }) => { 
    const [answer, setData] = useState(0);
-   let currentContainer;
-   let currentTable;
+   const [loadedTables, loadTables] = useState(0);
 
    useEffect(() => {
       const fetchData = async () => {
@@ -24,31 +23,36 @@ const userTableRender = ({
             setData(result);
          });
       };
+      const load = async () => {
+         const result = await firebase.database().ref('saved-tables').once('value').then((snapshot) => snapshot.val());
+         loadTables(result);
+      };
       fetchData();
+      load();
    }, []);
 
    function createCanvas() {
       const canvas = document.getElementById('canvasWrapper')
 
-      const tables = JSON.parse(localStorage.getItem('tables'));
+      const app = new PIXI.Application({
+         width: 1000,
+         height: 620,
+         backgroundColor: 0x5BBA6F,
+      });
 
-      if (tables) {
-         const app = new PIXI.Application({
-            width: 1000,
-            height: 620,
-            backgroundColor: 0x5BBA6F,
-         });
+      canvas.innerHTML = '';
+      canvas.appendChild(app.view);
+
+      const backgroundImage = PIXI.Texture.from(answer);
+      const background = new PIXI.Sprite(backgroundImage);
+      app.stage.addChild(background);
+      background.width = app.screen.width;
+      background.height = app.screen.height;
+
+      if (loadedTables !== null) {
          let activeTable;
 
-         const backgroundImage = PIXI.Texture.from(answer);
-         const background = new PIXI.Sprite(backgroundImage);
-         app.stage.addChild(background);
-         background.width = app.screen.width;
-         background.height = app.screen.height;
-
-         canvas.appendChild(app.view)
-
-         tables.map(el => {
+         loadedTables.map(el => {
             const container = new PIXI.Container();
             container.type = 'container'
             container.interactive = true;
@@ -112,7 +116,23 @@ const userTableRender = ({
             app.stage.addChild(container)
          })
       } else {
-         canvas.textContent = 'NO DATA'
+         const errorMessage = new PIXI.Text('Sorry, it is not possible to book a table at the moment. \nPlease contact the administrator',
+            {
+               font: '2rem',
+               fill: 0xFFFFFF,
+               align: 'center',
+               cacheAsBitmap: true,
+            });
+         errorMessage.width = 800;
+         errorMessage.height = 150;
+         errorMessage.type = 'text'
+         errorMessage.anchor.set(0.5);
+         errorMessage.x = app.screen.width / 2;
+         errorMessage.y = app.screen.height / 2;
+
+         background.tint = 0x979797;
+
+         background.addChild(errorMessage)
       }
 
 
@@ -125,7 +145,7 @@ const userTableRender = ({
    
 
 
-   if (answer !== 0) {
+   if (answer !== 0 && loadedTables !== 0) {
       createCanvas()
       localStorage.setItem('state', 'loaded')
    }

@@ -7,13 +7,14 @@ import 'firebase/auth';
 import 'firebase/storage';
 import * as PIXI from 'pixi.js';
 
-console.log('  22  ')
+
 
 const AdminTableRender = ({ 
     bgImage
   }) => {
 
   const [answer, setData] = useState(0);
+  const [loadedTables, loadTables] = useState(0);
   let currentContainer;
   let currentTable;
 
@@ -27,16 +28,25 @@ const AdminTableRender = ({
         setData(result);
       });
     };
+    const load = async () => {
+      const result = await firebase.database().ref('saved-tables').once('value').then((snapshot) => snapshot.val());
+      loadTables(result);
+    };
     fetchData();
+    load();
   }, []);
 
   function createCanvas() {
+    console.log(loadedTables)
     function removeChild() {
       if (currentContainer) {
         app.stage.removeChild(currentContainer)
         currentContainer = undefined
       }
       
+    }
+    function writeNewAdditions(tables) {
+      firebase.database().ref('saved-tables').set(tables);
     }
 
     function saveStage() {
@@ -65,6 +75,7 @@ const AdminTableRender = ({
 
       localStorage.setItem('tables', JSON.stringify(arr));
       localStorage.setItem('bgImage', answer);
+      writeNewAdditions(arr)
     }
     const app = new PIXI.Application({
       width: 1000,
@@ -80,6 +91,7 @@ const AdminTableRender = ({
     background.width = app.screen.width;
     background.height = app.screen.height;
 
+    canvas.innerHTML = ''
     canvas.appendChild(app.view)
 
     const mousePosition = new PIXI.Point();
@@ -100,10 +112,8 @@ const AdminTableRender = ({
       }
     };
 
-    const tables = JSON.parse(localStorage.getItem('tables'));
-
-    if (tables) {
-      tables.map(el => {
+    if (loadedTables !== null) {
+      loadedTables.map(el => {
         const container = new PIXI.Container();
         container.type = 'container'
         container.interactive = true;
@@ -350,7 +360,7 @@ const AdminTableRender = ({
     };
   }
 
-  if (answer !== 0) {
+  if (answer !== 0 && loadedTables !== 0) {
       createCanvas()
       localStorage.setItem('state','loaded')
     } 
