@@ -9,6 +9,7 @@ import 'firebase/database';
 const AdminPanelTableRender = () => {
 
   const [fbData, setfbData] = useState(0);
+  const ref = useRef(null)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,7 +22,7 @@ const AdminPanelTableRender = () => {
   return (
     <>
       <div>
-        {fbData ? (<ButtonItem key={0} id={0} image={fbData.cursorImage} mode={'cursor'} />
+        {fbData ? (<ButtonItem key={0} id={0} image={fbData.cursorImage}  mode={'cursor'}/>
         ) : 'help'}
         {fbData ? fbData.tables.map((el, ind) => (
           <ButtonItem key={ind + 1} id={el.id} image={el.image} mode={'create'}/>

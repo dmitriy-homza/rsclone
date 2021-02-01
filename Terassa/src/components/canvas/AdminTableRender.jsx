@@ -40,8 +40,7 @@ const AdminTableRender = ({
     if (localStorage.getItem('currentMode')) {
       localStorage.removeItem('currentMode');
     }
-    document.getElementById('0').click()
-
+    document.getElementById('0').checked = 'true'
     function removeChild() {
       if (currentContainer) {
         app.stage.removeChild(currentContainer)
@@ -267,20 +266,20 @@ const AdminTableRender = ({
 
     app.view.onclick = (ev) => {
       const currentMode = JSON.parse(localStorage.getItem('currentMode'))
-      if (currentMode && currentMode.mode === 'cursor') {
-        if (currentTable) {
-          currentTable.tint = 0xFFFFFF;
-        }
-        currentContainer = null;
-        currentTable = null;
-      }
-      if (currentMode && currentMode.mode === 'create') {
         mousePosition.set(ev.layerX, ev.layerY);
         const found = app.renderer.plugins.interaction.hitTest(
           mousePosition,
           app.stage,
         );
         if (!found) {
+          if (currentMode && currentMode.mode === 'cursor') {
+            if (currentTable) {
+              currentTable.tint = 0xFFFFFF;
+            }
+            currentContainer = null;
+            currentTable = null;
+          }
+          if (currentMode && currentMode.mode === 'create') {
           const container = new PIXI.Container();
           container.type = 'container';
           container.interactive = true;
@@ -383,8 +382,6 @@ const AdminTableRender = ({
           }
         }
       }
-
-      
     };
   }
 
