@@ -44,8 +44,21 @@ const Header = () => {
                 </NavLink>
               </NavItem>
               <NavItem>
+
                 <NavLink tag={Link} to="/private" activeClassName="active">
                   Private
+                </NavLink>
+              </NavItem>    
+     <NavItem>
+                <NavLink tag={Link} to="/adminPanel" activeClassName="active">
+                  AdminPanel
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink tag={Link} to="/userPanel" activeClassName="active">
+                  UserPanel
+                 </NavLink>
+              </NavItem>
                 </NavLink>
               </NavItem>
             </Nav>
