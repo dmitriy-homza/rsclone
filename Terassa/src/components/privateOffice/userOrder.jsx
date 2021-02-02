@@ -35,18 +35,12 @@ const UserOrder = () => {
 
   const keysOrders = Object.keys(answer);
   keysOrders.forEach((element) => {
-    if (element < Date.now()) {
+    if (answer[element].visit < Date.now()) {
       pastOrders1.push(answer[element]);
-    } else if (element < Date.now()) {
+    } else if (answer[element].visit > Date.now()) {
       currentOrders1.push(answer[element]);
     }
   });
-  console.log(keysOrders);
-
-  console.log(answer);
-  console.log(currentOrders1);
-  console.log(pastOrders1);
-
   /* const [...orders] = Orders();
    const pastOrders = [];
    const currentOrders = [];
@@ -62,6 +56,7 @@ const UserOrder = () => {
      return (currentOrders, pastOrders);
    } */
   // sortOrder();
+
   return (
     <div>
       <Nav tabs>
@@ -70,7 +65,7 @@ const UserOrder = () => {
             className={classnames({ active: activeTab === '1' })}
             onClick={() => { toggle('1'); }}
           >
-            Активные заказы
+            <span>Активные заказы</span>
           </NavLink>
         </NavItem>
         <NavItem>
@@ -78,7 +73,7 @@ const UserOrder = () => {
             className={classnames({ active: activeTab === '2' })}
             onClick={() => { toggle('2'); }}
           >
-            История заказов
+            <span> История заказов</span>
           </NavLink>
         </NavItem>
       </Nav>
@@ -88,16 +83,11 @@ const UserOrder = () => {
             <Col sm="12">
               <h4>Tab 1 Contents</h4>
               <Table hover>
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>Name</th>
-                    <th>Date</th>
-                  </tr>
-                </thead>
+
                 <tbody>
 
-                  {currentOrders1.length !== 0 ? <CurrentOrder orderList={currentOrders1} /> : 'Not'}
+                  {currentOrders1.length !== 0
+                    ? <CurrentOrder orderList={currentOrders1} /> : <tr><td>Not</td></tr>}
 
                 </tbody>
               </Table>
@@ -109,15 +99,10 @@ const UserOrder = () => {
             <Col sm="12">
               <h4>Tab 2 Contents</h4>
               <Table hover>
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>Name</th>
-                    <th>Date</th>
-                  </tr>
-                </thead>
+
                 <tbody>
-                  {pastOrders1.length !== 0 ? <CurrentOrder orderList={pastOrders1} /> : 'Not nothing'}
+                  {pastOrders1.length !== 0
+                    ? <CurrentOrder orderList={pastOrders1} /> : <tr><td>Not</td></tr>}
                 </tbody>
               </Table>
             </Col>

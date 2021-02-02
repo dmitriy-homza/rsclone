@@ -1,22 +1,12 @@
-/* eslint react/no-multi-comp: 0, react/prop-types: 0 */
-
-import React, { useState } from 'react';
-import {
-  Button, Modal, ModalHeader, ModalBody, ModalFooter,
-} from 'reactstrap';
+import React from 'react';
 import PropTypes from 'prop-types';
-// import Menudishes from '../order/menuDishes';
-// import Options from '../order/options';
-// import Time from './time';
-// import { ListGroupItem } from 'reactstrap';
-// import Modal from './modal';
 
-function Display({ fromOrder }) {
-  const { ...display } = fromOrder;
-  const {
-    cost, name, quantity, weigth,
-  } = display;
+function Display({ display }) {
+  const { cost } = display;
+  console.log(cost);
   console.log(display);
+
+  // const { cost } = elementsOrder;
   /* function transformTimeArray(inputArray) {
     const array = inputArray.slice();
     array.sort();
@@ -34,44 +24,23 @@ function Display({ fromOrder }) {
     }
     return array;
   } */
-  const [modal, setModal] = useState(false);
-  const toggle = () => setModal(!modal);
+
   return (
+    <tr>
+      <td>
 
-    <tr onClick={toggle}>
-
-      <td>{name}</td>
-      <td>{cost}</td>
-      <td>{quantity}</td>
-      <td>{weigth}</td>
-      { /* transformTimeArray(time).map((timeElem) => (
+        { /* transformTimeArray(time).map((timeElem) => (
         <Time
           timeElem={timeElem}
         />
       )) */}
+        <span>{cost}</span>
 
-      {/* <Button color="danger" onClick={toggle}>{ buttonLabel }</Button> */}
-      <Modal isOpen={modal} toggle={toggle}>
-        <ModalHeader toggle={toggle}>Modal title</ModalHeader>
-        <ModalBody>
-
-          <td>{name}</td>
-
-          <td>номер столика</td>
-          <td>количество человек</td>
-
-        </ModalBody>
-        <ModalFooter>
-          <Button color="primary" onClick={toggle}>Pедактировать заказ</Button>
-          {' '}
-          <Button color="secondary" onClick={toggle}>Закрыть</Button>
-        </ModalFooter>
-      </Modal>
+      </td>
     </tr>
-
   );
 }
 Display.propTypes = {
-  fromOrder: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  display: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
 };
 export default Display;
