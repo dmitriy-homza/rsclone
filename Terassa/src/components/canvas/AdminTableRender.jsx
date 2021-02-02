@@ -5,9 +5,9 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 import 'firebase/storage';
-import * as PIXI from 'pixi.js';
+import isNode from 'detect-node'
 
-
+import plan from '../../images/canvas/floorPlan.png'
 
 const AdminTableRender = ({ 
     bgImage
@@ -15,6 +15,7 @@ const AdminTableRender = ({
 
   const [answer, setData] = useState(0);
   const [loadedTables, loadTables] = useState(0);
+  const ref = useRef(null);
   let currentContainer;
   let currentTable;
 
@@ -37,6 +38,11 @@ const AdminTableRender = ({
   }, []);
 
   function createCanvas() {
+    let PIXI
+    if (!isNode) {
+      PIXI = require('pixi.js')
+    }
+    console.log(PIXI)
     if (localStorage.getItem('currentMode')) {
       localStorage.removeItem('currentMode');
     }
@@ -86,16 +92,26 @@ const AdminTableRender = ({
       backgroundColor: 0x5BBA6F,
     });
 
-    const canvas = document.getElementById('canvasWrapper')
+    console.log(bgImage)
+    let bg = new Image();
+    bg.crossOrigin = "";
+    bg.src = answer; 
 
-    const backgroundImage = PIXI.Texture.from(answer);
+    console.log(bg)
+
+    console.log(bg)
+    
+    const backgroundImage = PIXI.Texture.from(`http://crossorigin.me/${answer}`);
+    const backgroundImage2 = PIXI.Texture.from(answer);
+    console.log('backgroundImage: ', backgroundImage);
+    console.log('backgroundImage2: ', backgroundImage2);
+    // const backgroundImage = PIXI.Texture.from(bgImage);
     const background = new PIXI.Sprite(backgroundImage);
     app.stage.addChild(background);
     background.width = app.screen.width;
     background.height = app.screen.height;
 
-    canvas.innerHTML = ''
-    canvas.appendChild(app.view)
+    ref.current.appendChild(app.view)
 
     const mousePosition = new PIXI.Point();
 
@@ -391,6 +407,7 @@ const AdminTableRender = ({
     } 
 
   return <>
+    <div ref={ref}></div>
   </>;
 }
 

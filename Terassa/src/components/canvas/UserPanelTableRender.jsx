@@ -1,8 +1,6 @@
 /* eslint-disable */
 import React, { useEffect, useRef, useState } from 'react';
-import * as PIXI from 'pixi.js';
 import firebase from 'firebase/app';
-import ButtonItem from './ButtonItem';
 import UserTableRender from './UserTableRender';
 import 'firebase/database';
 
@@ -22,9 +20,7 @@ const userPanelTableRender = ({
 
    return (
       <div style={{ display:'flex', flexDirection:'row' }}>
-         <div id="canvasWrapper">
-            {fbData ? document.getElementById('canvasWrapper') ? (<UserTableRender bgImage={fbData.bgImage} fbData={fbData.tables} setTable={setTable} blockedTables={blockedTables}/>) : 'false' : 'false'}
-         </div>
+            {fbData ? <UserTableRender bgImage={fbData.bgImage} fbData={fbData.tables} setTable={setTable} blockedTables={blockedTables}/> :'false'}
          <div>
             <div id="tableInfo">
             </div>

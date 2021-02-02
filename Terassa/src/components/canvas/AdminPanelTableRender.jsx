@@ -1,15 +1,15 @@
 /* eslint-disable */
 import React, { useEffect, useRef, useState } from 'react';
-import * as PIXI from 'pixi.js';
 import firebase from 'firebase/app';
 import ButtonItem from './ButtonItem';
 import AdminTableRender from './AdminTableRender';
 import 'firebase/database';
+import { Spinner } from 'reactstrap';
+
 
 const AdminPanelTableRender = () => {
 
   const [fbData, setfbData] = useState(0);
-  const ref = useRef(null)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,16 +21,22 @@ const AdminPanelTableRender = () => {
 
   return (
     <>
-      <div>
-        {fbData ? (<ButtonItem key={0} id={0} image={fbData.cursorImage}  mode={'cursor'}/>
-        ) : 'help'}
-        {fbData ? fbData.tables.map((el, ind) => (
-          <ButtonItem key={ind + 1} id={el.id} image={el.image} mode={'create'}/>
-        )) : 'Loading Data'}
-      </div>
-      <div id="canvasWrapper">
-        {document.getElementById('canvasWrapper') ? (<AdminTableRender bgImage={fbData.bgImage} tableImages={fbData.tables} cursorImage={fbData.cursorImage}/>) : 'false'}
-      </div>
+      {typeof fbData === 'object' ? (
+        <>
+          <div>
+            <ButtonItem key={0} id={0} image={fbData.cursorImage} mode={'cursor'} />
+            {fbData.tables.map((el, ind) => (
+              <ButtonItem key={ind + 1} id={el.id} image={el.image} mode={'create'} />
+            ))}
+          </div>
+          <AdminTableRender bgImage={fbData.bgImage} tableImages={fbData.tables} cursorImage={fbData.cursorImage} />
+        </>
+      ) : (
+          <>
+            <Spinner color="primary" />
+            <span>Loading data...</span>
+          </>
+        )}
     </>
   );
 };

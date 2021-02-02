@@ -8,7 +8,7 @@ import {
   Alert, Form, Col, Row, FormGroup, Label, Input,
 } from 'reactstrap';
 import ReactNotification, { store } from 'react-notifications-component';
-import { FormGroup, Label, Input } from 'reactstrap';
+
 import Layout from '../components/layout';
 import Options from '../components/additional/options';
 import Basket from '../components/additional/basket';
@@ -120,7 +120,7 @@ export default () => {
         >
           To additions
         </button>
-        <UserPanelTableRender setTable={setTable} blockedTables={blockedTables} />
+        <UserPanelTableRender blockedTables={blockedTables} />
       </Layout>
     </>
   )
