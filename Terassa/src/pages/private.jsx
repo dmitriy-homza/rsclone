@@ -1,11 +1,11 @@
 import React from 'react';
 import Layout from '../components/layout';
-import '../styles/index.scss';
+import UserOrder from '../components/privateOffice/userOrder';
 
 export default () => (
   <>
     <Layout>
-      <h1>Contacts</h1>
+      <UserOrder />
     </Layout>
   </>
 );

@@ -23,7 +23,7 @@ function FindOrder({ onCreate }) {
       onCreate(input.value());
       input.clear();
     } else {
-      onCreate('');
+      onCreate(Date.now());
       input.clear();
     }
   }

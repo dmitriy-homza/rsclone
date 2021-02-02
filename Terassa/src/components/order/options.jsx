@@ -1,21 +1,21 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import OptionElement from './optionElement';
+import {
+  Row, Col,
 
-function Options({ option }) {
-  const [...opt] = option;
+} from 'reactstrap';
+import PropTypes from 'prop-types';
+
+function Options({ table }) {
+  const { ...opt } = table;
+  const { number, persons } = opt;
   return (
-    <div>
-      { opt.map((element) => (
-        <OptionElement
-          element={element}
-          key={option.id}
-        />
-      )) }
-    </div>
+    <Row>
+      <Col>{number}</Col>
+      <Col>{persons}</Col>
+    </Row>
   );
 }
 Options.propTypes = {
-  option: PropTypes.arrayOf(PropTypes.object).isRequired,
+  table: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
 };
 export default Options;
