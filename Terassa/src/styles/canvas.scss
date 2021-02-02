@@ -1,0 +1,33 @@
+.chooseModeButton {
+  width: 100px;
+  height: 100px;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin: 5px;
+  background-color: rgb(104, 86, 86);
+}
+
+.remove,
+.save {
+  width: 70px;
+  height: 40px;
+}
+
+.hide {
+  display: none;
+}
+label {
+  opacity: 0.5;
+}
+.button-input {
+  display: none;
+}
+
+input:checked + label {
+  opacity: 1;
+}
+
+canvas {
+  border: 1px dashed black;
+}

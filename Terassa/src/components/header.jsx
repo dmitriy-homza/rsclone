@@ -48,6 +48,16 @@ const Header = () => {
                   Private
                 </NavLink>
               </NavItem>
+              <NavItem>
+                <NavLink tag={Link} to="/adminPanel" activeClassName="active">
+                  AdminPanel
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink tag={Link} to="/userPanel" activeClassName="active">
+                  UserPanel
+                </NavLink>
+              </NavItem>
             </Nav>
           </Collapse>
         </Navbar>
