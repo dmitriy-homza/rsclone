@@ -13,77 +13,83 @@ import Card from '../components/additional/card';
 import '../styles/index.scss';
 
 // Configure FirebaseUI.
-const uiConfig = {
-  // Popup signin flow rather than redirect flow.
-  signInFlow: 'popup',
-  // We will display Google and Facebook as auth providers.
-  signInOptions: [
-    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-    firebase.auth.GithubAuthProvider.PROVIDER_ID,
-  ],
-  callbacks: {
-    // Avoid redirects after sign-in.
-    signInSuccessWithAuthResult: () => false,
-  },
-};
 
 export default class login extends Component {
   state = {
     hasAccount: false,
     dishes: [],
+    uiConfig: null,
   };
 
   componentDidMount() {
+    this.setState({
+      uiConfig: {
+        // Popup signin flow rather than redirect flow.
+        signInFlow: 'popup',
+        // We will display Google and Facebook as auth providers.
+        signInOptions: [
+          firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+          firebase.auth.GithubAuthProvider.PROVIDER_ID,
+        ],
+        callbacks: {
+          // Avoid redirects after sign-in.
+          signInSuccessWithAuthResult: () => false,
+        },
+      },
+    });
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         this.setState({ hasAccount: true });
-        this.loadData(user);
+        // this.loadData(user);
       } else {
         this.setState({ hasAccount: false });
       }
     });
   }
 
-  loadData = (user) => {
-    const db = firebase.database();
-    const userId = user.uid;
-    const userDataRef = db.ref(userId);
+  // loadData = (user) => {
+  //   const db = firebase.database();
+  //   const userId = user.uid;
+  //   const userDataRef = db.ref(userId);
 
-    userDataRef.on('value', (data) => {
-      const userData = data.val();
-      if (userData) {
-        this.setState({ dishes: userData[API.ADDITIONALS][API.DISHES] });
-      }
-    });
-  };
+  //   // userDataRef.on('value', (data) => {
+  //   //   const userData = data.val();
+  //   //   if (userData) {
+  //   //     this.setState({ dishes: userData[API.ADDITIONALS][API.DISHES] });
+  //   //   }
+  //   // });
+  // };
 
-  renderDish = (dish) => (
-    <Card
-      key={`key${dish.name}`}
-      name={dish.name}
-      weight={dish.weight}
-      img={dish.img}
-      description={dish.description}
-      cost={dish.cost}
-    />
-  );
+  // renderDish = (dish) => (
+  //   <Card
+  //     key={`key${dish.name}`}
+  //     name={dish.name}
+  //     weight={dish.weight}
+  //     img={dish.img}
+  //     description={dish.description}
+  //     cost={dish.cost}
+  //   />
+  // );
 
-  renderDishes = () => this.state.dishes.map(this.renderDish);
+  // renderDishes = () => this.state.dishes.map(this.renderDish);
 
   render() {
-    const { hasAccount } = this.state;
+    const { hasAccount, uiConfig } = this.state;
+    if (!uiConfig) {
+      return <p>Loading...</p>;
+    }
     return (
       <Layout>
         {hasAccount ? (
           <div id="signed-In">
             <p>Welcome {firebase.auth().currentUser.displayName}! You are now signed-in!</p>
             <Button onClick={() => firebase.auth().signOut()}>Sign-out</Button>
-            <div>{this.renderDishes()}</div>
           </div>
         ) : (
           <div id="signed-out">
             <h1>My App</h1>
             <p>Please sign-in:</p>
+
             <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
           </div>
         )}

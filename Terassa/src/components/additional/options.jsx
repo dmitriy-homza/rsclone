@@ -10,7 +10,11 @@ const options = ({ addAddition1 }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await firebase.database().ref('additionals').once('value').then((snapshot) => snapshot.val());
+      const result = await firebase
+        .database()
+        .ref('additionals')
+        .once('value')
+        .then((snapshot) => snapshot.val());
       setData(result);
     };
     fetchData();
@@ -18,20 +22,21 @@ const options = ({ addAddition1 }) => {
   return (
     <>
       <div className="additional-wrapper d-flex flex-wrap">
-        {typeof (answer) === 'object' ? Object.keys(answer).map((groupName) => (
-          <AdditionGroup
-            key={groupName}
-            groupName={groupName}
-            groupElements={Array.from(answer[groupName])}
-            addAdditional2={addAddition1}
-          />
-        ))
-          : (
-            <>
-              <Spinner color="primary" />
-              <span>Loading data...</span>
-            </>
-          )}
+        {typeof answer === 'object' ? (
+          Object.keys(answer).map((groupName) => (
+            <AdditionGroup
+              key={groupName}
+              groupName={groupName}
+              groupElements={Array.from(answer[groupName])}
+              addAdditional2={addAddition1}
+            />
+          ))
+        ) : (
+          <>
+            <Spinner color="primary" />
+            <span>Loading data...</span>
+          </>
+        )}
       </div>
     </>
   );

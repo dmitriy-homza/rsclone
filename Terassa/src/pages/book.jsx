@@ -15,8 +15,6 @@ import '../styles/book.scss';
 export default () => {
   const [page, setPage] = useState('tables');
 
-  const visitTime = Date.parse(localStorage.getItem('date'));
-  const tables = localStorage.getItem('tables');
   const [selectedAdditional, addElement] = React.useState([]);
   function addAddition(element) {
     // eslint-disable-next-line no-param-reassign
@@ -51,26 +49,17 @@ export default () => {
       <Layout>
         <ReactNotification />
         <main className="d-flex" />
-        <input
-          type="date"
-          id="date"
-          min="2018-01-01"
-          max="2018-12-31"
-        />
-        <input
-          type="time"
-          id="time"
-          name="appt"
-          min="09:00"
-          max="18:00"
-          required
-        />
+        <input type="date" id="date" min="2018-01-01" max="2018-12-31" />
+        <input type="time" id="time" name="appt" min="09:00" max="18:00" required />
         <button
           onClick={() => {
             if (document.getElementById('date').value && document.getElementById('time').value) {
-              localStorage.setItem('date', `${document.getElementById('date').value}T${document.getElementById('time').value}+03:00`);
-              localStorage.setItem('tables', 'Столы');
-              setPage('additions');
+              setPage({
+                tables: 'Столы',
+                visitTime: `${document.getElementById('date').value}T${
+                  document.getElementById('time').value
+                }+03:00`,
+              });
             } else {
               store.addNotification({
                 title: 'Choose time!',
@@ -91,27 +80,25 @@ export default () => {
         </button>
       </Layout>
     </>
-  )
-    : (
-      <>
-        {' '}
-        <Layout>
-          <ReactNotification />
-          <main className="d-flex flex-wrap">
-            <section className="col-12 col-lg-9">
-              <Options addAddition1={addAddition} />
-            </section>
-            <aside className="col-12 col-lg-3 basket-container">
-              <Basket
-                removePosition1={removePosition}
-                key={selectedAdditional.length}
-                checkPosition={selectedAdditional}
-                visitTime={visitTime}
-                tables={tables}
-              />
-            </aside>
-          </main>
-        </Layout>
-      </>
-    );
+  ) : (
+    <>
+      <Layout>
+        <ReactNotification />
+        <main className="d-flex flex-wrap">
+          <section className="col-12 col-lg-9">
+            <Options addAddition1={addAddition} />
+          </section>
+          <aside className="col-12 col-lg-3 basket-container">
+            <Basket
+              removePosition1={removePosition}
+              key={selectedAdditional.length}
+              checkPosition={selectedAdditional}
+              visitTime={page.visitTime}
+              tables={page.tables}
+            />
+          </aside>
+        </main>
+      </Layout>
+    </>
+  );
 };
