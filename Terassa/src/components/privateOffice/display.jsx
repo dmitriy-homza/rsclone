@@ -1,59 +1,65 @@
-/* eslint react/no-multi-comp: 0, react/prop-types: 0 */
-
-import React, { useState } from 'react';
-import {
-  Button, Modal, ModalHeader, ModalBody, ModalFooter,
-} from 'reactstrap';
+import React from 'react';
 import PropTypes from 'prop-types';
-import Menudishes from '../order/menuDishes';
-import Options from '../order/options';
-// import { ListGroupItem } from 'reactstrap';
-// import Modal from './modal';
+import Time from './time';
+import Quantity from './quantity';
 
-function Display({ fromOrder }) {
-  const { ...display } = fromOrder;
+function Display({ display }) {
   const {
-    name, date, nomber, additions, table,
+    cost, name, time, weight,
   } = display;
 
-  const [modal, setModal] = useState(false);
-  const toggle = () => setModal(!modal);
+  function transformTimeArray(inputArray) {
+    const array = inputArray.slice();
+    array.sort();
+    for (let index = 0; index < array.length; index += 1) {
+      if (typeof (array[index]) === 'string') {
+        array[index] = [1, array[index]];
+      }
+      if (index !== array.length - 1) {
+        if (array[index][1] === array[index + 1]) {
+          array[index][0] += 1;
+          array.splice(index + 1, 1);
+          index -= 1;
+        }
+      }
+    }
+    return array;
+  }
+
   return (
+    <tr>
+      <td>
+        {' '}
+        <span>{name}</span>
+      </td>
+      <td>
+        {' '}
+        <span>{`${cost}$`}</span>
+      </td>
+      <td>
+        {' '}
+        <span>{weight}</span>
+      </td>
+      <td>
+        {transformTimeArray(time).map((timeElem) => (
+          <Time
+            timeElem={timeElem}
 
-    <tr onClick={toggle}>
-      <th scope="row">
-        {nomber}
-      </th>
-      <td>{name}</td>
-      <td>{date}</td>
+          />
+        ))}
+      </td>
+      <td>
+        {transformTimeArray(time).map((timeElem) => (
+          <Quantity
+            timeElem={timeElem}
 
-      {/* <Button color="danger" onClick={toggle}>{ buttonLabel }</Button> */}
-      <Modal isOpen={modal} toggle={toggle}>
-        <ModalHeader toggle={toggle}>Modal title</ModalHeader>
-        <ModalBody>
-
-          <td>{name}</td>
-          <td>{date}</td>
-          <Menudishes additions={additions} />
-          <tr>
-            <td>номер столика</td>
-            <td>количество человек</td>
-          </tr>
-          <tr>
-            <Options table={table} />
-          </tr>
-        </ModalBody>
-        <ModalFooter>
-          <Button color="primary" onClick={toggle}>Pедактировать заказ</Button>
-          {' '}
-          <Button color="secondary" onClick={toggle}>Закрыть</Button>
-        </ModalFooter>
-      </Modal>
+          />
+        ))}
+      </td>
     </tr>
-
   );
 }
 Display.propTypes = {
-  fromOrder: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  display: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
 };
 export default Display;
