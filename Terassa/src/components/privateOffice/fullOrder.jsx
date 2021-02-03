@@ -35,15 +35,15 @@ function FullOrder({ Order }) {
             <TabPane tabId="1">
               <Row>
                 <Col sm="12">
-                  <h4>Описание заказа</h4>
+                  <h4>Order Description</h4>
                   <Table>
                     <thead>
                       <tr>
-                        <th><span>Название</span></th>
-                        <th><span>Цена </span></th>
-                        <th><span>Детали</span></th>
-                        <th><span>Время подачи </span></th>
-                        <th><span>Количество блюд</span></th>
+                        <th><span>Name</span></th>
+                        <th><span>Cost </span></th>
+                        <th><span>Details</span></th>
+                        <th><span>Delivery time </span></th>
+                        <th><span>Servings</span></th>
                       </tr>
                     </thead>
                     <tbody>
@@ -60,8 +60,7 @@ function FullOrder({ Order }) {
             <ShowOrderedTable tables={tables} />
           </ModalBody>
           <ModalFooter>
-            <Button color="primary" onClick={toggle}>Pедактировать заказ</Button>
-            {' '}
+
             <Button color="secondary" onClick={toggle}>Закрыть</Button>
           </ModalFooter>
         </Modal>
