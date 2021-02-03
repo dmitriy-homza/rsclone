@@ -7,6 +7,7 @@ import {
 } from 'reactstrap';
 import PropTypes from 'prop-types';
 import Display from './display';
+import ShowOrderedTable from '../canvas/ShowOrderedTable';
 
 // import { Row } from 'reactstrap';
 // import { ListGroup } from 'reactstrap';
@@ -61,7 +62,7 @@ function FullOrder({ Order }) {
                 </Col>
               </Row>
             </TabPane>
-
+            <ShowOrderedTable tables={tables} />
           </ModalBody>
           <ModalFooter>
             <Button color="primary" onClick={toggle}>Pедактировать заказ</Button>
