@@ -7,14 +7,12 @@ import 'firebase/storage';
 import isNode from 'detect-node'
 import plan from '../../images/canvas/floorPlan.png'
 
-const userTableRender = ({ 
-   fbData, busyTables
-   
-}) => { 
+const userTableRender = ({
+   tables
+
+}) => {
    const [loadedTables, loadTables] = useState(0);
    const ref = useRef(null)
-
-   console.log('ut',busyTables)
 
    useEffect(() => {
       const load = async () => {
@@ -30,11 +28,10 @@ const userTableRender = ({
       if (!isNode) {
          PIXI = require('pixi.js')
       }
-      console.log(PIXI)
 
       const app = new PIXI.Application({
-         width: 1000,
-         height: 620,
+         width: 800,
+         height: 496,
          backgroundColor: 0xf8f9fa,
       });
 
@@ -46,8 +43,7 @@ const userTableRender = ({
       background.width = app.screen.width;
       background.height = app.screen.height;
 
-      if (loadedTables !== null) {
-         let activeTable;
+      if (loadedTables !== null && tables ) {
 
          loadedTables.map(el => {
             const container = new PIXI.Container();
@@ -68,48 +64,17 @@ const userTableRender = ({
             table.scale.x = el.scaleX;
             table.scale.y = el.scaleY;
             table.rotation = el.rotation;
-            
 
-            if (Object.values(busyTables).includes(`${table.uniqueId}`)) {
-               table.buttonMode = false;
-               table.interactive = false;
-               table.tint = 0xcccccc;
-               table.alpha = 0.2;
-            } else {
-               table.buttonMode = true;
-               table.interactive = true;
+
+            if (`${table.uniqueId}` === tables) {
                table.tint = 0x808080;
                table.alpha = 0.7;
+            } else {
+               table.tint = 0xcccccc;
+               table.alpha = 0.2;
             }
 
             container.addChild(table)
-
-            table
-               .on('pointertap', (ev) => {
-                  console.log(busyTables, table.uniqueId)
-                  if (activeTable) {
-                     activeTable.tint = 0x808080;
-                     activeTable.alpha = 0.7;
-                  }
-                  activeTable = ev.target;
-                  activeTable.tint = 0xFFFFFF;
-                  activeTable.alpha = 1;
-
-                  fbData.forEach(el => {
-                     if (table.id === el.id) {
-                        const discription = el.description
-                        const price = el.price
-
-                        const tableInfo = document.getElementById('tableInfo')
-                        tableInfo.innerHTML = `
-                           <p>Table №:${table.index}</p>
-                           <p>Description:${discription}</p>
-                           <p>Table price:${price}</p>
-                        `;
-                     }
-                  })
-                  localStorage.setItem('choosenTable', table.uniqueId)
-               });
 
             const text = new PIXI.Text(el.index,
                {
@@ -125,14 +90,14 @@ const userTableRender = ({
             app.stage.addChild(container)
          })
       } else {
-         const errorMessage = new PIXI.Text('Sorry, it is not possible to book a table at the moment. \nPlease contact the administrator',
+         const errorMessage = new PIXI.Text('Sorry, we can\'t show your table. \n Please contact with Administrator',
             {
                font: '2rem',
                fill: 0xFFFFFF,
                align: 'center',
                cacheAsBitmap: true,
             });
-         errorMessage.width = 800;
+         errorMessage.width = 600;
          errorMessage.height = 150;
          errorMessage.type = 'text'
          errorMessage.anchor.set(0.5);
@@ -149,10 +114,10 @@ const userTableRender = ({
       createCanvas()
    }
 
-      return <>
-         <div ref={ref} id='wrapper'></div>
-      </>;
-   
+   return <>
+      <div ref={ref} id='wrapper'></div>
+   </>;
+
 };
 
 export default userTableRender;

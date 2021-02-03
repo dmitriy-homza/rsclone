@@ -20,20 +20,10 @@ const AdminTableRender = ({
   let currentTable;
 
   useEffect(() => {
-    // const fetchData = async () => {
-    //   const storage = firebase.storage();
-    //   const storageRef = storage.ref();
-    //   const imgURL = storageRef.child(`${bgImage}`);
-    //   // Get the download URL
-    //   imgURL.getDownloadURL().then((result) => {
-    //     setData(result);
-    //   });
-    // };
     const load = async () => {
       const result = await firebase.database().ref('saved-tables').once('value').then((snapshot) => snapshot.val());
       loadTables(result);
     };
-    // fetchData();
     load();
   }, []);
 
@@ -89,7 +79,7 @@ const AdminTableRender = ({
     const app = new PIXI.Application({
       width: 1000,
       height: 620,
-      backgroundColor: 0x5BBA6F,
+      backgroundColor: 0xf8f9fa,
     });
 
     const backgroundImage = PIXI.Texture.from(plan);
