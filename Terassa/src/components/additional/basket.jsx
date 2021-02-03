@@ -2,11 +2,14 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'gatsby';
 import firebase from 'firebase/app';
 import 'firebase/database';
 import { VscDebugContinue } from '@react-icons/all-files/vsc/VscDebugContinue';
 import { IoIosArrowUp } from '@react-icons/all-files/io/IoIosArrowUp';
-import { Button } from 'reactstrap';
+import {
+  Button, Modal, ModalHeader, ModalBody, ModalFooter,
+} from 'reactstrap';
 
 import { saveData } from '../../core/api';
 
@@ -15,6 +18,10 @@ import BasketElement from './basketElement';
 const Basket = ({
   removePosition1, checkPosition, visitTime, tables,
 }) => {
+  const isLoggedIn = !!firebase.auth().currentUser;
+  const [modal, setModal] = useState(false);
+  const toggle = () => setModal(!modal);
+
   let id = 1;
   // eslint-disable-next-line max-len
   const totalCost = checkPosition
@@ -45,6 +52,7 @@ const Basket = ({
   }, []);
 
   const onContinue = () => {
+    toggle();
     const DBObject = {};
     DBObject.tables = tables;
     DBObject.visit = Date.parse(visitTime);
@@ -81,11 +89,50 @@ const Basket = ({
           {' '}
           {checkPosition.length > 0 ? `Total cost: ${totalCost}$` : 'Your basket is empty!'}
         </span>
-        <Button onClick={onContinue}>
+        <Button onClick={() => {
+          onContinue();
+          toggle();
+        }}
+        >
           <VscDebugContinue />
           {' '}
           Continue
         </Button>
+      </div>
+      <div>
+        {isLoggedIn ? (
+          <Modal backdrop="static" className="modal-without-close" keyboard={false} isOpen={modal} toggle={toggle}>
+            <ModalHeader toggle={toggle}>Order is processed</ModalHeader>
+            <ModalBody>
+              Your order number
+              {' '}
+              {<strong>{numberOfOrder}</strong>}
+              {' '}
+              is accepted!
+              <br />
+              You can clarify the details of the booking in your personal account.
+            </ModalBody>
+            <ModalFooter>
+              <Button tag={Link} to="/" color="primary">To main page</Button>
+            </ModalFooter>
+          </Modal>
+        ) : (
+          <Modal returnFocusAfterClose={false} className="modal-without-close" isOpen={modal} toggle={toggle}>
+            <ModalHeader toggle={toggle}>Order is processed</ModalHeader>
+            <ModalBody>
+              Your order number
+              {' '}
+              {<strong>{numberOfOrder}</strong>}
+              {' '}
+              is accepted!
+              <br />
+              For details, enter the order number on the Orders page
+            </ModalBody>
+            <ModalFooter>
+              <Button tag={Link} to="/" color="primary">To main page</Button>
+            </ModalFooter>
+          </Modal>
+        )}
       </div>
     </div>
   );

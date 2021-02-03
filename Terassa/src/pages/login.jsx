@@ -87,7 +87,7 @@ export default class login extends Component {
           </div>
         ) : (
           <div id="signed-out">
-            <h1>My App</h1>
+            <h1>Login:</h1>
             <p>Please sign-in:</p>
 
             <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />

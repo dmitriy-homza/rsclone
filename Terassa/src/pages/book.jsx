@@ -5,10 +5,9 @@
 /* eslint-disable no-param-reassign */
 import React, { useState } from 'react';
 import {
-  Alert, Form, Col, Row, FormGroup, Label, Input,
+  Alert, Form, Col, Row, FormGroup, Label, Input, Button, Modal, ModalHeader, ModalBody, ModalFooter,
 } from 'reactstrap';
 import ReactNotification, { store } from 'react-notifications-component';
-
 import Layout from '../components/layout';
 import Options from '../components/additional/options';
 import Basket from '../components/additional/basket';
@@ -56,7 +55,6 @@ export default () => {
     <>
       <Layout>
         <ReactNotification />
-
         <main className="first-book p-5 flex-column d-flex">
           <h2>Book:</h2>
           <section className="date-choose">
