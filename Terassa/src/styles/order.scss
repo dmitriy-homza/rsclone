@@ -15,4 +15,29 @@ body {
       width: auto;
     }
   }
+  .check-element {
+    animation-name: opacity;
+    animation-duration: 0.3s;
+    .check-element-quantity {
+      transition: 0.3s;
+      font-size: 48px;
+      padding-right: 9px;
+    }
+    .check-element-details {
+      .time-array {
+        display: flex;
+        flex-wrap: wrap;
+        span {
+          padding-right: 4px;
+        }
+      }
+      .check-element-summary-cost {
+        font-weight: 600;
+      }
+    }
+    button {
+      display: none;
+      outline: none;
+    }
+  }
 }

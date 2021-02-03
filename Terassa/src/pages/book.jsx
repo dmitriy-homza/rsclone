@@ -67,58 +67,78 @@ export default () => {
     <>
       <Layout>
         <ReactNotification />
-        <main className="first-book d-flex" />
-        <section className="date-choose">
-          <h2>Please choose a time for your visit</h2>
-          <FormGroup>
-            <Label for="date">Date</Label>
-            <Input
-              type="date"
-              name="date"
-              id="date"
-              placeholder="date placeholder"
-              // onChange={() => setTime({ date: `${document.getElementById('date').value}` })}
-            />
-          </FormGroup>
-          <FormGroup>
-            <Label for="time">Time</Label>
-            <Input
-              type="time"
-              name="time"
-              id="time"
-              placeholder="time placeholder"
-            />
-          </FormGroup>
-        </section>
-        <button
-          onClick={() => {
-            if (document.getElementById('date').value && document.getElementById('time').value) {
-              setPage({
-                tables: `${localStorage.getItem('choosenTable')}`,
-                visitTime: `${document.getElementById('date').value}T${
-                  document.getElementById('time').value
-                }+03:00`,
-              });
-              takeProps();
-            } else {
-              store.addNotification({
-                title: 'Choose time!',
-                message: 'Choose a time to visit and book table',
-                type: 'warning',
-                insert: 'top',
-                container: 'top-right',
-                animationIn: ['animate__animated animate__fadeIn'],
-                animationOut: ['animate__animated animate__fadeOut'],
-                dismiss: {
-                  duration: 3000,
-                },
-              });
-            }
-          }}
-        >
-          To additions
-        </button>
-        <UserPanelTableRender blockedTables={blockedTables} />
+
+        <main className="first-book p-5 flex-column d-flex">
+          <h2>Book:</h2>
+          <section className="date-choose">
+            <Alert color="primary">
+              Please choose a time for your visit:
+            </Alert>
+            <Form>
+              <Row form>
+                <Col md={4}>
+                  <FormGroup>
+                    <Label for="date">Date</Label>
+                    <Input
+                      type="date"
+                      name="date"
+                      id="date"
+                      placeholder="date placeholder"
+                    />
+                  </FormGroup>
+                </Col>
+                <Col md={4}>
+                  <FormGroup>
+                    <Label for="time">Time</Label>
+                    <Input
+                      type="time"
+                      step="600"
+                      name="time"
+                      min="08:00"
+                      max="22:00"
+                      id="time"
+                      placeholder="time placeholder"
+                    />
+                  </FormGroup>
+                </Col>
+              </Row>
+            </Form>
+          </section>
+          <section>
+            <Alert color="primary">
+              And choose a table:
+            </Alert>
+          </section>
+
+          <button
+            onClick={() => {
+              if (document.getElementById('date').value && document.getElementById('time').value) {
+                setPage({
+                  tables: `${localStorage.getItem('choosenTable')}`,
+                  visitTime: `${document.getElementById('date').value}T${
+                    document.getElementById('time').value
+                  }+03:00`,
+                });
+              } else {
+                store.addNotification({
+                  title: 'Choose time!',
+                  message: 'Choose a time to visit and book table',
+                  type: 'warning',
+                  insert: 'top',
+                  container: 'top-right',
+                  animationIn: ['animate__animated animate__fadeIn'],
+                  animationOut: ['animate__animated animate__fadeOut'],
+                  dismiss: {
+                    duration: 3000,
+                  },
+                });
+              }
+            }}
+          >
+            Continue
+          </button>
+          <UserPanelTableRender blockedTables={blockedTables} />
+        </main>
       </Layout>
     </>
   )
