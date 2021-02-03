@@ -5,9 +5,7 @@ function Time({ timeElem }) {
   const [quantity] = timeElem;
   return (
     <>
-
       <span>{quantity}</span>
-
     </>
   );
 }

@@ -17,7 +17,6 @@ const UserOrder = () => {
     if (activeTab !== tab) setActiveTab(tab);
   };
   const order = {};
-
   const [answer, setData] = useState(order);
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user) => {
@@ -29,10 +28,8 @@ const UserOrder = () => {
       fetchData();
     });
   }, []);
-
   const pastOrders1 = [];
   const currentOrders1 = [];
-
   const keysOrders = Object.keys(answer);
   keysOrders.forEach((element) => {
     if (answer[element].visit < Date.now()) {
@@ -87,7 +84,12 @@ const UserOrder = () => {
             <Col sm="12">
               <h4>Прошлые заказы</h4>
               <Table hover>
-
+                <thead>
+                  <tr>
+                    <th><span>Стол</span></th>
+                    <th><span>Дата проведения мероприятия</span></th>
+                  </tr>
+                </thead>
                 <tbody>
                   {pastOrders1.length !== 0
                     ? <CurrentOrder orderList={pastOrders1} /> : <tr><td>Not</td></tr>}
