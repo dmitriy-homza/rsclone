@@ -25,7 +25,6 @@ function Display({ display }) {
     }
     return array;
   }
-
   return (
     <tr>
       <td>
@@ -44,7 +43,7 @@ function Display({ display }) {
         {transformTimeArray(time).map((timeElem) => (
           <Time
             timeElem={timeElem}
-
+            key={timeElem[1]}
           />
         ))}
       </td>
@@ -52,7 +51,7 @@ function Display({ display }) {
         {transformTimeArray(time).map((timeElem) => (
           <Quantity
             timeElem={timeElem}
-
+            key={timeElem[1]}
           />
         ))}
       </td>

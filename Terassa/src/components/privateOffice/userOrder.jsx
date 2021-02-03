@@ -17,7 +17,6 @@ const UserOrder = () => {
     if (activeTab !== tab) setActiveTab(tab);
   };
   const order = {};
-
   const [answer, setData] = useState(order);
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user) => {
@@ -29,10 +28,8 @@ const UserOrder = () => {
       fetchData();
     });
   }, []);
-
   const pastOrders1 = [];
   const currentOrders1 = [];
-
   const keysOrders = Object.keys(answer);
   keysOrders.forEach((element) => {
     if (answer[element].visit < Date.now()) {
@@ -50,7 +47,7 @@ const UserOrder = () => {
             className={classnames({ active: activeTab === '1' })}
             onClick={() => { toggle('1'); }}
           >
-            <span>Активные заказы</span>
+            <span>Active Orders</span>
           </NavLink>
         </NavItem>
         <NavItem>
@@ -58,7 +55,7 @@ const UserOrder = () => {
             className={classnames({ active: activeTab === '2' })}
             onClick={() => { toggle('2'); }}
           >
-            <span> История заказов</span>
+            <span> History Orders</span>
           </NavLink>
         </NavItem>
       </Nav>
@@ -66,12 +63,12 @@ const UserOrder = () => {
         <TabPane tabId="1">
           <Row>
             <Col sm="12">
-              <h4>Текущие заказы</h4>
+              <h4>Current Orders</h4>
               <Table hover>
                 <thead>
                   <tr>
-                    <th><span>Стол</span></th>
-                    <th><span>Дата проведения мероприятия</span></th>
+                    <th><span>Table</span></th>
+                    <th><span>Date of the event</span></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -85,9 +82,14 @@ const UserOrder = () => {
         <TabPane tabId="2">
           <Row>
             <Col sm="12">
-              <h4>Прошлые заказы</h4>
+              <h4>Past Orders</h4>
               <Table hover>
-
+                <thead>
+                  <tr>
+                    <th><span>Table</span></th>
+                    <th><span>Date of the event</span></th>
+                  </tr>
+                </thead>
                 <tbody>
                   {pastOrders1.length !== 0
                     ? <CurrentOrder orderList={pastOrders1} /> : <tr><td>Not</td></tr>}

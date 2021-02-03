@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 
 function Time({ timeElem }) {
   const [, time] = timeElem;
-  console.log(timeElem);
+
   return (
     <>
-      <span>{time}</span>
+      <div>{time}</div>
     </>
   );
 }
 Time.propTypes = {
-  timeElem: PropTypes.arrayOf(PropTypes.number).isRequired,
+  timeElem: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
 };
 export default Time;

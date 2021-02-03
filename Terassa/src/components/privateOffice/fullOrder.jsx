@@ -14,14 +14,11 @@ import ShowOrderedTable from '../canvas/ShowOrderedTable';
 
 function FullOrder({ Order }) {
   const { tables, visit, additions } = Order;
-  console.log(Order);
   const elementAdditions = Object.keys(additions);
-
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
   const timeOfVisit = new Date(visit).toString();
   return (
-
     <>
 
       <tr onClick={toggle}>
@@ -31,24 +28,22 @@ function FullOrder({ Order }) {
         <td>
           {timeOfVisit}
         </td>
-
         {/* <Button color="danger" onClick={toggle}>{ buttonLabel }</Button> */}
         <Modal isOpen={modal} toggle={toggle}>
           <ModalHeader toggle={toggle}>Ваш заказ</ModalHeader>
           <ModalBody>
-
             <TabPane tabId="1">
               <Row>
                 <Col sm="12">
-                  <h4>Описание заказа</h4>
+                  <h4>Order Description</h4>
                   <Table>
                     <thead>
                       <tr>
-                        <th><span>Название</span></th>
-                        <th><span>Цена </span></th>
-                        <th><span>Детали</span></th>
-                        <th><span>Время подачи </span></th>
-                        <th><span>Количество блюд</span></th>
+                        <th><span>Name</span></th>
+                        <th><span>Cost </span></th>
+                        <th><span>Details</span></th>
+                        <th><span>Delivery time </span></th>
+                        <th><span>Servings</span></th>
                       </tr>
                     </thead>
                     <tbody>
@@ -65,8 +60,7 @@ function FullOrder({ Order }) {
             <ShowOrderedTable tables={tables} />
           </ModalBody>
           <ModalFooter>
-            <Button color="primary" onClick={toggle}>Pедактировать заказ</Button>
-            {' '}
+
             <Button color="secondary" onClick={toggle}>Закрыть</Button>
           </ModalFooter>
         </Modal>
