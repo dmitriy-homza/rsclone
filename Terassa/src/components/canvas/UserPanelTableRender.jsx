@@ -1,8 +1,9 @@
 /* eslint-disable */
 import React, { useEffect, useRef, useState } from 'react';
 import firebase from 'firebase/app';
-import UserTableRender from './UserTableRender';
 import 'firebase/database';
+import UserTableRender from './UserTableRender';
+import { Spinner } from 'reactstrap';
 
 const userPanelTableRender = ({
    setTable, blockedTables
@@ -19,14 +20,26 @@ const userPanelTableRender = ({
    }, []);
 
    return (
-      <div style={{ display:'flex', flexDirection:'row' }}>
-            {fbData ? <UserTableRender bgImage={fbData.bgImage} fbData={fbData.tables} setTable={setTable} blockedTables={blockedTables}/> :'false'}
-         <div>
-            <div id="tableInfo">
-            </div>
-         </div>
-      </div>
+      <>
+      {typeof fbData === 'object' ? (
+         <>
+               <div style={{ display: 'flex', flexDirection: 'row' }}>
+                  <UserTableRender fbData={fbData.tables} setTable={setTable} blockedTables={blockedTables} />
+                  <div>
+                     <div id="tableInfo">
+                     </div>
+                  </div>
+               </div>
+         </>
+      ) : (
+            <>
+               <Spinner color="primary" />
+               <span>Loading data...</span>
+            </>
+         )}
+   </>
    );
+   
 };
 
 export default userPanelTableRender;

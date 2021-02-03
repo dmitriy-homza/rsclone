@@ -5,10 +5,16 @@ import ButtonItem from './ButtonItem';
 import AdminTableRender from './AdminTableRender';
 import 'firebase/database';
 import { Spinner } from 'reactstrap';
+import cursor from '../../images/canvas/cursor.png'
 
+function importAll(r) {
+  return r.keys().map(r)
+}
 
+const images = importAll(require.context('../../images/canvas/', false, /\.(png|jpe?g|svg)$/));
+
+console.log(images)
 const AdminPanelTableRender = () => {
-
   const [fbData, setfbData] = useState(0);
 
   useEffect(() => {
@@ -24,12 +30,12 @@ const AdminPanelTableRender = () => {
       {typeof fbData === 'object' ? (
         <>
           <div>
-            <ButtonItem key={0} id={0} image={fbData.cursorImage} mode={'cursor'} />
+            <ButtonItem key={0} id={0} image={cursor} mode={'cursor'} />
             {fbData.tables.map((el, ind) => (
-              <ButtonItem key={ind + 1} id={el.id} image={el.image} mode={'create'} />
+              <ButtonItem key={ind + 1} id={el.id} image={images[ind]} mode={'create'} />
             ))}
           </div>
-          <AdminTableRender bgImage={fbData.bgImage} tableImages={fbData.tables} cursorImage={fbData.cursorImage} />
+          <AdminTableRender />
         </>
       ) : (
           <>

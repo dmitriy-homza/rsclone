@@ -20,8 +20,6 @@ import '../styles/book.scss';
 export default () => {
   const [page, setPage] = useState('tables');
 
-  const [table, setTable] = useState('0');
-
   const blockedTables = [1612197355808, 1612197359103, 1612197400830, 1612197348936];
 
   let visitTime;
@@ -96,7 +94,7 @@ export default () => {
           onClick={() => {
             if (document.getElementById('date').value && document.getElementById('time').value) {
               setPage({
-                tables: table,
+                tables: `${localStorage.getItem('choosenTable')}`,
                 visitTime: `${document.getElementById('date').value}T${
                   document.getElementById('time').value
                 }+03:00`,

@@ -13,27 +13,27 @@ const AdminTableRender = ({
     bgImage
   }) => {
 
-  const [answer, setData] = useState(0);
+  // const [answer, setData] = useState(0);
   const [loadedTables, loadTables] = useState(0);
   const ref = useRef(null);
   let currentContainer;
   let currentTable;
 
   useEffect(() => {
-    const fetchData = async () => {
-      const storage = firebase.storage();
-      const storageRef = storage.ref();
-      const imgURL = storageRef.child(`${bgImage}`);
-      // Get the download URL
-      imgURL.getDownloadURL().then((result) => {
-        setData(result);
-      });
-    };
+    // const fetchData = async () => {
+    //   const storage = firebase.storage();
+    //   const storageRef = storage.ref();
+    //   const imgURL = storageRef.child(`${bgImage}`);
+    //   // Get the download URL
+    //   imgURL.getDownloadURL().then((result) => {
+    //     setData(result);
+    //   });
+    // };
     const load = async () => {
       const result = await firebase.database().ref('saved-tables').once('value').then((snapshot) => snapshot.val());
       loadTables(result);
     };
-    fetchData();
+    // fetchData();
     load();
   }, []);
 
@@ -82,8 +82,8 @@ const AdminTableRender = ({
         })
       })
 
-      localStorage.setItem('tables', JSON.stringify(arr));
-      localStorage.setItem('bgImage', answer);
+      // localStorage.setItem('tables', JSON.stringify(arr));
+      // localStorage.setItem('bgImage', answer);
       writeNewAdditions(arr)
     }
     const app = new PIXI.Application({
@@ -92,20 +92,7 @@ const AdminTableRender = ({
       backgroundColor: 0x5BBA6F,
     });
 
-    console.log(bgImage)
-    let bg = new Image();
-    bg.crossOrigin = "";
-    bg.src = answer; 
-
-    console.log(bg)
-
-    console.log(bg)
-    
-    const backgroundImage = PIXI.Texture.from(`http://crossorigin.me/${answer}`);
-    const backgroundImage2 = PIXI.Texture.from(answer);
-    console.log('backgroundImage: ', backgroundImage);
-    console.log('backgroundImage2: ', backgroundImage2);
-    // const backgroundImage = PIXI.Texture.from(bgImage);
+    const backgroundImage = PIXI.Texture.from(plan);
     const background = new PIXI.Sprite(backgroundImage);
     app.stage.addChild(background);
     background.width = app.screen.width;
@@ -401,7 +388,7 @@ const AdminTableRender = ({
     };
   }
 
-  if (answer !== 0 && loadedTables !== 0) {
+  if ( loadedTables !== 0) {
       createCanvas()
       localStorage.setItem('state','loaded')
     } 

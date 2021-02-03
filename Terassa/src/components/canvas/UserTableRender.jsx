@@ -6,30 +6,20 @@ import 'firebase/firestore';
 import 'firebase/auth';
 import 'firebase/storage';
 import isNode from 'detect-node'
+import plan from '../../images/canvas/floorPlan.png'
 
 const userTableRender = ({ 
-   bgImage, fbData, setTable, blockedTables
+   fbData, blockedTables
    
 }) => { 
-   const [answer, setData] = useState(0);
    const [loadedTables, loadTables] = useState(0);
    const ref = useRef(null)
 
    useEffect(() => {
-      const fetchData = async () => {
-         const storage = firebase.storage();
-         const storageRef = storage.ref();
-         const imgURL = storageRef.child(`${bgImage}`);
-         // Get the download URL
-         imgURL.getDownloadURL().then((result) => {
-            setData(result);
-         });
-      };
       const load = async () => {
          const result = await firebase.database().ref('saved-tables').once('value').then((snapshot) => snapshot.val());
          loadTables(result);
       };
-      fetchData();
       load();
    }, []);
 
@@ -49,7 +39,7 @@ const userTableRender = ({
 
       ref.current.appendChild(app.view);
 
-      const backgroundImage = PIXI.Texture.from(answer);
+      const backgroundImage = PIXI.Texture.from(plan);
       const background = new PIXI.Sprite(backgroundImage);
       app.stage.addChild(background);
       background.width = app.screen.width;
@@ -115,9 +105,7 @@ const userTableRender = ({
                         `;
                      }
                   })
-                  setTable( table.uniqueId )
-
-                  
+                  localStorage.setItem('choosenTable', table.uniqueId)
                });
 
             const text = new PIXI.Text(el.index,
@@ -152,15 +140,9 @@ const userTableRender = ({
 
          background.addChild(errorMessage)
       }
-
-
-
-      
-         
-      
    }
 
-   if (answer !== 0 && loadedTables !== 0) {
+   if (loadedTables !== 0) {
       createCanvas()
    }
 
