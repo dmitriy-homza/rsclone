@@ -5,7 +5,7 @@ import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import { Helmet } from 'react-helmet';
 import { Button } from 'reactstrap';
 
-import firebase from '../core/firebase';
+import { firebase } from '../core/firebase';
 import { API } from '../core/constants';
 import Layout from '../components/layout';
 import Card from '../components/additional/card';
