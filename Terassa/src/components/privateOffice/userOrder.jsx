@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   TabContent, TabPane, Nav, NavItem, NavLink, Row, Col,
   Table,
 } from 'reactstrap';
 import classnames from 'classnames';
-import Orders from '../order/orders';
+import firebase from 'firebase/app';
+import 'firebase/firestore';
+import 'firebase/auth';
+import 'firebase/storage';
+// import Orders from '../order/orders';
 import CurrentOrder from './currentOrder';
 
 const UserOrder = () => {
@@ -12,22 +16,32 @@ const UserOrder = () => {
   const toggle = (tab) => {
     if (activeTab !== tab) setActiveTab(tab);
   };
+  const order = {};
 
-  const [...orders] = Orders();
-  const pastOrders = [];
-  const currentOrders = [];
-
-  function sortOrder() {
-    orders.forEach((element) => {
-      if (Date.parse(element.date) > Date.now()) {
-        currentOrders.push(element);
-      } else if (Date.parse(element.date) < Date.now()) {
-        pastOrders.push(element);
-      }
+  const [answer, setData] = useState(order);
+  useEffect(() => {
+    firebase.auth().onAuthStateChanged((user) => {
+      const userId = user.uid;
+      const fetchData = async () => {
+        const result = await firebase.database().ref(`users/${userId}/orders`).once('value').then((snapshot) => snapshot.val());
+        setData(result);
+      };
+      fetchData();
     });
-    return (currentOrders, pastOrders);
-  }
-  sortOrder();
+  }, []);
+
+  const pastOrders1 = [];
+  const currentOrders1 = [];
+
+  const keysOrders = Object.keys(answer);
+  keysOrders.forEach((element) => {
+    if (answer[element].visit < Date.now()) {
+      pastOrders1.push(answer[element]);
+    } else if (answer[element].visit > Date.now()) {
+      currentOrders1.push(answer[element]);
+    }
+  });
+
   return (
     <div>
       <Nav tabs>
@@ -36,7 +50,7 @@ const UserOrder = () => {
             className={classnames({ active: activeTab === '1' })}
             onClick={() => { toggle('1'); }}
           >
-            Активные заказы
+            <span>Активные заказы</span>
           </NavLink>
         </NavItem>
         <NavItem>
@@ -44,7 +58,7 @@ const UserOrder = () => {
             className={classnames({ active: activeTab === '2' })}
             onClick={() => { toggle('2'); }}
           >
-            История заказов
+            <span> История заказов</span>
           </NavLink>
         </NavItem>
       </Nav>
@@ -52,17 +66,17 @@ const UserOrder = () => {
         <TabPane tabId="1">
           <Row>
             <Col sm="12">
-              <h4>Tab 1 Contents</h4>
+              <h4>Текущие заказы</h4>
               <Table hover>
                 <thead>
                   <tr>
-                    <th>#</th>
-                    <th>Name</th>
-                    <th>Date</th>
+                    <th><span>Стол</span></th>
+                    <th><span>Дата проведения мероприятия</span></th>
                   </tr>
                 </thead>
                 <tbody>
-                  <CurrentOrder orderList={currentOrders} />
+                  {currentOrders1.length !== 0
+                    ? <CurrentOrder orderList={currentOrders1} /> : <tr><td>Not</td></tr>}
                 </tbody>
               </Table>
             </Col>
@@ -71,19 +85,12 @@ const UserOrder = () => {
         <TabPane tabId="2">
           <Row>
             <Col sm="12">
-              <h4>Tab 2 Contents</h4>
+              <h4>Прошлые заказы</h4>
               <Table hover>
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>Name</th>
-                    <th>Date</th>
-                  </tr>
-                </thead>
+
                 <tbody>
-
-                  <CurrentOrder orderList={pastOrders} />
-
+                  {pastOrders1.length !== 0
+                    ? <CurrentOrder orderList={pastOrders1} /> : <tr><td>Not</td></tr>}
                 </tbody>
               </Table>
             </Col>
