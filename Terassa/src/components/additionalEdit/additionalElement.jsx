@@ -56,7 +56,6 @@ const AdditionalElement = ({
     newAdditionObject[groupName][elementIndex].img = `additionals/${fileName}`;
     const ref = firebase.storage().ref(`additionals/${fileName}`);
     ref.put(file).then(() => {
-      console.log('картинка отправилась');
       newAdditionObject[groupName][elementIndex].id = `${Date.now()}`;
       setAdditionsObject(newAdditionObject);
       writeNewAdditions(newAdditionObject);

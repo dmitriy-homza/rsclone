@@ -19,7 +19,6 @@ const basketElement = ({ position, remover }) => {
         }
       }
     }
-    console.log('array: ', array);
     return array;
   }
   let quantityColor = 'brown';

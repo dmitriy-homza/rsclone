@@ -14,7 +14,6 @@ const userTableRender = ({
    const [loadedTables, loadTables] = useState(0);
    const ref = useRef(null)
 
-   console.log('ut',busyTables)
 
    useEffect(() => {
       const load = async () => {
@@ -30,7 +29,6 @@ const userTableRender = ({
       if (!isNode) {
          PIXI = require('pixi.js')
       }
-      console.log(PIXI)
 
       const app = new PIXI.Application({
          width: 1000,
@@ -86,7 +84,6 @@ const userTableRender = ({
 
             table
                .on('pointertap', (ev) => {
-                  console.log(busyTables, table.uniqueId)
                   if (activeTable) {
                      activeTable.tint = 0x808080;
                      activeTable.alpha = 0.7;

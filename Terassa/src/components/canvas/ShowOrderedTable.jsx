@@ -30,8 +30,8 @@ const userTableRender = ({
       }
 
       const app = new PIXI.Application({
-         width: 800,
-         height: 496,
+         width: 1000,
+         height: 620,
          backgroundColor: 0xf8f9fa,
       });
 
@@ -67,8 +67,8 @@ const userTableRender = ({
 
 
             if (`${table.uniqueId}` === tables) {
-               table.tint = 0x808080;
-               table.alpha = 0.7;
+               table.tint = 0xFFFFFF;
+               table.alpha = 1;
             } else {
                table.tint = 0xcccccc;
                table.alpha = 0.2;

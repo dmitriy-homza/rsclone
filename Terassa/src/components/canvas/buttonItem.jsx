@@ -30,7 +30,7 @@ const ButtonItem = ({
     // fetchData();
   }, []);
 
-  console.log(image)
+
 
   const divStyle = {
     backgroundImage: `url('${image}')`,

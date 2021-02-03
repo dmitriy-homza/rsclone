@@ -13,7 +13,6 @@ function importAll(r) {
 
 const images = importAll(require.context('../../images/canvas/', false, /\.(png|jpe?g|svg)$/));
 
-console.log(images)
 const AdminPanelTableRender = () => {
   const [fbData, setfbData] = useState(0);
 

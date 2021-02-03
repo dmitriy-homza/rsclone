@@ -32,7 +32,6 @@ const AdminTableRender = ({
     if (!isNode) {
       PIXI = require('pixi.js')
     }
-    console.log(PIXI)
     if (localStorage.getItem('currentMode')) {
       localStorage.removeItem('currentMode');
     }
@@ -56,7 +55,6 @@ const AdminTableRender = ({
       items.map(el => {
         el.children.map(underEl => {
           if (underEl.type === 'table') {
-            console.log(underEl)
             const obj = {}
             obj.index = underEl.index;
             obj.x = el.x;

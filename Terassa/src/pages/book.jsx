@@ -28,8 +28,6 @@ export default () => {
   useEffect(() => {
     const load = async () => {
       const result = await firebase.database().ref(`busyTables/${new Date(document.getElementById('date').value).getDate()}-${new Date(document.getElementById('date').value).getMonth()}-${new Date(document.getElementById('date').value).getFullYear()}`).once('value').then((snapshot) => snapshot.val());
-      console.log(`Date: ${new Date(document.getElementById('date').value).getDate()}-${new Date(document.getElementById('date').value).getMonth()}-${new Date(document.getElementById('date').value).getFullYear()}`);
-      console.log(result);
       setBusyTables(result);
     };
     load();

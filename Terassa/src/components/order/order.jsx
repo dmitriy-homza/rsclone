@@ -17,11 +17,9 @@ function Order() {
     };
     fetchData();
   }, []);
-  console.log(answer);
   const [order, setOrder] = React.useState({});
 
   function findOrder(number) {
-    console.log(number, answer[number]);
     setOrder(answer[number]);
   }
 

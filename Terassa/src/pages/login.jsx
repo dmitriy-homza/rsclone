@@ -4,8 +4,7 @@ import React, { Component } from 'react';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import { Helmet } from 'react-helmet';
 import { Button } from 'reactstrap';
-// import { firebase } from '../core/firebase';
-import { auth } from '../core/firebase';
+import  firebase  from '../core/firebase';
 import 'firebase/database';
 import 'firebase/auth';
 import { API } from '../core/constants';
@@ -24,15 +23,15 @@ export default class login extends Component {
   };
 
   componentDidMount() {
-    console.log('firebase ', firebase);
+    console.log(firebase)
     this.setState({
       uiConfig: {
         // Popup signin flow rather than redirect flow.
         signInFlow: 'popup',
         // We will display Google and Facebook as auth providers.
         signInOptions: [
-          auth.GoogleAuthProvider.PROVIDER_ID,
-          auth.GithubAuthProvider.PROVIDER_ID,
+          firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+          firebase.auth.GithubAuthProvider.PROVIDER_ID,
         ],
         callbacks: {
           // Avoid redirects after sign-in.
@@ -40,7 +39,7 @@ export default class login extends Component {
         },
       },
     });
-    auth.onAuthStateChanged((user) => {
+    firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         this.setState({ hasAccount: true });
         // this.loadData(user);

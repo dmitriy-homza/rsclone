@@ -7,8 +7,6 @@ function ServicesMenu({ servicesFromOrder }) {
   const {
     name, weight, cost, time, quantity,
   } = servicesFromOrder;
-  console.log(servicesFromOrder);
-  console.log(name, weight, cost, time, quantity);
 
   return (
     <tr>

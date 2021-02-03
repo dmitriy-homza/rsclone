@@ -13,8 +13,9 @@ import ShowOrderedTable from '../canvas/ShowOrderedTable';
 // import { ListGroup } from 'reactstrap';
 
 function FullOrder({ Order }) {
+  console.log('Order: ', Order);
   const { tables, visit, additions } = Order;
-  const elementAdditions = Object.keys(additions);
+  const elementAdditions = additions ? Object.keys(additions) : null;
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
   const timeOfVisit = new Date(visit).toString();
@@ -47,11 +48,17 @@ function FullOrder({ Order }) {
                       </tr>
                     </thead>
                     <tbody>
-                      {elementAdditions.map((element) => (
+                      {elementAdditions ? elementAdditions.map((element) => (
                         Array.from(additions[element]).map((service) => (
                           <Display display={service} key={service.name} />
                         ))
-                      ))}
+                      )) : (
+                        <tr>
+                          {' '}
+                          <td>No Additions SORRY</td>
+                          {' '}
+                        </tr>
+                      )}
                     </tbody>
                   </Table>
                 </Col>

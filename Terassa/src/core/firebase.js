@@ -1,4 +1,4 @@
-import fb from 'firebase/app';
+import firebase from 'firebase/app';
 import 'firebase/database';
 import 'firebase/auth';
 
@@ -12,5 +12,6 @@ const firebaseConfig = {
   appId: process.env.APP_ID,
 };
 
-// eslint-disable-next-line import/prefer-default-export
-export const firebase = fb.initializeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig);
+
+export default firebase;
