@@ -1,5 +1,6 @@
 /* eslint-disable no-undef */
 import React, { useState, useEffect } from 'react';
+import firebase from 'firebase/app';
 import 'firebase/database';
 import {
   Spinner,
@@ -17,7 +18,6 @@ import {
 import { BiReset } from '@react-icons/all-files/bi/BiReset';
 import { AiFillFolderAdd } from '@react-icons/all-files/ai/AiFillFolderAdd';
 import ReactNotification, { store } from 'react-notifications-component';
-import { firebase } from '../core/firebase';
 import Layout from '../components/layout';
 import AdditionalEditGroup from '../components/additionalEdit/additionaEditGroup';
 

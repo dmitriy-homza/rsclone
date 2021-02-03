@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { firebase } from '../../core/firebase';
+import firebase from 'firebase/app';
 import 'firebase/database';
 import OrderList from './orderList';
 import FindOrder from './findOrder';

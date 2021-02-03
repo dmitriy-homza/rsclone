@@ -1,6 +1,6 @@
 /* eslint-disable */
 import React, { useEffect, useRef, useState } from 'react';
-import { firebase } from '../../core/firebase';
+import firebase from 'firebase/app';
 import ButtonItem from './ButtonItem';
 import AdminTableRender from './AdminTableRender';
 import 'firebase/database';
