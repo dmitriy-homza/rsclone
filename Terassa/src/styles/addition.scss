@@ -83,6 +83,13 @@ body {
       height: min-content;
       position: sticky;
       top: 0px;
+      .not-empty-check {
+        .check-element {
+          button {
+            display: block;
+          }
+        }
+      }
       .icon-open-mobile,
       .total-cost-mobile {
         display: none;
@@ -186,6 +193,11 @@ body {
           }
         }
         .not-empty-check {
+          .check-element {
+            button {
+              display: block;
+            }
+          }
           .icon-open-mobile {
             display: block;
           }

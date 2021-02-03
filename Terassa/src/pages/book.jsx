@@ -5,7 +5,7 @@
 /* eslint-disable no-param-reassign */
 import React, { useState } from 'react';
 import {
-  Alert, Form, Col, Row, FormGroup, Label, Input,
+  Alert, Form, Col, Row, FormGroup, Label, Input, Button, Modal, ModalHeader, ModalBody, ModalFooter,
 } from 'reactstrap';
 import ReactNotification, { store } from 'react-notifications-component';
 import Layout from '../components/layout';
@@ -19,20 +19,7 @@ import '../styles/book.scss';
 export default () => {
   const [page, setPage] = useState('tables');
 
-  const [table, setTable] = useState('0');
-
   const blockedTables = [1612197355808, 1612197359103, 1612197400830, 1612197348936];
-
-  let visitTime;
-  let tables;
-
-  function takeProps() {
-    tables = 'Столы';
-    visitTime = `${document.getElementById('date').value}T${
-      document.getElementById('time').value
-    }+03:00`;
-    console.log(tables, visitTime);
-  }
 
   const [selectedAdditional, addElement] = React.useState([]);
   function addAddition(element) {
@@ -114,7 +101,7 @@ export default () => {
             onClick={() => {
               if (document.getElementById('date').value && document.getElementById('time').value) {
                 setPage({
-                  tables: 'Столы',
+                  tables: `${localStorage.getItem('choosenTable')}`,
                   visitTime: `${document.getElementById('date').value}T${
                     document.getElementById('time').value
                   }+03:00`,
@@ -137,9 +124,8 @@ export default () => {
           >
             Continue
           </button>
-          <UserPanelTableRender setTable={setTable} blockedTables={blockedTables} />
+          <UserPanelTableRender blockedTables={blockedTables} />
         </main>
-
       </Layout>
     </>
   )
