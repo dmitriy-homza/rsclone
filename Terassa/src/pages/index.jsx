@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'gatsby';
 import { Button } from 'reactstrap';
 import Layout from '../components/layout';
 import '../styles/index.scss';
@@ -32,7 +33,7 @@ export default () => (
                 questions courage of our questions paroxysm of global death venture bits of moving
                 fluff.
               </p>
-              <Button color="primary">To order</Button>
+              <Button tag={Link} to="/book" color="primary">To order</Button>
             </div>
           </div>
         </section>
@@ -46,7 +47,7 @@ export default () => (
                 questions courage of our questions paroxysm of global death venture bits of moving
                 fluff.
               </p>
-              <Button color="primary">To order</Button>
+              <Button tag={Link} to="/book" color="primary">To order</Button>
             </div>
             <div className="col-2 col-md-5">
               <img src={imgEnvironment} alt="Soup" width="450px" />
