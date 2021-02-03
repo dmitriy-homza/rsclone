@@ -3,11 +3,13 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable max-len */
 /* eslint-disable no-param-reassign */
-import React, { useState } from 'react';
+/* eslint-disable no-unused-expressions */
+import React, { useState, useEffect } from 'react';
 import {
   Alert, Form, Col, Row, FormGroup, Label, Input, Button, Modal, ModalHeader, ModalBody, ModalFooter,
 } from 'reactstrap';
 import ReactNotification, { store } from 'react-notifications-component';
+import firebase from 'firebase/app';
 import Layout from '../components/layout';
 import Options from '../components/additional/options';
 import Basket from '../components/additional/basket';
@@ -18,10 +20,21 @@ import '../styles/book.scss';
 
 export default () => {
   const [page, setPage] = useState('tables');
-
-  const blockedTables = [1612197355808, 1612197359103, 1612197400830, 1612197348936];
+  const [date, setDate] = useState('0');
+  const [busyTables, setBusyTables] = useState('0');
 
   const [selectedAdditional, addElement] = React.useState([]);
+
+  useEffect(() => {
+    const load = async () => {
+      const result = await firebase.database().ref(`busyTables/${new Date(document.getElementById('date').value).getDate()}-${new Date(document.getElementById('date').value).getMonth()}-${new Date(document.getElementById('date').value).getFullYear()}`).once('value').then((snapshot) => snapshot.val());
+      console.log(`Date: ${new Date(document.getElementById('date').value).getDate()}-${new Date(document.getElementById('date').value).getMonth()}-${new Date(document.getElementById('date').value).getFullYear()}`);
+      console.log(result);
+      setBusyTables(result);
+    };
+    load();
+  }, [date]);
+
   function addAddition(element) {
     // eslint-disable-next-line no-param-reassign
     let isRepeat = false;
@@ -71,6 +84,9 @@ export default () => {
                       name="date"
                       id="date"
                       placeholder="date placeholder"
+                      onChange={() => {
+                        setDate(document.getElementById('date').value);
+                      }}
                     />
                   </FormGroup>
                 </Col>
@@ -124,7 +140,7 @@ export default () => {
           >
             Continue
           </button>
-          <UserPanelTableRender blockedTables={blockedTables} />
+          <UserPanelTableRender busyTables={busyTables || {}} />
         </main>
       </Layout>
     </>

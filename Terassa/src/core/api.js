@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-import firebase from './firebase';
+import firebase from 'firebase/app';
 
 const saveData = (key, data) => {
   const isLoggedIn = !!firebase.auth().currentUser;
