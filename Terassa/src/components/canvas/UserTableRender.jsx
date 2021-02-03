@@ -8,7 +8,7 @@ import isNode from 'detect-node'
 import plan from '../../images/canvas/floorPlan.png'
 
 const userTableRender = ({ 
-   fbData, blockedTables
+   fbData, busyTables
    
 }) => { 
    const [loadedTables, loadTables] = useState(0);
@@ -28,7 +28,6 @@ const userTableRender = ({
          PIXI = require('pixi.js')
       }
       console.log(PIXI)
-      console.log('blockedTables: ', blockedTables);
 
       const app = new PIXI.Application({
          width: 1000,
@@ -67,7 +66,7 @@ const userTableRender = ({
             table.scale.y = el.scaleY;
             table.rotation = el.rotation;
 
-            if (blockedTables.includes(table.uniqueId)) {
+            if (Object.values(busyTables).includes(table.uniqueId)) {
                table.buttonMode = false;
                table.interactive = false;
                table.tint = 0xcccccc;
@@ -146,7 +145,7 @@ const userTableRender = ({
    }
 
       return <>
-         <div ref={ref}></div>
+         <div ref={ref} id='wrapper'></div>
       </>;
    
 };

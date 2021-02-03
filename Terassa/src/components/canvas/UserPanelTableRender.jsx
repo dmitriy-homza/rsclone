@@ -6,7 +6,7 @@ import UserTableRender from './UserTableRender';
 import { Spinner } from 'reactstrap';
 
 const userPanelTableRender = ({
-   setTable, blockedTables
+   setTable, busyTables
 }) => {
 
    const [fbData, setfbData] = useState(0);
@@ -23,8 +23,8 @@ const userPanelTableRender = ({
       <>
       {typeof fbData === 'object' ? (
          <>
-               <div style={{ display: 'flex', flexDirection: 'row' }}>
-                  <UserTableRender fbData={fbData.tables} setTable={setTable} blockedTables={blockedTables} />
+               <div style={{ display: 'flex', flexDirection: 'row' }} >
+                  <UserTableRender fbData={fbData.tables} setTable={setTable} busyTables={busyTables} />
                   <div>
                      <div id="tableInfo">
                      </div>

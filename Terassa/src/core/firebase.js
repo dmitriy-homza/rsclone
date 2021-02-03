@@ -1,7 +1,7 @@
 /* eslint-disable */
 import fb from 'firebase/app';
-// import 'firebase/database';
-// import 'firebase/auth';
+import 'firebase/database';
+import 'firebase/auth';
 
 const firebaseConfig = {
   apiKey: process.env.API_KEY,
