@@ -16,8 +16,6 @@ function FullOrder({ Order }) {
   console.log(Order);
   const elementAdditions = Object.keys(additions);
 
-  console.log('elementAdditions', elementAdditions);
-
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
   const timeOfVisit = new Date(visit).toString();
@@ -35,29 +33,29 @@ function FullOrder({ Order }) {
 
         {/* <Button color="danger" onClick={toggle}>{ buttonLabel }</Button> */}
         <Modal isOpen={modal} toggle={toggle}>
-          <ModalHeader toggle={toggle}>Modal title</ModalHeader>
+          <ModalHeader toggle={toggle}>Ваш заказ</ModalHeader>
           <ModalBody>
 
             <TabPane tabId="1">
               <Row>
                 <Col sm="12">
-                  <h4>Tab 1 Contents</h4>
+                  <h4>Описание заказа</h4>
                   <Table>
-
-                    <tbody>
+                    <thead>
                       <tr>
-                        <td><span>Название</span></td>
-                        <td><span>Цена </span></td>
-                        <td><span>Вес</span></td>
-                        <td><span>Время подачи к столу</span></td>
+                        <th><span>Название</span></th>
+                        <th><span>Цена </span></th>
+                        <th><span>Детали</span></th>
+                        <th><span>Время подачи </span></th>
+                        <th><span>Количество блюд</span></th>
                       </tr>
-
+                    </thead>
+                    <tbody>
                       {elementAdditions.map((element) => (
                         Array.from(additions[element]).map((service) => (
                           <Display display={service} key={service.name} />
                         ))
                       ))}
-
                     </tbody>
                   </Table>
                 </Col>

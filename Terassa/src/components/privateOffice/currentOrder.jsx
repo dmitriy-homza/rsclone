@@ -21,10 +21,7 @@ function CurrentOrder({ orderList }) {
   return (
 
     <>
-      <tr>
-        <td><span>Столик</span></td>
-        <td><span>Date</span></td>
-      </tr>
+
       {ord.map((Order) => (
         <FullOrder
           Order={Order}

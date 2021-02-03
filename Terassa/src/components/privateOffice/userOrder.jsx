@@ -41,21 +41,6 @@ const UserOrder = () => {
       currentOrders1.push(answer[element]);
     }
   });
-  /* const [...orders] = Orders();
-   const pastOrders = [];
-   const currentOrders = [];
-
-   function sortOrder() {
-     orders.forEach((element) => {
-       if (Date.parse(element.date) > Date.now()) {
-         currentOrders.push(element);
-       } else if (Date.parse(element.date) < Date.now()) {
-         pastOrders.push(element);
-       }
-     });
-     return (currentOrders, pastOrders);
-   } */
-  // sortOrder();
 
   return (
     <div>
@@ -81,14 +66,17 @@ const UserOrder = () => {
         <TabPane tabId="1">
           <Row>
             <Col sm="12">
-              <h4>Tab 1 Contents</h4>
+              <h4>Текущие заказы</h4>
               <Table hover>
-
+                <thead>
+                  <tr>
+                    <th><span>Стол</span></th>
+                    <th><span>Дата проведения мероприятия</span></th>
+                  </tr>
+                </thead>
                 <tbody>
-
                   {currentOrders1.length !== 0
                     ? <CurrentOrder orderList={currentOrders1} /> : <tr><td>Not</td></tr>}
-
                 </tbody>
               </Table>
             </Col>
@@ -97,7 +85,7 @@ const UserOrder = () => {
         <TabPane tabId="2">
           <Row>
             <Col sm="12">
-              <h4>Tab 2 Contents</h4>
+              <h4>Прошлые заказы</h4>
               <Table hover>
 
                 <tbody>

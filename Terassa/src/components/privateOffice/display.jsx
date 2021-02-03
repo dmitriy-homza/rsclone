@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Time from './time';
+import Quantity from './quantity';
 
 function Display({ display }) {
-  const { cost } = display;
-  console.log(cost);
-  console.log(display);
+  const {
+    cost, name, time, weight,
+  } = display;
 
-  // const { cost } = elementsOrder;
-  /* function transformTimeArray(inputArray) {
+  function transformTimeArray(inputArray) {
     const array = inputArray.slice();
     array.sort();
     for (let index = 0; index < array.length; index += 1) {
@@ -23,19 +24,37 @@ function Display({ display }) {
       }
     }
     return array;
-  } */
+  }
 
   return (
     <tr>
       <td>
+        {' '}
+        <span>{name}</span>
+      </td>
+      <td>
+        {' '}
+        <span>{`${cost}$`}</span>
+      </td>
+      <td>
+        {' '}
+        <span>{weight}</span>
+      </td>
+      <td>
+        {transformTimeArray(time).map((timeElem) => (
+          <Time
+            timeElem={timeElem}
 
-        { /* transformTimeArray(time).map((timeElem) => (
-        <Time
-          timeElem={timeElem}
-        />
-      )) */}
-        <span>{cost}</span>
+          />
+        ))}
+      </td>
+      <td>
+        {transformTimeArray(time).map((timeElem) => (
+          <Quantity
+            timeElem={timeElem}
 
+          />
+        ))}
       </td>
     </tr>
   );

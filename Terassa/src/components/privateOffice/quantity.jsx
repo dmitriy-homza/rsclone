@@ -2,11 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function Time({ timeElem }) {
-  const [, time] = timeElem;
-  console.log(timeElem);
+  const [quantity] = timeElem;
   return (
     <>
-      <span>{time}</span>
+
+      <span>{quantity}</span>
+
     </>
   );
 }
