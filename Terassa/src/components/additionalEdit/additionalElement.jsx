@@ -3,12 +3,12 @@
 /* eslint-disable no-undef */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import firebase from 'firebase/app';
 import { RiSave3Fill } from '@react-icons/all-files/ri/RiSave3Fill';
 import { MdDeleteForever } from '@react-icons/all-files/md/MdDeleteForever';
 import { FiDownload } from '@react-icons/all-files/fi/FiDownload';
 import { BsCardImage } from '@react-icons/all-files/bs/BsCardImage';
 import { Button } from 'reactstrap';
-import { firebase } from '../../core/firebase';
 
 import 'firebase/firestore';
 import 'firebase/auth';

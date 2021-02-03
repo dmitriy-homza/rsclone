@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import firebase from 'firebase/app';
 import { Spinner } from 'reactstrap';
-import { firebase } from '../../core/firebase';
 import AdditionGroup from './additionGroup';
 import 'firebase/database';
 
