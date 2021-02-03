@@ -13,4 +13,4 @@ const firebaseConfig = {
 };
 
 // eslint-disable-next-line import/prefer-default-export
-export const firebase = !fb.apps.length ? fb.initializeApp(firebaseConfig) : fb.app();
+export const firebase = fb.initializeApp(firebaseConfig);
