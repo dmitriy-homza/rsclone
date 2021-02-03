@@ -5,43 +5,48 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 import 'firebase/storage';
-import * as PIXI from 'pixi.js';
+import isNode from 'detect-node'
 
-
+import plan from '../../images/canvas/floorPlan.png'
 
 const AdminTableRender = ({ 
     bgImage
   }) => {
 
-  const [answer, setData] = useState(0);
+  // const [answer, setData] = useState(0);
   const [loadedTables, loadTables] = useState(0);
+  const ref = useRef(null);
   let currentContainer;
   let currentTable;
 
   useEffect(() => {
-    const fetchData = async () => {
-      const storage = firebase.storage();
-      const storageRef = storage.ref();
-      const imgURL = storageRef.child(`${bgImage}`);
-      // Get the download URL
-      imgURL.getDownloadURL().then((result) => {
-        setData(result);
-      });
-    };
+    // const fetchData = async () => {
+    //   const storage = firebase.storage();
+    //   const storageRef = storage.ref();
+    //   const imgURL = storageRef.child(`${bgImage}`);
+    //   // Get the download URL
+    //   imgURL.getDownloadURL().then((result) => {
+    //     setData(result);
+    //   });
+    // };
     const load = async () => {
       const result = await firebase.database().ref('saved-tables').once('value').then((snapshot) => snapshot.val());
       loadTables(result);
     };
-    fetchData();
+    // fetchData();
     load();
   }, []);
 
   function createCanvas() {
+    let PIXI
+    if (!isNode) {
+      PIXI = require('pixi.js')
+    }
+    console.log(PIXI)
     if (localStorage.getItem('currentMode')) {
       localStorage.removeItem('currentMode');
     }
-    document.getElementById('0').click()
-
+    document.getElementById('0').checked = 'true'
     function removeChild() {
       if (currentContainer) {
         app.stage.removeChild(currentContainer)
@@ -77,8 +82,8 @@ const AdminTableRender = ({
         })
       })
 
-      localStorage.setItem('tables', JSON.stringify(arr));
-      localStorage.setItem('bgImage', answer);
+      // localStorage.setItem('tables', JSON.stringify(arr));
+      // localStorage.setItem('bgImage', answer);
       writeNewAdditions(arr)
     }
     const app = new PIXI.Application({
@@ -87,16 +92,13 @@ const AdminTableRender = ({
       backgroundColor: 0x5BBA6F,
     });
 
-    const canvas = document.getElementById('canvasWrapper')
-
-    const backgroundImage = PIXI.Texture.from(answer);
+    const backgroundImage = PIXI.Texture.from(plan);
     const background = new PIXI.Sprite(backgroundImage);
     app.stage.addChild(background);
     background.width = app.screen.width;
     background.height = app.screen.height;
 
-    canvas.innerHTML = ''
-    canvas.appendChild(app.view)
+    ref.current.appendChild(app.view)
 
     const mousePosition = new PIXI.Point();
 
@@ -267,20 +269,20 @@ const AdminTableRender = ({
 
     app.view.onclick = (ev) => {
       const currentMode = JSON.parse(localStorage.getItem('currentMode'))
-      if (currentMode && currentMode.mode === 'cursor') {
-        if (currentTable) {
-          currentTable.tint = 0xFFFFFF;
-        }
-        currentContainer = null;
-        currentTable = null;
-      }
-      if (currentMode && currentMode.mode === 'create') {
         mousePosition.set(ev.layerX, ev.layerY);
         const found = app.renderer.plugins.interaction.hitTest(
           mousePosition,
           app.stage,
         );
         if (!found) {
+          if (currentMode && currentMode.mode === 'cursor') {
+            if (currentTable) {
+              currentTable.tint = 0xFFFFFF;
+            }
+            currentContainer = null;
+            currentTable = null;
+          }
+          if (currentMode && currentMode.mode === 'create') {
           const container = new PIXI.Container();
           container.type = 'container';
           container.interactive = true;
@@ -383,17 +385,16 @@ const AdminTableRender = ({
           }
         }
       }
-
-      
     };
   }
 
-  if (answer !== 0 && loadedTables !== 0) {
+  if ( loadedTables !== 0) {
       createCanvas()
       localStorage.setItem('state','loaded')
     } 
 
   return <>
+    <div ref={ref}></div>
   </>;
 }
 

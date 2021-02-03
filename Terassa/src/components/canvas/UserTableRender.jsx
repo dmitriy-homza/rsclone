@@ -5,36 +5,31 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 import 'firebase/storage';
-import * as PIXI from 'pixi.js';
+import isNode from 'detect-node'
+import plan from '../../images/canvas/floorPlan.png'
 
 const userTableRender = ({ 
-   bgImage, fbData, setTable, blockedTables
+   fbData, blockedTables
    
 }) => { 
-   const [answer, setData] = useState(0);
    const [loadedTables, loadTables] = useState(0);
+   const ref = useRef(null)
 
    useEffect(() => {
-      const fetchData = async () => {
-         const storage = firebase.storage();
-         const storageRef = storage.ref();
-         const imgURL = storageRef.child(`${bgImage}`);
-         // Get the download URL
-         imgURL.getDownloadURL().then((result) => {
-            setData(result);
-         });
-      };
       const load = async () => {
          const result = await firebase.database().ref('saved-tables').once('value').then((snapshot) => snapshot.val());
          loadTables(result);
       };
-      fetchData();
       load();
    }, []);
 
    function createCanvas() {
+      let PIXI
+      if (!isNode) {
+         PIXI = require('pixi.js')
+      }
+      console.log(PIXI)
       console.log('blockedTables: ', blockedTables);
-      const canvas = document.getElementById('canvasWrapper')
 
       const app = new PIXI.Application({
          width: 1000,
@@ -42,10 +37,9 @@ const userTableRender = ({
          backgroundColor: 0x5BBA6F,
       });
 
-      canvas.innerHTML = '';
-      canvas.appendChild(app.view);
+      ref.current.appendChild(app.view);
 
-      const backgroundImage = PIXI.Texture.from(answer);
+      const backgroundImage = PIXI.Texture.from(plan);
       const background = new PIXI.Sprite(backgroundImage);
       app.stage.addChild(background);
       background.width = app.screen.width;
@@ -111,9 +105,7 @@ const userTableRender = ({
                         `;
                      }
                   })
-                  setTable( table.uniqueId )
-
-                  
+                  localStorage.setItem('choosenTable', table.uniqueId)
                });
 
             const text = new PIXI.Text(el.index,
@@ -148,23 +140,16 @@ const userTableRender = ({
 
          background.addChild(errorMessage)
       }
-
-
-
-      if (!localStorage.getItem('state')) {
-         ReactDOM.render(canvas, document.getElementById('canvasWrapper'))
-      }
    }
 
-   if (answer !== 0 && loadedTables !== 0) {
+   if (loadedTables !== 0) {
       createCanvas()
-      localStorage.setItem('state', 'loaded')
    }
 
-   return <>
-
-   </>;
-
+      return <>
+         <div ref={ref}></div>
+      </>;
+   
 };
 
 export default userTableRender;

@@ -16,10 +16,12 @@
   },
   "dependencies": {
     "@google-cloud/storage": "^5.7.2",
+    "@loadable/component": "^5.14.1",
     "@react-icons/all-files": "^4.1.0",
     "bootstrap": "^4.5.3",
     "classnames": "^2.2.6",
     "cross-env": "^7.0.3",
+    "detect-node": "^2.0.4",
     "firebase": "^8.2.2",
     "firebaseui": "^4.7.1",
     "gatsby": "^2.30.0",

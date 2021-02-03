@@ -8,6 +8,7 @@ import {
   Alert, Form, Col, Row, FormGroup, Label, Input,
 } from 'reactstrap';
 import ReactNotification, { store } from 'react-notifications-component';
+
 import Layout from '../components/layout';
 import Options from '../components/additional/options';
 import Basket from '../components/additional/basket';
@@ -18,8 +19,6 @@ import '../styles/book.scss';
 
 export default () => {
   const [page, setPage] = useState('tables');
-
-  const [table, setTable] = useState('0');
 
   const blockedTables = [1612197355808, 1612197359103, 1612197400830, 1612197348936];
 
@@ -68,6 +67,7 @@ export default () => {
     <>
       <Layout>
         <ReactNotification />
+
         <main className="first-book p-5 flex-column d-flex">
           <h2>Book:</h2>
           <section className="date-choose">
@@ -114,7 +114,7 @@ export default () => {
             onClick={() => {
               if (document.getElementById('date').value && document.getElementById('time').value) {
                 setPage({
-                  tables: 'Столы',
+                  tables: `${localStorage.getItem('choosenTable')}`,
                   visitTime: `${document.getElementById('date').value}T${
                     document.getElementById('time').value
                   }+03:00`,
@@ -137,9 +137,8 @@ export default () => {
           >
             Continue
           </button>
-          <UserPanelTableRender setTable={setTable} blockedTables={blockedTables} />
+          <UserPanelTableRender blockedTables={blockedTables} />
         </main>
-
       </Layout>
     </>
   )

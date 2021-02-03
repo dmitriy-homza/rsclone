@@ -1,10 +1,9 @@
 /* eslint-disable */
 import React, { useEffect, useRef, useState } from 'react';
-import * as PIXI from 'pixi.js';
 import firebase from 'firebase/app';
-import ButtonItem from './ButtonItem';
-import UserTableRender from './UserTableRender';
 import 'firebase/database';
+import UserTableRender from './UserTableRender';
+import { Spinner } from 'reactstrap';
 
 const userPanelTableRender = ({
    setTable, blockedTables
@@ -21,16 +20,26 @@ const userPanelTableRender = ({
    }, []);
 
    return (
-      <div style={{ display:'flex', flexDirection:'row' }}>
-         <div id="canvasWrapper">
-            {fbData ? document.getElementById('canvasWrapper') ? (<UserTableRender bgImage={fbData.bgImage} fbData={fbData.tables} setTable={setTable} blockedTables={blockedTables}/>) : 'false' : 'false'}
-         </div>
-         <div>
-            <div id="tableInfo">
-            </div>
-         </div>
-      </div>
+      <>
+      {typeof fbData === 'object' ? (
+         <>
+               <div style={{ display: 'flex', flexDirection: 'row' }}>
+                  <UserTableRender fbData={fbData.tables} setTable={setTable} blockedTables={blockedTables} />
+                  <div>
+                     <div id="tableInfo">
+                     </div>
+                  </div>
+               </div>
+         </>
+      ) : (
+            <>
+               <Spinner color="primary" />
+               <span>Loading data...</span>
+            </>
+         )}
+   </>
    );
+   
 };
 
 export default userPanelTableRender;
