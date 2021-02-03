@@ -1,6 +1,6 @@
 /* eslint-disable */
 import React, { useEffect, useRef, useState } from 'react';
-import firebase from 'firebase/app';
+import { firebase } from '../../core/firebase';
 import 'firebase/database';
 import UserTableRender from './UserTableRender';
 import { Spinner } from 'reactstrap';

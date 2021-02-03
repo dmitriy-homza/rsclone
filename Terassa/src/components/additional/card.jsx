@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { store } from 'react-notifications-component';
-import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 import 'firebase/storage';
@@ -10,6 +9,7 @@ import {
   Tooltip, Card, CardText, CardBody, CardTitle, CardSubtitle, Button,
 } from 'reactstrap';
 import { GrAddCircle } from '@react-icons/all-files/gr/GrAddCircle';
+import { firebase } from '../../core/firebase';
 
 const card = ({
   name, weight, img, description, cost, id, addAdditional3, groupName,
