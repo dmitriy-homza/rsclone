@@ -13,14 +13,11 @@ import Display from './display';
 
 function FullOrder({ Order }) {
   const { tables, visit, additions } = Order;
-  console.log(Order);
   const elementAdditions = Object.keys(additions);
-
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
   const timeOfVisit = new Date(visit).toString();
   return (
-
     <>
 
       <tr onClick={toggle}>
@@ -30,12 +27,10 @@ function FullOrder({ Order }) {
         <td>
           {timeOfVisit}
         </td>
-
         {/* <Button color="danger" onClick={toggle}>{ buttonLabel }</Button> */}
         <Modal isOpen={modal} toggle={toggle}>
           <ModalHeader toggle={toggle}>Ваш заказ</ModalHeader>
           <ModalBody>
-
             <TabPane tabId="1">
               <Row>
                 <Col sm="12">
@@ -61,7 +56,6 @@ function FullOrder({ Order }) {
                 </Col>
               </Row>
             </TabPane>
-
           </ModalBody>
           <ModalFooter>
             <Button color="primary" onClick={toggle}>Pедактировать заказ</Button>

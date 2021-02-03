@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 function Time({ timeElem }) {
   const [, time] = timeElem;
-  console.log(timeElem);
+
   return (
     <>
       <span>{time}</span>

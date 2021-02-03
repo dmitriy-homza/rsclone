@@ -25,7 +25,6 @@ function Display({ display }) {
     }
     return array;
   }
-
   return (
     <tr>
       <td>
