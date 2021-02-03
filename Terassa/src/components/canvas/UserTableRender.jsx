@@ -15,6 +15,8 @@ const userTableRender = ({
    const [loadedTables, loadTables] = useState(0);
    const ref = useRef(null)
 
+   console.log('ut',busyTables)
+
    useEffect(() => {
       const load = async () => {
          const result = await firebase.database().ref('saved-tables').once('value').then((snapshot) => snapshot.val());
@@ -24,6 +26,7 @@ const userTableRender = ({
    }, []);
 
    function createCanvas() {
+      document.getElementById('wrapper').innerHTML = ''
       let PIXI
       if (!isNode) {
          PIXI = require('pixi.js')
@@ -66,8 +69,9 @@ const userTableRender = ({
             table.scale.x = el.scaleX;
             table.scale.y = el.scaleY;
             table.rotation = el.rotation;
+            
 
-            if (Object.values(busyTables).includes(table.uniqueId)) {
+            if (Object.values(busyTables).includes(`${table.uniqueId}`)) {
                table.buttonMode = false;
                table.interactive = false;
                table.tint = 0xcccccc;
@@ -83,6 +87,7 @@ const userTableRender = ({
 
             table
                .on('pointertap', (ev) => {
+                  console.log(busyTables, table.uniqueId)
                   if (activeTable) {
                      activeTable.tint = 0x808080;
                      activeTable.alpha = 0.7;
