@@ -1,6 +1,7 @@
 /* eslint-disable */
 import React, { useRef, useEffect, useState } from 'react';
-import { firebase } from '../../core/firebase';
+import ReactDOM from 'react-dom'
+import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 import 'firebase/storage';
