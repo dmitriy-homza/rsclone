@@ -9,11 +9,13 @@ import isNode from 'detect-node'
 import plan from '../../images/canvas/floorPlan.png'
 
 const userTableRender = ({ 
-   fbData, blockedTables
+   fbData, busyTables
    
 }) => { 
    const [loadedTables, loadTables] = useState(0);
    const ref = useRef(null)
+
+   console.log('ut',busyTables)
 
    useEffect(() => {
       const load = async () => {
@@ -24,12 +26,12 @@ const userTableRender = ({
    }, []);
 
    function createCanvas() {
+      document.getElementById('wrapper').innerHTML = ''
       let PIXI
       if (!isNode) {
          PIXI = require('pixi.js')
       }
       console.log(PIXI)
-      console.log('blockedTables: ', blockedTables);
 
       const app = new PIXI.Application({
          width: 1000,
@@ -67,8 +69,9 @@ const userTableRender = ({
             table.scale.x = el.scaleX;
             table.scale.y = el.scaleY;
             table.rotation = el.rotation;
+            
 
-            if (blockedTables.includes(table.uniqueId)) {
+            if (Object.values(busyTables).includes(`${table.uniqueId}`)) {
                table.buttonMode = false;
                table.interactive = false;
                table.tint = 0xcccccc;
@@ -84,6 +87,7 @@ const userTableRender = ({
 
             table
                .on('pointertap', (ev) => {
+                  console.log(busyTables, table.uniqueId)
                   if (activeTable) {
                      activeTable.tint = 0x808080;
                      activeTable.alpha = 0.7;
@@ -147,7 +151,7 @@ const userTableRender = ({
    }
 
       return <>
-         <div ref={ref}></div>
+         <div ref={ref} id='wrapper'></div>
       </>;
    
 };
