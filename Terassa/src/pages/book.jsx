@@ -22,17 +22,6 @@ export default () => {
 
   const blockedTables = [1612197355808, 1612197359103, 1612197400830, 1612197348936];
 
-  let visitTime;
-  let tables;
-
-  function takeProps() {
-    tables = 'Столы';
-    visitTime = `${document.getElementById('date').value}T${
-      document.getElementById('time').value
-    }+03:00`;
-    console.log(tables, visitTime);
-  }
-
   const [selectedAdditional, addElement] = React.useState([]);
   function addAddition(element) {
     // eslint-disable-next-line no-param-reassign
