@@ -13,7 +13,7 @@ const userTableRender = ({
 }) => {
    const [loadedTables, loadTables] = useState(0);
    const ref = useRef(null)
-   const state = 'Unactive'
+   let state = 'Unactive'
 
    useEffect(() => {
       const load = async () => {
@@ -43,7 +43,6 @@ const userTableRender = ({
       app.stage.addChild(background);
       background.width = app.screen.width;
       background.height = app.screen.height;
-      console.log(tables)
 
       if (loadedTables !== null ) {
 

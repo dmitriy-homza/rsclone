@@ -9,7 +9,7 @@ import {
   Alert, Form, Col, Row, FormGroup, Label, Input, Button, Modal, ModalHeader, ModalBody, ModalFooter,
 } from 'reactstrap';
 import ReactNotification, { store } from 'react-notifications-component';
-import firebase from 'firebase/app';
+import firebase from '../core/firebase';
 import Layout from '../components/layout';
 import Options from '../components/additional/options';
 import Basket from '../components/additional/basket';

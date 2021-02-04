@@ -70,7 +70,6 @@ const AdminTableRender = ({
 
     function saveStage() {
       const items = app.stage.children.filter((el) => el.type === 'container');
-      console.log('app.stage.children: ', app.stage.children);
   
       const arr = [];
 
@@ -278,7 +277,6 @@ const AdminTableRender = ({
           app.stage,
         );
         if (!found) {
-          console.log('click')
           if (currentMode && currentMode.mode === 'cursor') {
             if (currentTable) {
               currentTable.tint = 0xFFFFFF;

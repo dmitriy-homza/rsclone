@@ -13,7 +13,6 @@ import ShowOrderedTable from '../canvas/ShowOrderedTable';
 // import { ListGroup } from 'reactstrap';
 
 function FullOrder({ Order }) {
-  console.log('Order: ', Order);
   const { tables, visit, additions } = Order;
   const elementAdditions = additions ? Object.keys(additions) : null;
   const [modal, setModal] = useState(false);

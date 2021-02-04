@@ -39,9 +39,6 @@ const UserOrder = () => {
     }
   });
 
-  console.log('pastOrders1: ', pastOrders1);
-  console.log('currentOrders1: ', currentOrders1);
-
   return (
     <div>
       <Nav tabs>
