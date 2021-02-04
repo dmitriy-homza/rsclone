@@ -15,19 +15,9 @@ import img6 from '../../images/canvas/angleTable.png'
 const ButtonItem = ({
   image, id, mode
 }) => {
-  // const [answer, setData] = useState(0);
 
   useEffect(() => {
-    // const fetchData = async () => {
-    //   const storage = firebase.storage();
-    //   const storageRef = storage.ref();
-    //   const imgURL = storageRef.child(`${image}`);
-    //   // Get the download URL
-    //   imgURL.getDownloadURL().then((result) => {
-    //     setData(result);
-    //   });
-    // };
-    // fetchData();
+
   }, []);
 
 
