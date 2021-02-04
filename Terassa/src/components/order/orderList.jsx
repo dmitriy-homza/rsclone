@@ -11,6 +11,7 @@ import BasketElement from '../additional/basketElement';
 import MenuDishes from './menuDishes';
 // import OrderItem from './orderItem';
 import Options from './options';
+import ShowOrderedTable from '../canvas/ShowOrderedTable';
 import '../../styles/order.scss';
 
 function OrderList({ order }) {
@@ -27,7 +28,7 @@ function OrderList({ order }) {
         {' '}
         founded!
       </Alert>
-      <h5>{tables}</h5>
+      <ShowOrderedTable tables={tables} />
       {Object.keys(additions).map((group) => (
         <>
           <h3>{group}</h3>

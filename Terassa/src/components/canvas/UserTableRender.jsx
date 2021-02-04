@@ -99,9 +99,9 @@ const userTableRender = ({
 
                         const tableInfo = document.getElementById('tableInfo')
                         tableInfo.innerHTML = `
-                           <p>Table №:${table.index}</p>
-                           <p>Description:${discription}</p>
-                           <p>Table price:${price}</p>
+                           <p>Table №: ${table.index}</p>
+                           <p>Description: ${discription}</p>
+                           <p>Table price: ${price}</p>
                         `;
                      }
                   })

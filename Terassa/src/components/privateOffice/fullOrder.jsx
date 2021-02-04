@@ -30,7 +30,7 @@ function FullOrder({ Order }) {
           {timeOfVisit}
         </td>
         {/* <Button color="danger" onClick={toggle}>{ buttonLabel }</Button> */}
-        <Modal isOpen={modal} toggle={toggle}>
+        <Modal className="full-order-modal" isOpen={modal} toggle={toggle}>
           <ModalHeader toggle={toggle}>Ваш заказ</ModalHeader>
           <ModalBody>
             <TabPane tabId="1">

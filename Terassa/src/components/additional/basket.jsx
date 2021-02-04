@@ -117,7 +117,7 @@ const Basket = ({
             </ModalFooter>
           </Modal>
         ) : (
-          <Modal returnFocusAfterClose={false} className="modal-without-close" isOpen={modal} toggle={toggle}>
+          <Modal backdrop="static" keyboard={false} className="modal-without-close" isOpen={modal} toggle={toggle}>
             <ModalHeader toggle={toggle}>Order is processed</ModalHeader>
             <ModalBody>
               Your order number

@@ -126,10 +126,68 @@ $font-dark: #4a5055;
 $font-middle: #909090;
 $primary-decor: #e2c098;
 $primary-decor-dark: #ca9e6c;
-
+.full-order-modal {
+  max-width: 1044px;
+}
+#gatsby-focus-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  header {
+    flex: inherit;
+  }
+  #signed-out {
+    p {
+      text-align: center;
+      font-size: 18px;
+      margin-top: 2rem;
+      font-weight: 400;
+    }
+  }
+  #signed-out,
+  #signed-In {
+    flex: auto;
+    justify-content: center;
+  }
+  #signed-In {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2rem;
+    justify-content: start;
+    p {
+      text-align: center;
+      font-size: 24px;
+      font-weight: 300;
+    }
+    .account-nav {
+      display: flex;
+      max-width: 800px;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      a {
+        margin: 0px 10px;
+      }
+    }
+  }
+  footer {
+    flex-shrink: 0;
+    li {
+      list-style: none;
+    }
+    .garamond {
+      width: 106px;
+    }
+  }
+}
 body {
   font: 14px 'Inter', sans-serif;
   color: $font-dark;
+  #tableInfo {
+    p {
+      font-weight: 600;
+    }
+  }
   a {
     color: $font-dark;
     transition: 0.3s;

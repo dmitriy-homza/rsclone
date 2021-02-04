@@ -23,7 +23,7 @@ const userPanelTableRender = ({
       <>
       {typeof fbData === 'object' ? (
          <>
-               <div style={{ display: 'flex', flexDirection: 'row' }} >
+               <div style={{ display: 'flex', justifyContent: "center", flexDirection: 'column-reverse' }} >
                   <UserTableRender fbData={fbData.tables} setTable={setTable} busyTables={busyTables} />
                   <div>
                      <div id="tableInfo">

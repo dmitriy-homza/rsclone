@@ -102,6 +102,35 @@ export default () => {
                     />
                   </FormGroup>
                 </Col>
+                <Button
+                  className="pl-3 mb-3 mt-4 ml-auto"
+                  color="primary"
+                  onClick={() => {
+                    if (document.getElementById('date').value && document.getElementById('time').value) {
+                      setPage({
+                        tables: `${localStorage.getItem('choosenTable')}`,
+                        visitTime: `${document.getElementById('date').value}T${
+                          document.getElementById('time').value
+                        }+03:00`,
+                      });
+                    } else {
+                      store.addNotification({
+                        title: 'Choose time!',
+                        message: 'Choose a time to visit and book table',
+                        type: 'warning',
+                        insert: 'top',
+                        container: 'top-right',
+                        animationIn: ['animate__animated animate__fadeIn'],
+                        animationOut: ['animate__animated animate__fadeOut'],
+                        dismiss: {
+                          duration: 3000,
+                        },
+                      });
+                    }
+                  }}
+                >
+                  Continue
+                </Button>
               </Row>
             </Form>
           </section>
@@ -110,35 +139,7 @@ export default () => {
               And choose a table:
             </Alert>
           </section>
-
-          <button
-            onClick={() => {
-              if (document.getElementById('date').value && document.getElementById('time').value) {
-                setPage({
-                  tables: `${localStorage.getItem('choosenTable')}`,
-                  visitTime: `${document.getElementById('date').value}T${
-                    document.getElementById('time').value
-                  }+03:00`,
-                });
-              } else {
-                store.addNotification({
-                  title: 'Choose time!',
-                  message: 'Choose a time to visit and book table',
-                  type: 'warning',
-                  insert: 'top',
-                  container: 'top-right',
-                  animationIn: ['animate__animated animate__fadeIn'],
-                  animationOut: ['animate__animated animate__fadeOut'],
-                  dismiss: {
-                    duration: 3000,
-                  },
-                });
-              }
-            }}
-          >
-            Continue
-          </button>
-          <UserPanelTableRender busyTables={busyTables || {}} />
+          <div className="d-flex justify-content-center"><UserPanelTableRender busyTables={busyTables || {}} /></div>
         </main>
       </Layout>
     </>
@@ -153,6 +154,7 @@ export default () => {
             </section>
             <aside className="col-12 col-lg-3 basket-container">
               <Basket
+                color="primary"
                 removePosition1={removePosition}
                 key={selectedAdditional.length}
                 checkPosition={selectedAdditional}

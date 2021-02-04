@@ -1,8 +1,23 @@
+#gatsby-focus-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  header {
+    flex: inherit;
+  }
+  #signed-out {
+    flex: auto;
+  }
+  footer {
+    flex-shrink: 0;
+  }
+}
+
 body {
   .formStyle {
+    margin-top: 1rem;
+    margin-left: 1rem;
     position: relative;
-    top: 25px;
-    left: 50%;
   }
   .allBlock {
     position: relative;
