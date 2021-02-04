@@ -13,6 +13,7 @@ const userTableRender = ({
 }) => {
    const [loadedTables, loadTables] = useState(0);
    const ref = useRef(null)
+   const state = 'Unactive'
 
    useEffect(() => {
       const load = async () => {
@@ -42,8 +43,9 @@ const userTableRender = ({
       app.stage.addChild(background);
       background.width = app.screen.width;
       background.height = app.screen.height;
+      console.log(tables)
 
-      if (loadedTables !== null && tables ) {
+      if (loadedTables !== null ) {
 
          loadedTables.map(el => {
             const container = new PIXI.Container();
@@ -69,6 +71,7 @@ const userTableRender = ({
             if (`${table.uniqueId}` === tables) {
                table.tint = 0xFFFFFF;
                table.alpha = 1;
+               state = 'Active'
             } else {
                table.tint = 0xcccccc;
                table.alpha = 0.2;
@@ -89,7 +92,8 @@ const userTableRender = ({
 
             app.stage.addChild(container)
          })
-      } else {
+      } 
+      if (state === 'Unactive' ) {
          const errorMessage = new PIXI.Text('Sorry, we can\'t show your table. \n Please contact with Administrator',
             {
                font: '2rem',

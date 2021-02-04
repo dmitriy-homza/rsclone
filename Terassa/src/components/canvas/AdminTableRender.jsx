@@ -8,6 +8,9 @@ import 'firebase/storage';
 import isNode from 'detect-node'
 
 import plan from '../../images/canvas/floorPlan.png'
+import save from '../../images/canvas/save.png';
+import remove from '../../images/canvas/delete.png';
+
 
 const AdminTableRender = ({ 
     bgImage
@@ -32,29 +35,48 @@ const AdminTableRender = ({
     if (!isNode) {
       PIXI = require('pixi.js')
     }
-    if (localStorage.getItem('currentMode')) {
-      localStorage.removeItem('currentMode');
-    }
-    document.getElementById('0').checked = 'true'
+    localStorage.setItem('currentMode', JSON.stringify({mode: "cursor"}))
+    document.getElementById('0').checked = true
+
+    
+
     function removeChild() {
       if (currentContainer) {
         app.stage.removeChild(currentContainer)
         currentContainer = undefined
+        removeButton.alpha = 0;
       }
-      
     }
+
+    function updateIndex() {
+      app.stage.children.map((el, ind) => {
+        if (el.type = 'container') {
+          let temp = el;
+          temp.children.map(underEl => {
+            if (underEl.type = 'text') {
+              underEl.text = ind
+            }
+            if (underEl.type = 'table') {
+              underEl.index = ind
+            }
+          })
+        }
+      })
+    }
+
     function writeNewAdditions(tables) {
       firebase.database().ref('saved-tables').set(tables);
     }
 
     function saveStage() {
       const items = app.stage.children.filter((el) => el.type === 'container');
-
+      console.log('app.stage.children: ', app.stage.children);
+  
       const arr = [];
 
-      items.map(el => {
-        el.children.map(underEl => {
-          if (underEl.type === 'table') {
+      items.forEach(el => {
+        el.children.forEach(underEl => {
+          if (underEl.id) {
             const obj = {}
             obj.index = underEl.index;
             obj.x = el.x;
@@ -70,8 +92,6 @@ const AdminTableRender = ({
         })
       })
 
-      // localStorage.setItem('tables', JSON.stringify(arr));
-      // localStorage.setItem('bgImage', answer);
       writeNewAdditions(arr)
     }
     const app = new PIXI.Application({
@@ -190,6 +210,7 @@ const AdminTableRender = ({
             currentContainer = ev.target.parent;
             currentTable = ev.target;
             currentTable.tint = 0xFF0000;
+            removeButton.alpha = 1;
           });
 
         const text = new PIXI.Text(table.index,
@@ -218,40 +239,34 @@ const AdminTableRender = ({
       }
     };
 
-    const saveButton = new PIXI.Text('Save',
-      {
-        font: '4rem',
-        fill: 0x000000,
-        align: 'center',
-        cacheAsBitmap: true,
-      });
+    const saveButton = new PIXI.Sprite.from(save)
     saveButton.interactive = true;
     saveButton.buttonMode = true;
     saveButton.type = 'button';
     saveButton.anchor.set(0.5);
-    saveButton.x = 40
-    saveButton.y = 20
+    saveButton.width = 64
+    saveButton.height = 64
+    saveButton.x = app.screen.width - 44
+    saveButton.y = 40
     saveButton
       .on('pointertap', () => {
         saveStage();
       });
     app.stage.addChild(saveButton);
-    const removeButton = new PIXI.Text('Remove',
-      {
-        font: '4rem',
-        fill: 0x000000,
-        align: 'center',
-        cacheAsBitmap: true,
-      });
+    const removeButton = new PIXI.Sprite.from(remove)
+    removeButton.alpha = 0;
     removeButton.interactive = true;
     removeButton.buttonMode = true;
     removeButton.type = 'button';
     removeButton.anchor.set(0.5);
-    removeButton.x = 40
-    removeButton.y = 50
+    removeButton.width = 64
+    removeButton.height = 64
+    removeButton.x = app.screen.width - 108
+    removeButton.y = 40
     removeButton
       .on('pointertap', () => {
         removeChild();
+        updateIndex()
       });
     app.stage.addChild(removeButton);
 
@@ -263,14 +278,17 @@ const AdminTableRender = ({
           app.stage,
         );
         if (!found) {
+          console.log('click')
           if (currentMode && currentMode.mode === 'cursor') {
             if (currentTable) {
               currentTable.tint = 0xFFFFFF;
+              removeButton.alpha = 0;
             }
             currentContainer = null;
             currentTable = null;
           }
           if (currentMode && currentMode.mode === 'create') {
+            removeButton.alpha = 0;
           const container = new PIXI.Container();
           container.type = 'container';
           container.interactive = true;
@@ -351,6 +369,7 @@ const AdminTableRender = ({
               currentContainer = ev.target.parent;
               currentTable = ev.target;
               currentTable.tint = 0xFF0000;
+              removeButton.alpha = 1;
             });
 
           

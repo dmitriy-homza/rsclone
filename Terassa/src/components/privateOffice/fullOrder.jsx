@@ -54,9 +54,7 @@ function FullOrder({ Order }) {
                         ))
                       )) : (
                         <tr>
-                          {' '}
-                          <td>No Additions SORRY</td>
-                          {' '}
+                          <td>{'You doesn\'t choose any additions'}</td>
                         </tr>
                       )}
                     </tbody>
