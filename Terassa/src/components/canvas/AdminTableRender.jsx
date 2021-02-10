@@ -215,9 +215,11 @@ const AdminTableRender = ({
         const text = new PIXI.Text(table.index,
           {
             font: '2rem',
-            fill: 0x000000,
+            fill: 0xFFFFFF,
             align: 'center',
             cacheAsBitmap: true,
+            stroke: 0x000000,
+            strokeThickness: 3
           });
         text.type = 'text'
         text.anchor.set(0.5);
@@ -375,9 +377,11 @@ const AdminTableRender = ({
           const text = new PIXI.Text(table.index,
             {
               font: '2rem',
-              fill: 0x000000,
+              fill: 0xFFFFFF,
               align: 'center',
               cacheAsBitmap: true,
+              stroke: 0x000000,
+              strokeThickness: 3
             });
           text.type = 'text';
           text.anchor.set(0.5);
