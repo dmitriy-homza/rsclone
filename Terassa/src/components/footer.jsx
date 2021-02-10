@@ -8,35 +8,37 @@ export default function Footer() {
   return (
     <footer id="footer">
       <div className="wrapper">
-        <Navbar className="w-100 justify-content-between" light expand="md">
-          <NavbarBrand href="https://rs.school/js/" className="garamond">
+        <Navbar className="w-100 justify-content-between align-items-center h-100" light expand="md">
+          <NavbarBrand href="https://rs.school/js/" className="garamond ">
             <img src={rsImg} alt="Logo" />
           </NavbarBrand>
           <NavItem>
-            <NavLink href="https://rs.school/js/" activeClassName="active">
+            <NavLink className="active flex-fill">
               2021
             </NavLink>
           </NavItem>
-          <NavItem>
-            <NavLink href="https://github.com/RomanFilipenia" activeClassName="active">
-              RomanFilipenia
-            </NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink href="https://github.com/Qairkhan" activeClassName="active">
-              Qairkhan
-            </NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink href="https://github.com/CmrdCat" activeClassName="active">
-              CmrdCat
-            </NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink href="https://github.com/dmitriy-homza" activeClassName="active">
-              dmitriy-homza
-            </NavLink>
-          </NavItem>
+          <div className="d-flex">
+            <NavItem>
+              <NavLink href="https://github.com/RomanFilipenia" className="active">
+                RomanFilipenia
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="https://github.com/Qairkhan" className="active">
+                Qairkhan
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="https://github.com/CmrdCat" className="active">
+                CmrdCat
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="https://github.com/dmitriy-homza" className="active">
+                dmitriy-homza
+              </NavLink>
+            </NavItem>
+          </div>
         </Navbar>
       </div>
     </footer>
