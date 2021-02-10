@@ -40,7 +40,7 @@ const UserOrder = () => {
   });
 
   return (
-    <div className="flex-grow-1">
+    <div className="private-orders flex-grow-1">
       <Nav tabs>
         <NavItem>
           <NavLink
@@ -55,7 +55,7 @@ const UserOrder = () => {
             className={classnames({ active: activeTab === '2' })}
             onClick={() => { toggle('2'); }}
           >
-            <span> History Orders</span>
+            <span>History Orders</span>
           </NavLink>
         </NavItem>
       </Nav>
@@ -63,7 +63,6 @@ const UserOrder = () => {
         <TabPane tabId="1">
           <Row>
             <Col sm="12">
-              <h4>Current Orders</h4>
               <Table hover>
                 <thead>
                   <tr>
@@ -82,7 +81,6 @@ const UserOrder = () => {
         <TabPane tabId="2">
           <Row>
             <Col sm="12">
-              <h4>Past Orders</h4>
               <Table hover>
                 <thead>
                   <tr>

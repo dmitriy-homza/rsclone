@@ -129,6 +129,25 @@ $primary-decor-dark: #ca9e6c;
 .full-order-modal {
   max-width: 1044px;
 }
+.private-orders {
+  max-width: 1200px;
+  margin: 15px auto;
+  width: 100%;
+  table {
+    margin-top: 1rem;
+  }
+  ul {
+    li {
+      a {
+        span {
+          font-size: 19px;
+          cursor: pointer;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+}
 #gatsby-focus-wrapper {
   display: flex;
   flex-direction: column;
