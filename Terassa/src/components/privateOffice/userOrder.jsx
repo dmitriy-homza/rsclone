@@ -40,7 +40,7 @@ const UserOrder = () => {
   });
 
   return (
-    <div>
+    <div className="flex-grow-1">
       <Nav tabs>
         <NavItem>
           <NavLink

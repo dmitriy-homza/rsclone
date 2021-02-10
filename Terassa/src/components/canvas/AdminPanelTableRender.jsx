@@ -25,7 +25,7 @@ const AdminPanelTableRender = () => {
   }, []);
 
   return (
-    <>
+    <div className="flex-grow-1">
       {typeof fbData === 'object' ? (
         <>
           <div>
@@ -42,7 +42,7 @@ const AdminPanelTableRender = () => {
             <span>Loading data...</span>
           </>
         )}
-    </>
+    </div>
   );
 };
 

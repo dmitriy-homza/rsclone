@@ -66,7 +66,7 @@ export default () => {
     <>
       <Layout>
         <ReactNotification />
-        <main className="first-book p-5 flex-column d-flex">
+        <main className="first-book p-5 flex-grow-1 flex-column d-flex">
           <h2>Book:</h2>
           <section className="date-choose">
             <Alert color="primary">
@@ -109,8 +109,7 @@ export default () => {
                     if (document.getElementById('date').value && document.getElementById('time').value) {
                       setPage({
                         tables: `${localStorage.getItem('choosenTable')}`,
-                        visitTime: `${document.getElementById('date').value}T${
-                          document.getElementById('time').value
+                        visitTime: `${document.getElementById('date').value}T${document.getElementById('time').value
                         }+03:00`,
                       });
                     } else {
