@@ -4,7 +4,7 @@ import firebase from 'firebase/app';
 import ButtonItem from './ButtonItem';
 import AdminTableRender from './AdminTableRender';
 import 'firebase/database';
-import { Spinner } from 'reactstrap';
+import { Alert, Spinner } from 'reactstrap';
 import cursor from '../../images/canvas/cursor.png'
 
 function importAll(r) {
@@ -26,15 +26,29 @@ const AdminPanelTableRender = () => {
   }, []);
 
   return (
-    <div className="d-flex flex-column justify-content-center flex-grow-1">
+    <div className="first-book p-5 d-flex flex-column justify-content-center flex-grow-1">
       {typeof fbData === 'object' ? (
         <>
-          <div className="admin-buttons d-flex justify-content-center">
-            <ButtonItem key={0} id={0} image={cursor} mode={'cursor'} />
-            {fbData.tables.map((el, ind) => (
-              <ButtonItem key={ind + 1} id={el.id} image={images[ind]} mode={'create'} />
-            ))}
+        <h2 className="align-center">Admin Panel</h2>
+          <Alert color="primary">
+            Choose <strong>Cursor</strong> button to move tables, or <strong>Table</strong> button to choose a table to be placed
+          </Alert>
+          <div className="admin-buttons d-flex justify-content-between">
+            <div>
+              <ButtonItem key={0} id={0} image={cursor} mode={'cursor'} />
+            </div>
+            <div>
+              {fbData.tables.map((el, ind) => (
+                <ButtonItem key={ind + 1} id={el.id} image={images[ind]} mode={'create'} />
+              ))}
+            </div>
           </div>
+          <Alert> 
+            Place the selected table on the restaurant plan
+            <hr/>
+            Press <kbd>LMB</kbd> on empty space to place the table. 
+            Use <kbd><kbd>RMB</kbd> + <kbd>MouseScroll</kbd></kbd> to rotate the table
+          </Alert>
           <AdminTableRender />
         </>
       ) : (

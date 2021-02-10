@@ -9,6 +9,10 @@
   background-color: rgb(104, 86, 86);
 }
 
+kbd {
+  background-color: #868788;
+}
+
 .remove,
 .save {
   width: 70px;
@@ -27,8 +31,4 @@ label {
 
 input:checked + label {
   opacity: 1;
-}
-
-canvas {
-  border: 1px dashed black;
 }
