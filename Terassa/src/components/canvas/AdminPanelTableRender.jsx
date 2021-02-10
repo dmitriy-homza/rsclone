@@ -28,7 +28,7 @@ const AdminPanelTableRender = () => {
     <div className="flex-grow-1">
       {typeof fbData === 'object' ? (
         <>
-          <div>
+          <div className="admin-buttons d-flex justify-content-center">
             <ButtonItem key={0} id={0} image={cursor} mode={'cursor'} />
             {fbData.tables.map((el, ind) => (
               <ButtonItem key={ind + 1} id={el.id} image={images[ind]} mode={'create'} />
