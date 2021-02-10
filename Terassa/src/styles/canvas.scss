@@ -3,10 +3,14 @@
   width: 100px;
   height: 100px;
   background-position: center;
-  background-size: contain;
+  background-size: 95%;
   background-repeat: no-repeat;
   margin: 5px;
   background-color: rgb(104, 86, 86);
+}
+
+kbd {
+  background-color: #868788;
 }
 
 .remove,
@@ -20,6 +24,7 @@
 }
 label {
   opacity: 0.5;
+  transition: 0.3s all;
 }
 .button-input {
   display: none;
@@ -27,8 +32,4 @@ label {
 
 input:checked + label {
   opacity: 1;
-}
-
-canvas {
-  border: 1px dashed black;
 }
