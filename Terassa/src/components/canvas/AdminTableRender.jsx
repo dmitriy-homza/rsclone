@@ -399,7 +399,7 @@ const AdminTableRender = ({
     } 
 
   return <>
-    <div ref={ref}></div>
+    <div className="d-flex justify-content-center" ref={ref}></div>
   </>;
 }
 
