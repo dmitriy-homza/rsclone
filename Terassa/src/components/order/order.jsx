@@ -33,7 +33,7 @@ function Order() {
     );
   }
   return (
-    <>
+    <div className="flex-grow-1">
       <div className="allBlock">
         <FindOrder onCreate={findOrder} />
       </div>
@@ -41,7 +41,7 @@ function Order() {
         <h1>Order List</h1>
         {!order.visit ? 'Введите номер заказа' : <OrderList order={order} />}
       </div>
-    </>
+    </div>
   );
 }
 

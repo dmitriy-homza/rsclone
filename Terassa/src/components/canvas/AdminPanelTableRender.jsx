@@ -26,7 +26,7 @@ const AdminPanelTableRender = () => {
   }, []);
 
   return (
-    <section className="d-flex flex-column justify-content-center flex-grow-1">
+    <div className="d-flex flex-column justify-content-center flex-grow-1">
       {typeof fbData === 'object' ? (
         <>
           <div className="admin-buttons d-flex justify-content-center">
@@ -43,7 +43,7 @@ const AdminPanelTableRender = () => {
             <span>Loading data...</span>
           </div>
         )}
-    </section>
+    </div>
   );
 };
 
