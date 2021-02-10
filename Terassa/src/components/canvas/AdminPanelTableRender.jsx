@@ -25,7 +25,7 @@ const AdminPanelTableRender = () => {
   }, []);
 
   return (
-    <div className="flex-grow-1">
+    <div className="d-flex flex-column justify-content-center flex-grow-1">
       {typeof fbData === 'object' ? (
         <>
           <div className="admin-buttons d-flex justify-content-center">
