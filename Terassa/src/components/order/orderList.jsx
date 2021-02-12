@@ -30,10 +30,12 @@ function OrderList({ order }) {
       </Alert>
       <ShowOrderedTable tables={tables} />
       {Object.keys(additions).map((group) => (
-        <>
+        <div className="order-group-anon">
           <h3>{group}</h3>
-          {Array.from(additions[group]).map((element) => <BasketElement key={element.id} position={element} remover={() => {}} />)}
-        </>
+          <div>
+            {Array.from(additions[group]).map((element) => <BasketElement key={element.id} position={element} remover={() => { }} />)}
+          </div>
+        </div>
       ))}
       {/* <TabPane tabId="1">
         <Table>

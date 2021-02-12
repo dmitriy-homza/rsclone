@@ -129,6 +129,36 @@ $primary-decor-dark: #ca9e6c;
 .full-order-modal {
   max-width: 1044px;
 }
+
+.anon-orders {
+  max-width: 1200px;
+  margin: 15px auto;
+  width: 100%;
+  .alert {
+    margin-top: 17px;
+  }
+  .order-group-anon {
+    & > div {
+      display: flex;
+      justify-content: start;
+      margin-top: 21px;
+      & > div {
+        margin-right: 10px;
+      }
+    }
+  }
+  .allBlock + div {
+    margin-top: 10px;
+    margin-left: 15px;
+  }
+  h1 {
+    margin-top: 18px;
+  }
+  h3 {
+    margin-top: 15px;
+  }
+}
+
 .private-orders {
   max-width: 1200px;
   margin: 15px auto;

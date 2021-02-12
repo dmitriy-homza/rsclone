@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import {
+  Alert,
+} from 'reactstrap';
 import firebase from '../../core/firebase';
 import 'firebase/database';
 import OrderList from './orderList';
@@ -25,20 +28,21 @@ function Order() {
 
   if (order === undefined) {
     return (
-      <section>
+      <section className="flex-grow-1 anon-orders">
         <FindOrder onCreate={findOrder} />
-        <h1>Order List</h1>
-        <p> Заказ с таким номером не существует</p>
+        <Alert color="danger">
+          Your order is not
+          founded!
+        </Alert>
       </section>
     );
   }
   return (
-    <div className="flex-grow-1">
+    <div className="flex-grow-1 anon-orders">
       <div className="allBlock">
         <FindOrder onCreate={findOrder} />
       </div>
       <div>
-        <h1>Order List</h1>
         {!order.visit ? 'Введите номер заказа' : <OrderList order={order} />}
       </div>
     </div>
