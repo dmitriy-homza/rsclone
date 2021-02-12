@@ -1,0 +1,390 @@
+@font-face {
+  font-family: 'Inter';
+  src: url('../fonts/Inter/Inter-Thin.ttf') format('truetype');
+  font-weight: 100;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('../fonts/Inter/Inter-ExtraLight.ttf') format('truetype');
+  font-weight: 200;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('../fonts/Inter/Inter-Light.ttf') format('truetype');
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('../fonts/Inter/Inter-Regular.ttf') format('truetype');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('../fonts/Inter/Inter-Medium.ttf') format('truetype');
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('../fonts/Inter/Inter-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('../fonts/Inter/Inter-Bold.ttf') format('truetype');
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('../fonts/Inter/Inter-ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('../fonts/Inter/Inter-Black.ttf') format('truetype');
+  font-weight: 900;
+}
+
+@font-face {
+  font-family: 'Cormorant Garamond';
+  src: url('../fonts/CormorantGaramond/CormorantGaramond-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Cormorant Garamond';
+  src: url('../fonts/CormorantGaramond/CormorantGaramond-LightItalic.ttf') format('truetype');
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Cormorant Garamond';
+  src: url('../fonts/CormorantGaramond/CormorantGaramond-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Cormorant Garamond';
+  src: url('../fonts/CormorantGaramond/CormorantGaramond-Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Cormorant Garamond';
+  src: url('../fonts/CormorantGaramond/CormorantGaramond-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Cormorant Garamond';
+  src: url('../fonts/CormorantGaramond/CormorantGaramond-MediumItalic.ttf') format('truetype');
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Cormorant Garamond';
+  src: url('../fonts/CormorantGaramond/CormorantGaramond-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Cormorant Garamond';
+  src: url('../fonts/CormorantGaramond/CormorantGaramond-SemiBoldItalic.ttf') format('truetype');
+  font-weight: 600;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Cormorant Garamond';
+  src: url('../fonts/CormorantGaramond/CormorantGaramond-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Cormorant Garamond';
+  src: url('../fonts/CormorantGaramond/CormorantGaramond-BoldItalic.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+}
+
+$font-dark: #4a5055;
+$font-middle: #909090;
+$primary-decor: #e2c098;
+$primary-decor-dark: #ca9e6c;
+.full-order-modal {
+  max-width: 1044px;
+}
+
+.anon-orders {
+  max-width: 1200px;
+  margin: 15px auto;
+  width: 100%;
+  .alert {
+    margin-top: 17px;
+  }
+  .order-group-anon {
+    & > div {
+      display: flex;
+      justify-content: start;
+      margin-top: 21px;
+      & > div {
+        margin-right: 10px;
+      }
+    }
+  }
+  .allBlock + div {
+    margin-top: 10px;
+    margin-left: 15px;
+  }
+  h1 {
+    margin-top: 18px;
+  }
+  h3 {
+    margin-top: 15px;
+  }
+}
+
+.private-orders {
+  max-width: 1200px;
+  margin: 15px auto;
+  width: 100%;
+  table {
+    margin-top: 1rem;
+  }
+  ul {
+    li {
+      a {
+        span {
+          font-size: 19px;
+          cursor: pointer;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+}
+#gatsby-focus-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  header {
+    flex: inherit;
+  }
+  #signed-out {
+    p {
+      text-align: center;
+      font-size: 18px;
+      margin-top: 2rem;
+      font-weight: 400;
+    }
+  }
+  #signed-out,
+  #signed-In {
+    flex: auto;
+    justify-content: center;
+  }
+  #signed-In {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2rem;
+    justify-content: start;
+    p {
+      text-align: center;
+      font-size: 24px;
+      font-weight: 300;
+    }
+    .account-nav {
+      display: flex;
+      max-width: 800px;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      a {
+        margin: 0px 10px;
+      }
+    }
+  }
+  footer {
+    flex-shrink: 0;
+    li {
+      list-style: none;
+    }
+    .garamond {
+      width: 106px;
+    }
+  }
+}
+body {
+  font: 14px 'Inter', sans-serif;
+  color: $font-dark;
+  #tableInfo {
+    p {
+      font-weight: 600;
+    }
+  }
+  a {
+    color: $font-dark;
+    transition: 0.3s;
+    &:hover {
+      color: $font-middle;
+      text-decoration: unset;
+      transition: 0.3s;
+    }
+  }
+  .modal-without-close {
+    .close {
+      display: none;
+    }
+  }
+  header {
+    box-shadow: 0px 4px 13px rgba(0, 0, 0, 0.15);
+    z-index: 2;
+    .wrapper {
+      margin: 0px auto;
+      max-width: 1300px;
+      display: flex;
+      justify-content: space-between;
+      align-content: center;
+      nav {
+        padding: 0px;
+        .navbar-brand {
+          font-size: 36px;
+        }
+        .navbar-collapse {
+          flex-grow: 0;
+          // height: 100%;
+          .navbar-nav {
+            height: 100%;
+            .nav-item {
+              padding: 0 0.7rem;
+              display: flex;
+              justify-content: center;
+              .active {
+                border-top: 3px solid $primary-decor;
+                padding-bottom: 3px;
+                transition: 0.4s;
+              }
+              a {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-weight: 200;
+                font-size: 18px;
+                line-height: 24px;
+                padding: 0 0.6rem;
+                border: 0px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .first-book {
+    max-width: 1300px;
+    margin: 0px auto;
+  }
+  main {
+    max-width: 1300px;
+    margin: 0px auto;
+  }
+  .garamond {
+    font-family: 'Cormorant Garamond', serif;
+  }
+  footer {
+    z-index: 2;
+    background-color: #fff3e4;
+    height: 100px;
+    .wrapper {
+      padding: 0 1rem;
+      margin: auto;
+      height: 100%;
+      max-width: 1300px;
+      display: flex;
+      justify-content: space-between;
+      align-content: center;
+      nav {
+        background-color: #fff3e4;
+        padding: 0px;
+        .navbar-brand {
+          font-size: 36px;
+        }
+        .navbar-collapse {
+          flex-grow: 0;
+          .navbar-nav {
+            height: 100%;
+            .nav-item {
+              padding: 0 0.7rem;
+              display: flex;
+              justify-content: center;
+              .active {
+                font-weight: 300;
+                transition: 0.4s;
+              }
+              a {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-weight: 200;
+                font-size: 18px;
+                line-height: 24px;
+                padding: 0 0.6rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .btn-primary {
+    background-color: $primary-decor-dark;
+    border-color: $primary-decor-dark;
+    &:hover {
+      background-color: $primary-decor;
+      border-color: $primary-decor;
+    }
+    &:focus,
+    &:not(:disabled):not(.disabled):active,
+    &:not(:disabled):not(.disabled):active:focus {
+      color: #fff;
+      background-color: $primary-decor-dark;
+      border-color: $primary-decor-dark;
+      box-shadow: 0 0 0 0.2rem $primary-decor-dark;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .navbar-collapse {
+    // height: unset !important;
+    .nav-item {
+      justify-content: start !important;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  main {
+    .hello {
+      background-size: contain;
+    }
+  }
+  .navbar-collapse {
+    height: 100%;
+  }
+}
